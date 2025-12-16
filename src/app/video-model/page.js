@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
+import LoginModal from "@/components/LoginModal";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -20,7 +21,8 @@ import {
 
 export default function VideoModel() {
   const { user, loading } = useAuth();
-  const router = useRouter();
+  const [showLogin, setShowLogin] = useState(false);
+
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -30,12 +32,12 @@ export default function VideoModel() {
   const fileInputRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Redirect if not logged in
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login");
+      setShowLogin(true);
     }
-  }, [loading, user, router]);
+  }, [loading, user]);
+
 
   const handleFileSelect = (event) => {
     const file = event.target.files?.[0];
@@ -102,13 +104,19 @@ export default function VideoModel() {
     }
   };
 
-  if (loading || !user) {
+  {
+    showLogin && !user && (
+      <LoginModal onClose={() => setShowLogin(false)} />
+    )
+  }
+  if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-slate-700">
+      <div className="min-h-screen flex items-center justify-center text-slate-600">
         Loading...
       </div>
     );
   }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-teal-50/20">
@@ -221,11 +229,10 @@ export default function VideoModel() {
                     <div className="flex justify-between items-center">
                       <span className="text-slate-900 font-medium">Model Verdict</span>
                       <Badge
-                        className={`text-base px-4 py-1.5 rounded-xl font-semibold border backdrop-blur-sm ${
-                          analysisResults.verdict === "AI Generated"
-                            ? "bg-red-100/70 text-red-800 border-red-200/50"
-                            : "bg-green-100/70 text-green-800 border-green-200/50"
-                        }`}
+                        className={`text-base px-4 py-1.5 rounded-xl font-semibold border backdrop-blur-sm ${analysisResults.verdict === "AI Generated"
+                          ? "bg-red-100/70 text-red-800 border-red-200/50"
+                          : "bg-green-100/70 text-green-800 border-green-200/50"
+                          }`}
                       >
                         {analysisResults.verdict}
                       </Badge>

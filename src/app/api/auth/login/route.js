@@ -1,8 +1,8 @@
 // app/api/auth/login/route.js
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/db';
-import User from '@/models/User';
-import { createToken, setTokenCookie } from '@/lib/auth';
+import dbConnect from '../../../../../lib/db';
+import User from '../../../../../models/User';
+import { createToken, setTokenCookie } from '../../../../../lib/auth';
 
 export const runtime = 'nodejs';
 

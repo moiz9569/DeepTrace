@@ -1,25 +1,21 @@
-// app/layout.jsx
-import './globals.css';
-import { AuthProvider } from '@/components/auth/AuthProvider';
-import Navbar from '@/components/navbar';
-
-export const metadata = {
-  title: 'Truth Seeker',
-  description: 'AI content analysis',
-};
+import "./globals.css";
+import NavbarWrapper from "@/components/NavbarWrapper";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
         <AuthProvider>
-          <Navbar />
-          <main>{children}</main>
+          <NavbarWrapper>
+            {children}
+          </NavbarWrapper>
         </AuthProvider>
       </body>
     </html>
   );
 }
+
 
 
 // import { Inter } from "next/font/google"

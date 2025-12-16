@@ -1,6 +1,6 @@
 // app/api/auth/logout/route.js
 import { NextResponse } from 'next/server';
-import { clearTokenCookie } from '@/lib/auth';
+import { clearTokenCookie } from '../../../../../lib/auth';
 
 export const runtime = 'nodejs';
 
