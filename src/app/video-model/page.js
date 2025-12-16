@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import LoginModal from "@/components/LoginModal";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+// import { Progress } from "@/components/ui/progress";
+// import { Badge } from "@/components/ui/badge";
 import {
   Upload,
   Play,
@@ -136,14 +136,14 @@ export default function VideoModel() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Upload Section */}
-          <Card className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
-            <CardHeader className="border-b border-slate-200/60 bg-white/40">
-              <CardTitle className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <div className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
+            <div className="border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <Video className="w-5 h-5 text-teal-600" />
                 Video Upload
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 space-y-6">
+              </div>
+            </div>
+            <div className="p-6 space-y-6">
               <div
                 className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:border-teal-400 hover:bg-teal-50/30 transition-all duration-300 cursor-pointer bg-white/50 backdrop-blur-sm group"
                 onClick={() => fileInputRef.current?.click()}
@@ -165,9 +165,9 @@ export default function VideoModel() {
                   <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-slate-200/50">
                     <div className="flex items-center justify-between mb-4">
                       <span className="text-slate-900 font-medium">{selectedFile.name}</span>
-                      <Badge className="bg-teal-100/70 text-teal-800 border-teal-200/50 backdrop-blur-sm">
+                      <div className="bg-teal-100/70 text-teal-800 border-teal-200/50 backdrop-blur-sm">
                         {(selectedFile.size / (1024 * 1024)).toFixed(1)} MB
-                      </Badge>
+                      </div>
                     </div>
                     <video
                       ref={videoRef}
@@ -176,24 +176,24 @@ export default function VideoModel() {
                       controls={false}
                     />
                     <div className="flex items-center gap-2 mt-3">
-                      <Button
+                      <button
                         size="sm"
                         variant="outline"
                         onClick={togglePlayPause}
                         className="border-slate-300/80 bg-white/70 text-slate-700 hover:bg-white hover:border-slate-400 transition-all duration-300"
                       >
                         {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                      </Button>
+                      </button>
                     </div>
                   </div>
 
-                  <Button
+                  <button
                     onClick={handleAnalyze}
                     disabled={isAnalyzing}
                     className="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300"
                   >
                     {isAnalyzing ? "Analyzing..." : "Start Analysis"}
-                  </Button>
+                  </button>
 
                   {isAnalyzing && (
                     <div className="space-y-2 bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-slate-200/50">
@@ -201,23 +201,23 @@ export default function VideoModel() {
                         <span>Processing video...</span>
                         <span>{Math.round(analysisProgress)}%</span>
                       </div>
-                      <Progress value={analysisProgress} className="bg-slate-200/50" />
+                      <div value={analysisProgress} className="bg-slate-200/50" />
                     </div>
                   )}
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Results Section */}
-          <Card className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
-            <CardHeader className="border-b border-slate-200/60 bg-white/40">
-              <CardTitle className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <div className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
+            <div className="border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <CheckCircle className="w-5 h-5 text-green-600" />
                 Analysis Results
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
+              </div>
+            </div>
+            <div className="p-6">
               {!analysisResults ? (
                 <div className="text-center py-12 bg-white/30 rounded-xl border border-slate-200/50">
                   <Video className="w-16 h-16 text-slate-300 mx-auto mb-4" />
@@ -228,38 +228,38 @@ export default function VideoModel() {
                   <div className="space-y-3 bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-slate-200/50">
                     <div className="flex justify-between items-center">
                       <span className="text-slate-900 font-medium">Model Verdict</span>
-                      <Badge
+                      <div
                         className={`text-base px-4 py-1.5 rounded-xl font-semibold border backdrop-blur-sm ${analysisResults.verdict === "AI Generated"
                           ? "bg-red-100/70 text-red-800 border-red-200/50"
                           : "bg-green-100/70 text-green-800 border-green-200/50"
                           }`}
                       >
                         {analysisResults.verdict}
-                      </Badge>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex gap-3 pt-4">
-                    <Button
+                    <button
                       variant="outline"
                       className="border-slate-300/80 bg-white/70 text-slate-700 hover:bg-white hover:border-slate-400 transition-all duration-300"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Report
-                    </Button>
-                    <Button
+                    </button>
+                    <button
                       variant="outline"
                       className="border-slate-300/80 bg-white/70 text-slate-700 hover:bg-white hover:border-slate-400 transition-all duration-300"
                       onClick={handleAnalyze}
                     >
                       <RotateCcw className="w-4 h-4 mr-2" />
                       Re-analyze
-                    </Button>
+                    </button>
                   </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+// import { Textarea } from "@/components/ui/textarea";
+// import { Progress } from "@/components/ui/progress";
+// import { Badge } from "@/components/ui/badge";
 import {
   MessageSquare,
   FileText,
@@ -110,16 +110,16 @@ export default function TextModel() {
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Input Section */}
-          <Card className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
-            <CardHeader className="border-b border-slate-200/60 bg-white/40">
-              <CardTitle className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <div className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
+            <div className="border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <MessageSquare className="w-5 h-5 text-green-700" />
                 Text Input
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 space-y-6">
+              </div>
+            </div>
+            <div className="p-6 space-y-6">
               <div className="space-y-4">
-                <Textarea
+                <div
                   placeholder="Paste your text here for analysis..."
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
@@ -139,14 +139,14 @@ export default function TextModel() {
                 </div>
               </div>
 
-              <Button
+              <button
                 onClick={handleAnalyze}
                 disabled={isAnalyzing || !inputText.trim()}
                 className="w-full bg-green-700 hover:from-green-700 text-white shadow-lg shadow-green-500/25 hover:bg-green-800 transition-all duration-300"
               >
                 <Zap className="w-4 h-4 mr-2" />
                 {isAnalyzing ? "Analyzing..." : "Start Analysis"}
-              </Button>
+              </button>
 
               {isAnalyzing && (
                 <div className="space-y-2 bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-slate-200/50">
@@ -154,24 +154,24 @@ export default function TextModel() {
                     <span>Processing text...</span>
                     <span>{Math.round(analysisProgress)}%</span>
                   </div>
-                  <Progress
+                  <button
                     value={analysisProgress}
                     className="bg-slate-200/50"
                   />
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Results Section */}
-          <Card className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
-            <CardHeader className="border-b border-slate-200/60 bg-white/40">
-              <CardTitle className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                <CheckCircle className="w-5 h-5 text-green-600" />
+          <div className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
+            <div className="border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+                <div className="w-5 h-5 text-green-600" />
                 Analysis Results
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
+              </div>
+            </div>
+            <div className="p-6">
               {!analysisResults ? (
                 <div className="text-center py-12 bg-white/30 rounded-xl border border-slate-200/50">
                   <MessageSquare className="w-16 h-16 text-slate-300 mx-auto mb-4" />
@@ -186,7 +186,7 @@ export default function TextModel() {
                       <span className="text-slate-900 font-medium">
                         Model Prediction
                       </span>
-                      <Badge
+                      <div
                         className={`text-base px-4 py-1.5 rounded-xl font-semibold border backdrop-blur-sm ${
                           analysisResults.prediction === "AI Generated"
                             ? "bg-red-100/70 text-red-800 border-red-200/50"
@@ -194,33 +194,34 @@ export default function TextModel() {
                         }`}
                       >
                         {analysisResults.prediction}
-                      </Badge>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex gap-3 pt-4">
-                    <Button
+                    <button
                       variant="outline"
                       className="border-slate-300/80 bg-white/70 text-slate-700 hover:bg-white hover:border-slate-400 transition-all duration-300"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Report
-                    </Button>
-                    <Button
+                    </button>
+                    <button
                       variant="outline"
                       className="border-slate-300/80 bg-white/70 text-slate-700 hover:bg-white hover:border-slate-400 transition-all duration-300"
                     >
                       <RotateCcw className="w-4 h-4 mr-2" />
                       Re-analyze
-                    </Button>
+                    </button>
                   </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    
   );
 }
 
