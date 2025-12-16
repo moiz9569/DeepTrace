@@ -3,15 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import LoginModal from "@/components/LoginModal";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+// import {
+//   Card,
+//   CardContent,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+// import { Button } from "@/components/ui/button";
+// import { Progress } from "@/components/ui/progress";
+// import { Badge } from "@/components/ui/badge";
 import {
   Upload,
   Download,
@@ -125,14 +125,14 @@ export default function PictureModel() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Upload */}
-            <Card className="bg-white/40 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <div className="bg-white/40 backdrop-blur-sm">
+              <div>
+                <div className="flex items-center gap-2">
                   <Eye className="w-5 h-5 text-green-600" />
                   Image Upload
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
+                </div>
+              </div>
+              <div className="space-y-6">
                 <div
                   className="border-2 border-dashed rounded-xl p-8 text-center cursor-pointer hover:border-green-400"
                   onClick={() => fileInputRef.current?.click()}
@@ -156,43 +156,43 @@ export default function PictureModel() {
                       alt="preview"
                     />
 
-                    <Button
+                    <button
                       onClick={handleAnalyze}
                       disabled={isAnalyzing}
                       className="w-full bg-green-600 hover:bg-green-700"
                     >
                       <Zap className="mr-2 w-4 h-4" />
                       {isAnalyzing ? "Analyzing..." : "Start Analysis"}
-                    </Button>
+                    </button>
 
                     {isAnalyzing && (
-                      <Progress value={analysisProgress} />
+                      <div value={analysisProgress} />
                     )}
                   </>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Results */}
-            <Card className="bg-white/40 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <div className="bg-white/40 backdrop-blur-sm">
+              <div>
+                <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   Results
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+                </div>
+              </div>
+              <div>
                 {!analysisResults ? (
                   <p className="text-slate-500 text-center">
                     No analysis yet
                   </p>
                 ) : (
-                  <Badge className="text-lg px-4 py-2">
+                  <div className="text-lg px-4 py-2">
                     {analysisResults.verdict}
-                  </Badge>
+                  </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </div>
