@@ -37,6 +37,19 @@ export default function Navbar() {
       document.removeEventListener("openSignupModal", openSignupHandler);
     };
   }, []);
+  
+
+  const handleProtectedClick = (e) => {
+    if (!user) {
+      e.preventDefault(); // 🔥 link navigation roko
+      setShowLogin(true); // 🔥 modal open
+    }
+  };
+
+  const handleLogout = async () => {
+  await logout();          // user null
+  router.push("/home");        // 🔥 force redirect to Home
+};
 
   return (
     <>
@@ -59,9 +72,9 @@ export default function Navbar() {
               <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-500">About</Link>
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
-              <Link href="/dashboard/text-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
-              <Link href="/dashboard/picture-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
-              <Link href="/dashboard/video-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
+              <Link href="/dashboard/text-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
+              <Link href="/dashboard/picture-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
+              <Link href="/dashboard/video-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
             </div>
           }
 
@@ -71,8 +84,8 @@ export default function Navbar() {
               <span className="text-slate-400">...</span>
             ) : user ? (
               <button
-                onClick={logout}
-                className="mr-8 px-3 py-1 border rounded text-slate-200 hover:text-red-400"
+                onClick={handleLogout}
+                className="mr-8 px-3 py-1 border rounded text-slate-200 hover:text-slate-500"
               >
                 Logout
               </button>

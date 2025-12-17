@@ -64,7 +64,7 @@ export default function FeaturesSection() {
                     Natural language processing to detect misinformation, bias,
                     and assess content credibility
                   </p>
-                  <Link href="/text-model" onClick={handleProtectedClick}>
+                  <Link href="/dashboard/text-model" onClick={handleProtectedClick}>
                     <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-green-50 transition">
                       Analyze Text
                     </button>
@@ -85,7 +85,7 @@ export default function FeaturesSection() {
                     Comprehensive image forensics to identify alterations,
                     forgeries, and digital manipulations
                   </p>
-                  <Link href="/picture-model" onClick={handleProtectedClick}>
+                  <Link href="/dashboard/picture-model" onClick={handleProtectedClick}>
                     <button className="bg-white/70 px-4 py-2 rounded-lg text-green-600 hover:bg-green-50 transition">
                       Analyze Image
                     </button>
@@ -105,16 +105,13 @@ export default function FeaturesSection() {
                     Advanced video processing to detect deepfakes,
                     manipulations, and verify content authenticity
                   </p>
-                  <Link href="/video-model" onClick={handleProtectedClick}>
+                  <Link href="/dashboard/video-model" onClick={handleProtectedClick}>
                     <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-teal-50 transition">
                       Analyze Video
                     </button>
                   </Link>
                 </div>
               </div>
-
-
-
             </div>
           </div>
         </div>
