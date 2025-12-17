@@ -26,7 +26,7 @@ export default function SidebarHeader({
 
   const navigation = [
     { id: "text", name: "Text", icon: BarChart3, path: "/dashboard/text-model" },
-    { id: "image", name: "Image", icon: TrendingUp, path: "/dashboard/image-model" },
+    { id: "image", name: "Image", icon: TrendingUp, path: "/dashboard/picture-model" },
     { id: "video", name: "Video", icon: Search, path: "/dashboard/video-model" },
     { id: "reports", name: "Reports", icon: Download, path: "/dashboard/reports" },
     { id: "settings", name: "Settings", icon: Settings, path: "/dashboard/settings" },
