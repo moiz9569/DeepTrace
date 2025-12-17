@@ -44,7 +44,7 @@ export default function SidebarHeader({
         <div className="flex items-center gap-2">
           <Search className="w-5 h-5" style={{ color: ACCENT[0] }} />
           <span className="font-semibold text-lg text-slate-800">
-            SEO Dashboard
+            {/* SEO Dashboard */}
           </span>
         </div>
 
