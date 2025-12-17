@@ -46,14 +46,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-100">
       <div className="container mx-auto max-w-7xl p-6">
         {/* Header */}
         <div className="mb-8">
-          <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-teal-200/50 rounded-full px-4 py-2 text-teal-700 mb-4">
+          {/* <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-teal-200/50 rounded-full px-4 py-2 text-teal-700 mb-4">
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-medium">Analysis Dashboard</span>
-          </div>
+          </div> */}
           <h1 className="text-4xl font-bold text-slate-900 mb-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
             Analysis Dashboard
           </h1>
