@@ -25,11 +25,36 @@ export default function SidebarHeader({
   const router = useRouter();
 
   const navigation = [
-    { id: "text", name: "Text", icon: BarChart3, path: "/dashboard/text-model" },
-    { id: "image", name: "Image", icon: TrendingUp, path: "/dashboard/picture-model" },
-    { id: "video", name: "Video", icon: Search, path: "/dashboard/video-model" },
-    { id: "reports", name: "Reports", icon: Download, path: "/dashboard/reports" },
-    { id: "settings", name: "Settings", icon: Settings, path: "/dashboard/settings" },
+    {
+      id: "text",
+      name: "Text",
+      icon: BarChart3,
+      path: "/dashboard/text-model",
+    },
+    {
+      id: "image",
+      name: "Image",
+      icon: TrendingUp,
+      path: "/dashboard/picture-model",
+    },
+    {
+      id: "video",
+      name: "Video",
+      icon: Search,
+      path: "/dashboard/video-model",
+    },
+    {
+      id: "reports",
+      name: "Reports",
+      icon: Download,
+      path: "/dashboard/reports",
+    },
+    {
+      id: "settings",
+      name: "Settings",
+      icon: Settings,
+      path: "/dashboard/settings",
+    },
   ];
 
   const activeId =
@@ -38,9 +63,9 @@ export default function SidebarHeader({
   const toggleSidebar = () => setIsSidebarCollapsed((v) => !v);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-700">
+    <div className="flex min-h-screen bg-white text-slate-700">
       {/* HEADER (BEHIND SIDEBAR) */}
-      <header className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur border-b border-slate-200 z-20 px-6 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 h-16 bg-gray-100 backdrop-blur z-20 px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Search className="w-5 h-5" style={{ color: ACCENT[0] }} />
           <span className="font-semibold text-lg text-slate-800">
@@ -70,7 +95,7 @@ export default function SidebarHeader({
 
       {/* SIDEBAR (ON TOP OF HEADER) */}
       <aside
-        className={`fixed top-0 left-0 h-screen bg-white border-r border-slate-200 z-50 transition-all ${
+        className={`fixed top-0 rounded-2xl left-0 h-screen bg-white border-r border-slate-200 z-50 transition-all ${
           isSidebarCollapsed ? "w-20" : "w-64"
         } pt-16`}
       >
@@ -115,9 +140,9 @@ export default function SidebarHeader({
 
       {/* MAIN CONTENT */}
       <main
-        className={`flex-1 ml-${
-          isSidebarCollapsed ? "20" : "64"
-        } mt-16 p-4 transition-all`}
+        className={`flex-1 mt-16 p-1 transition-all bg-white duration-300 ${
+          isSidebarCollapsed ? "ml-20" : "ml-64"
+        }`}
       >
         {children}
       </main>

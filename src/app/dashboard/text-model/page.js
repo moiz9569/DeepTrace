@@ -119,7 +119,7 @@ export default function TextModel() {
             </div>
             <div className="p-6 space-y-6">
               <div className="space-y-4">
-                <div
+                <textarea
                   placeholder="Paste your text here for analysis..."
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
@@ -154,7 +154,7 @@ export default function TextModel() {
                     <span>Processing text...</span>
                     <span>{Math.round(analysisProgress)}%</span>
                   </div>
-                  <button
+                  <progress
                     value={analysisProgress}
                     className="bg-slate-200/50"
                   />
@@ -167,7 +167,7 @@ export default function TextModel() {
           <div className="border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
             <div className="border-b border-slate-200/60 bg-white/40">
               <div className="text-slate-900 flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                <div className="w-5 h-5 text-green-600" />
+                <CheckCircle className="w-5 h-5 text-green-600" />
                 Analysis Results
               </div>
             </div>
@@ -221,7 +221,6 @@ export default function TextModel() {
         </div>
       </div>
     </div>
-    
   );
 }
 

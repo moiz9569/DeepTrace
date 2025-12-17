@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
       console.error('Logout error', e);
     } finally {
       setUser(null);
-      router.push('/login');
+      router.push('/');
     }
   }
 
