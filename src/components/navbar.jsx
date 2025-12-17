@@ -37,6 +37,7 @@ export default function Navbar() {
       document.removeEventListener("openSignupModal", openSignupHandler);
     };
   }, []);
+  
 
   const handleProtectedClick = (e) => {
     if (!user) {
