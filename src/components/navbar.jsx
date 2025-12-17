@@ -59,9 +59,9 @@ export default function Navbar() {
               <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-500">About</Link>
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
-              <Link href="/text-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
-              <Link href="/picture-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
-              <Link href="/video-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
+              <Link href="/dashboard/text-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
+              <Link href="/dashboard/picture-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
+              <Link href="/dashboard/video-model" className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
             </div>
           }
 
