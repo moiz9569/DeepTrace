@@ -39,7 +39,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="mt-14 bg-gradient-to-br from-slate-50/80 via-white to-teal-50/40 border-b border-slate-200/60">
+      <div className="mt-14 bg-white border-b border-slate-200/60">
         <div className="container mx-auto max-w-6xl p-6 ">
           <div className="text-center mb-16">
             {/* <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-teal-200/50 rounded-full px-4 py-2 text-teal-700 mb-6">

@@ -54,7 +54,7 @@ export default function SidebarHeader({ children }) {
   return (
     <div className="min-h-screen bg-slate-50 rounded-2xl">
       {/* ================= HEADER ================= */}
-      <header className="fixed top-0 justify-end left-0 right-0 z-30 h-16 bg-white border-b flex items-center px-6">
+      <header className="fixed top-0 justify-end left-0 right-0 z-30 h-18 bg-white shadow-sm flex items-center px-6">
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-semibold">
             MS
