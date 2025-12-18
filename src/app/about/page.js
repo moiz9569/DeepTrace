@@ -39,7 +39,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="mt-14 bg-white border-b border-slate-200/60">
+      <div className="mt-24 bg-gradient-to-br from-slate-50/80 via-white to-teal-50/40 border-b border-slate-200/60">
         <div className="container mx-auto max-w-6xl p-6 ">
           <div className="text-center mb-16">
             {/* <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm border border-teal-200/50 rounded-full px-4 py-2 text-teal-700 mb-6">
@@ -99,8 +99,8 @@ export default function AboutPage() {
 
         {/* Stats Section */}
         <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm mb-16 hover:shadow-lg transition-all duration-500">
-          <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
-            <div className="text-slate-900 py-1.5 text-center text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+            <div className="text-slate-900 py-7 text-center text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               Performance Metrics
             </div>
           </div>
@@ -122,8 +122,8 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {/* Technology Stack */}
           <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-            <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
-              <div className="text-slate-900 py-1.5 px-2 text-2xl flex items-center gap-2 font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 py-6 px-4 text-2xl flex items-center gap-2 font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <Shield className="w-6 h-6 text-green-600" />
                 Technology Stack
               </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">AI & Machine Learning</h3>
                 <div className="flex flex-wrap gap-2">
                   {["TensorFlow", "PyTorch", "Computer Vision", "NLP"].map((tech, index) => (
-                    <div key={index} className="rounded-2xl px-1.5 bg-teal-100/70 text-teal-800 border-teal-200/50 backdrop-blur-sm">
+                    <div key={index} className="rounded-2xl px-2.5 py-1 text-xs font-semibold bg-teal-100/70 text-teal-800 hover:bg-teal-800 hover:text-teal-100/70 border-teal-200/50 backdrop-blur-sm">
                       {tech}
                     </div>
                   ))}
@@ -144,7 +144,7 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold text-slate-900 mb-3">Infrastructure</h3>
                 <div className="flex flex-wrap gap-2">
                   {["Node.js", "Express.js", "MongoDB", "Redis", "Docker", "AWS"].map((tech, index) => (
-                    <div key={index} className="px-1.5 rounded-2xl bg-slate-100/70 text-slate-800 border-slate-200/50 backdrop-blur-sm">
+                    <div key={index} className="rounded-2xl px-2.5 py-1 text-xs font-semibold bg-slate-100/70 text-slate-800 hover:text-slate-100/70 hover:bg-slate-800 border-slate-200/50 backdrop-blur-sm">
                       {tech}
                     </div>
                   ))}
@@ -155,8 +155,8 @@ export default function AboutPage() {
 
           {/* Compliance & Security */}
           <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-            <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
-              <div className="text-slate-900 py-1.5 px-2 text-2xl font-bold flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+              <div className="text-slate-900 py-6 px-4 text-2xl font-bold flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <Shield className="w-6 h-6 text-green-600" />
                 Security & Compliance
               </div>
@@ -182,8 +182,8 @@ export default function AboutPage() {
 
         {/* Team Section */}
         <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-          <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
-            <div className="text-slate-900 py-1 text-center text-3xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+          <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+            <div className="text-slate-900 py-7 text-center text-3xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               <Building2 className="w-8 h-8 text-teal-600" />
               Our Team
             </div>
