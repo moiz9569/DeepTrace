@@ -50,7 +50,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <span className="text-lg font-bold text-slate-900">
-                      Truth Seeker
+                      DeepTrace
                     </span>
                     <p className="text-xs text-gray-500">Powered by AI</p>
                   </div>
@@ -111,7 +111,7 @@ export default function Footer() {
             {/* BOTTOM */}
             <div className="pt-4 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4 px-2 pr-6">
               <p className="text-sm text-gray-500">
-                © 2025 Truth Seeker. All rights reserved.
+                © 2025 DeepTrace. All rights reserved.
               </p>
 
               <div className="flex items-center gap-6 text-sm text-gray-500">

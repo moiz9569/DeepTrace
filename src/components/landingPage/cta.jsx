@@ -45,7 +45,7 @@ export default function CTASection() {
 
       {/* LOGIN MODAL */}
       {showLogin && (
-        <LoginModal onClose={() => setShowLogin(false)} />
+        <LoginModal onClose={() => setShowLogin(false)} />  
       )}
     </>
   );

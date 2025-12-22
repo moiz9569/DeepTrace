@@ -61,7 +61,7 @@ export default function Navbar() {
               <Brain className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-slate-200">
-              Truth Seeker
+              DeepTrace
             </span>
           </Link>
 
@@ -70,8 +70,8 @@ export default function Navbar() {
             <div className="flex items-center gap-7">
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Home</Link>
               <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-500">About</Link>
-              <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
-              <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
+              <Link href="/contact" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
+              <Link href="/services" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
               <Link href="/dashboard/text-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
               <Link href="/dashboard/picture-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
               <Link href="/dashboard/video-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
