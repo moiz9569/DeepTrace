@@ -99,7 +99,7 @@ export default function AboutPage() {
 
         {/* Stats Section */}
         <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm mb-16 hover:shadow-lg transition-all duration-500">
-          <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+          <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
             <div className="text-slate-900 py-7 text-center text-3xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               Performance Metrics
             </div>
@@ -122,7 +122,7 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {/* Technology Stack */}
           <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-            <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+            <div className="rounded-t-2xl border-b hover:bg-red-600 border-slate-200/60 bg-white/40">
               <div className="text-slate-900 py-6 px-4 text-2xl flex items-center gap-2 font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <Shield className="w-6 h-6 text-green-600" />
                 Technology Stack
@@ -155,7 +155,7 @@ export default function AboutPage() {
 
           {/* Compliance & Security */}
           <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-            <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+            <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
               <div className="text-slate-900 py-6 px-4 text-2xl font-bold flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 <Shield className="w-6 h-6 text-green-600" />
                 Security & Compliance
@@ -182,7 +182,7 @@ export default function AboutPage() {
 
         {/* Team Section */}
         <div className="rounded-2xl border border-slate-200/60 bg-white/40 backdrop-blur-sm hover:shadow-lg transition-all duration-500">
-          <div className="rounded-t-2xl border-b border-slate-200/60 bg-white/40">
+          <div className="rounded-2xl border-b border-slate-200/60 bg-white/40">
             <div className="text-slate-900 py-7 text-center text-3xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               <Building2 className="w-8 h-8 text-teal-600" />
               Our Team
