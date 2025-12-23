@@ -69,17 +69,17 @@ export default function VideoModel() {
         setTimeout(() => setError(null), 3000);
         return;
       }
-      
+
       if (file.size > 500 * 1024 * 1024) { // 500MB limit
         setError("Video size should be less than 500MB");
         setTimeout(() => setError(null), 3000);
         return;
       }
-      
+
       setSelectedFile(file);
       setAnalysisResults(null);
       setError(null);
-      
+
       // Create video URL
       if (videoUrl) {
         URL.revokeObjectURL(videoUrl);
@@ -98,7 +98,7 @@ export default function VideoModel() {
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       const file = files[0];
@@ -178,13 +178,13 @@ export default function VideoModel() {
       }
 
       const result = await response.json();
-      
+
       clearInterval(progressInterval);
       setAnalysisProgress(100);
-      
+
       // Small delay for smooth transition
       await new Promise(resolve => setTimeout(resolve, 300));
-      
+
       setIsAnalyzing(false);
 
       const aiConfidence = Math.round((result?.average_AI_Probability || 0) * 100);
@@ -192,7 +192,7 @@ export default function VideoModel() {
         (result?.average_Human_Probability || 0) * 100
       );
       const verdict = result?.predicted_label || "Unknown";
-      
+
       const newResult = {
         verdict: verdict,
         confidence: aiConfidence,
@@ -208,13 +208,13 @@ export default function VideoModel() {
 
       setAnalysisResults(newResult);
       setHistory(prev => [newResult, ...prev.slice(0, 4)]);
-      
+
     } catch (error) {
       console.error("Video analysis error:", error);
       clearInterval(progressInterval);
       setIsAnalyzing(false);
       setError("Failed to analyze video. Please try again.");
-      
+
       // Auto-clear error after 5 seconds
       setTimeout(() => setError(null), 5000);
     }
@@ -233,7 +233,7 @@ export default function VideoModel() {
 
   const handleExport = () => {
     if (!analysisResults) return;
-    
+
     const report = `
 🎬 AI Video Detection Report
 ═══════════════════════════
@@ -254,10 +254,10 @@ export default function VideoModel() {
 • Processing Time: ${analysisResults.rawData?.processing_time || 'N/A'}s
 
 ─── Analysis Summary ───
-${analysisResults.verdict === "AI Generated" 
-  ? "• Video shows characteristics of AI-generated content\n• Frame-by-frame analysis detected AI patterns\n• High probability of artificial video generation"
-  : "• Video exhibits characteristics of authentic footage\n• Natural motion and variations detected\n• High probability of human-created video"
-}
+${analysisResults.verdict === "AI Generated"
+        ? "• Video shows characteristics of AI-generated content\n• Frame-by-frame analysis detected AI patterns\n• High probability of artificial video generation"
+        : "• Video exhibits characteristics of authentic footage\n• Natural motion and variations detected\n• High probability of human-created video"
+      }
 
 ─── Model Information ───
 • Endpoint: https://mohitai24-image-detector-model.hf.space/predict_video
@@ -317,11 +317,6 @@ ${analysisResults.verdict === "AI Generated"
 
       {/* MAIN CONTENT */}
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
-        {/* Decorative Elements */}
-        <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 z-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300/10 rounded-full blur-3xl"></div>
-
         <div className="container mx-auto max-w-6xl p-6 relative z-10">
           {/* Error Message */}
           {error && (
@@ -346,14 +341,14 @@ ${analysisResults.verdict === "AI Generated"
                 <p className="text-sm text-slate-600">Advanced Video Forensics</p>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">
                   Video <span className="bg-gradient-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">Authenticity</span> Analyzer
                 </h1>
                 <p className="text-lg text-slate-600 max-w-2xl">
-                  Detect AI-generated videos using advanced computer vision models. 
+                  Detect AI-generated videos using advanced computer vision models.
                   Analyze video frames, motion patterns, and authenticity metrics.
                 </p>
               </div>
@@ -399,7 +394,7 @@ ${analysisResults.verdict === "AI Generated"
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-6 space-y-6">
                   <div className="space-y-4">
                     {!selectedFile ? (
@@ -448,7 +443,7 @@ ${analysisResults.verdict === "AI Generated"
                               </div>
                             </div>
                           </div>
-                          
+
                           {/* Video Player */}
                           <div className="relative rounded-xl overflow-hidden border border-slate-200/60 bg-black/5">
                             <video
@@ -460,7 +455,7 @@ ${analysisResults.verdict === "AI Generated"
                               onPlay={() => setIsPlaying(true)}
                               onPause={() => setIsPlaying(false)}
                             />
-                            
+
                             {/* Play/Pause Overlay */}
                             <div className="absolute inset-0 flex items-center justify-center">
                               <button
@@ -474,25 +469,25 @@ ${analysisResults.verdict === "AI Generated"
                                 )}
                               </button>
                             </div>
-                            
+
                             {/* Progress Bar */}
-                            <div 
+                            <div
                               className="absolute bottom-0 left-0 right-0 h-1 bg-slate-800/30 cursor-pointer"
                               onClick={handleSeek}
                             >
-                              <div 
+                              <div
                                 className="h-full bg-gradient-to-r from-teal-500 to-emerald-500"
                                 style={{ width: `${(videoCurrentTime / videoDuration) * 100}%` }}
                               ></div>
                             </div>
-                            
+
                             {/* Time Display */}
                             <div className="absolute bottom-3 left-3 right-3 flex justify-between text-xs text-white/90">
                               <span>{formatTime(videoCurrentTime)}</span>
                               <span>{formatTime(videoDuration)}</span>
                             </div>
                           </div>
-                          
+
                           {/* Controls */}
                           <div className="flex items-center justify-between mt-3">
                             <button
@@ -511,7 +506,7 @@ ${analysisResults.verdict === "AI Generated"
                                 </>
                               )}
                             </button>
-                            
+
                             <div className="flex items-center gap-2 text-sm text-slate-600">
                               <span>Duration: {formatTime(videoDuration)}</span>
                             </div>
@@ -547,15 +542,14 @@ ${analysisResults.verdict === "AI Generated"
                       <RotateCcw className="w-4 h-4" />
                       Clear All
                     </button>
-                    
+
                     <button
                       onClick={handleAnalyze}
                       disabled={isAnalyzing || !selectedFile}
-                      className={`flex-1 py-3 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
-                        isAnalyzing || !selectedFile
+                      className={`flex-1 py-3 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${isAnalyzing || !selectedFile
                           ? 'bg-slate-400 cursor-not-allowed'
                           : 'bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 hover:scale-105 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 transform hover:-translate-y-0.5'
-                      }`}
+                        }`}
                     >
                       {isAnalyzing ? (
                         <>
@@ -586,7 +580,7 @@ ${analysisResults.verdict === "AI Generated"
                         <span className="text-lg font-bold text-slate-900">{Math.round(analysisProgress)}%</span>
                       </div>
                       <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className="h-full bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-600 transition-all duration-300 ease-out rounded-full"
                           style={{ width: `${analysisProgress}%` }}
                         ></div>
@@ -619,16 +613,15 @@ ${analysisResults.verdict === "AI Generated"
                   <div className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {history.map((item, index) => (
-                        <div 
-                          key={index} 
+                        <div
+                          key={index}
                           className="bg-white border border-slate-200/60 rounded-xl p-4 hover:border-slate-300 transition-all duration-200 hover:shadow-sm"
                         >
                           <div className="flex items-center justify-between mb-3">
-                            <span className={`text-sm font-medium px-3 py-1 rounded-full ${
-                              item.verdict === "AI Generated" 
-                                ? 'bg-red-100 text-red-700 border border-red-200' 
+                            <span className={`text-sm font-medium px-3 py-1 rounded-full ${item.verdict === "AI Generated"
+                                ? 'bg-red-100 text-red-700 border border-red-200'
                                 : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
-                            }`}>
+                              }`}>
                               {item.verdict}
                             </span>
                             <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -703,26 +696,23 @@ ${analysisResults.verdict === "AI Generated"
                     <div className="space-y-8">
                       {/* Main Verdict */}
                       <div className="text-center space-y-4">
-                        <div className={`inline-flex items-center gap-4 bg-gradient-to-r ${
-                          analysisResults.verdict === "AI Generated" 
-                            ? 'from-red-50 to-orange-50 border-red-200' 
+                        <div className={`inline-flex items-center gap-4 bg-gradient-to-r ${analysisResults.verdict === "AI Generated"
+                            ? 'from-red-50 to-orange-50 border-red-200'
                             : 'from-emerald-50 to-teal-50 border-emerald-200'
-                        } border rounded-2xl px-8 py-6`}>
-                          <div className={`p-3 rounded-full ${
-                            analysisResults.verdict === "AI Generated" 
-                              ? 'bg-gradient-to-br from-red-500 to-orange-500' 
+                          } border rounded-2xl px-8 py-6`}>
+                          <div className={`p-3 rounded-full ${analysisResults.verdict === "AI Generated"
+                              ? 'bg-gradient-to-br from-red-500 to-orange-500'
                               : 'bg-gradient-to-br from-emerald-500 to-teal-500'
-                          }`}>
-                            {analysisResults.verdict === "AI Generated" ? 
-                              <Cpu className="w-6 h-6 text-white" /> : 
+                            }`}>
+                            {analysisResults.verdict === "AI Generated" ?
+                              <Cpu className="w-6 h-6 text-white" /> :
                               <User className="w-6 h-6 text-white" />
                             }
                           </div>
                           <div className="text-left">
                             <p className="text-sm text-slate-500 mb-1">Model Prediction</p>
-                            <p className={`text-2xl font-bold ${
-                              analysisResults.verdict === "AI Generated" ? 'text-red-600' : 'text-emerald-600'
-                            }`}>
+                            <p className={`text-2xl font-bold ${analysisResults.verdict === "AI Generated" ? 'text-red-600' : 'text-emerald-600'
+                              }`}>
                               {analysisResults.verdict}
                             </p>
                             <p className="text-sm text-slate-500 mt-1">
@@ -730,9 +720,9 @@ ${analysisResults.verdict === "AI Generated"
                             </p>
                           </div>
                         </div>
-                        
+
                         <div className="text-sm text-slate-600 bg-white/60 rounded-xl p-4 border border-slate-200/50">
-                          {analysisResults.verdict === "AI Generated" 
+                          {analysisResults.verdict === "AI Generated"
                             ? "The video shows patterns consistent with AI-generated content across multiple frames and motion sequences."
                             : "The video exhibits characteristics of authentic footage with natural motion and variations."
                           }
@@ -750,7 +740,7 @@ ${analysisResults.verdict === "AI Generated"
                             <span className="text-xl font-bold text-slate-900">{analysisResults.confidence}%</span>
                           </div>
                           <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
-                            <div 
+                            <div
                               className="h-full bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 rounded-full transition-all duration-1000 ease-out"
                               style={{ width: `${analysisResults.confidence}%` }}
                             ></div>
@@ -766,7 +756,7 @@ ${analysisResults.verdict === "AI Generated"
                             <span className="text-xl font-bold text-slate-900">{analysisResults.authenticity}%</span>
                           </div>
                           <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
-                            <div 
+                            <div
                               className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-1000 ease-out"
                               style={{ width: `${analysisResults.authenticity}%` }}
                             ></div>

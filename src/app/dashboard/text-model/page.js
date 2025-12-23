@@ -154,11 +154,6 @@ ${analysisResults.prediction === "AI Generated"
       )}
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
-        {/* Decorative Elements */}
-        <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300/10 rounded-full blur-3xl"></div>
-
         <div className="container mx-auto max-w-6xl p-6 relative z-10">
           {/* Header */}
           <div className="mb-10">
@@ -257,8 +252,8 @@ ${analysisResults.prediction === "AI Generated"
                     onClick={handleAnalyze}
                     disabled={isAnalyzing || !inputText.trim()}
                     className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${isAnalyzing || !inputText.trim()
-                        ? 'bg-slate-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 hover:scale-105 transition shadow-lg shadow-emerald-500/30 hover:shadow-md hover:shadow-emerald-500/40 transform hover:-translate-y-0.5'
+                      ? 'bg-slate-400 cursor-not-allowed'
+                      : 'bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 hover:scale-105 transition shadow-lg shadow-emerald-500/30 hover:shadow-md hover:shadow-emerald-500/40 transform hover:-translate-y-0.5'
                       }`}
                   >
                     {isAnalyzing ? (
@@ -325,8 +320,8 @@ ${analysisResults.prediction === "AI Generated"
                         <div key={index} className="bg-white border border-slate-200/60 rounded-xl p-4 hover:border-slate-300 transition-colors duration-200">
                           <div className="flex items-center justify-between mb-3">
                             <span className={`text-sm font-medium px-3 py-1 rounded-full ${item.prediction === "AI Generated"
-                                ? 'bg-red-100 text-red-700'
-                                : 'bg-emerald-100 text-emerald-700'
+                              ? 'bg-red-100 text-red-700'
+                              : 'bg-emerald-100 text-emerald-700'
                               }`}>
                               {item.prediction}
                             </span>
