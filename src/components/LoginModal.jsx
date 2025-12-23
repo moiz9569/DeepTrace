@@ -111,7 +111,7 @@ export default function LoginModal({ onClose }) {
                 </form>
                 <div className="text-center font-exo-2 mt-5 pt-5 border-t border-white/10">
                     <p className="text-gray-700">
-                        New to Hashfor?{" "}
+                        New to DeepTrace?{" "}
                         <button
                             onClick={() => {
                                 onClose();

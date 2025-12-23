@@ -96,7 +96,7 @@ export default function ContactPage() {
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
+        <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
             <div className="container mx-auto max-w-6xl p-6 relative z-10">
                 {/* Hero Section */}
                 <div className="mt-18 text-center py-12">

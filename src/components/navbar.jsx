@@ -57,7 +57,7 @@ export default function Navbar() {
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 rounded-lg flex items-center justify-center">
               <Brain className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-slate-200">
@@ -70,8 +70,8 @@ export default function Navbar() {
             <div className="flex items-center gap-7">
               <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Home</Link>
               <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-500">About</Link>
-              <Link href="/contact" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
               <Link href="/services" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
+              <Link href="/contact" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
               <Link href="/dashboard/text-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
               <Link href="/dashboard/picture-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
               <Link href="/dashboard/video-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
@@ -102,7 +102,7 @@ export default function Navbar() {
                 {/* 🔥 SIGNUP MODAL TRIGGER */}
                 <button
                   onClick={() => setShowSignup(true)}
-                  className="px-3 py-1 bg-teal-600 text-white rounded-lg"
+                  className="px-3 py-1 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
                 >
                   Sign Up
                 </button>

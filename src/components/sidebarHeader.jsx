@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/components/auth/AuthProvider";
 import {
   LayoutDashboard,
   BarChart3,
@@ -18,6 +19,7 @@ import {
 
 export default function SidebarHeader({ children }) {
   const [collapsed, setCollapsed] = useState(false);
+  const { user, logout, loading } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -35,10 +37,10 @@ export default function SidebarHeader({ children }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    console.log("User logged out");
-    router.push("/");
-  };
+  const handleLogout = async () => {
+  await logout();          // user null
+  router.push("/");        // 🔥 force redirect to Home
+};
 
   const sections = [
     {
@@ -167,11 +169,11 @@ export default function SidebarHeader({ children }) {
             >
               <div className="flex items-center gap-3">
                 <div className="h-9 w-9 rounded-full bg-emerald-500 text-white flex items-center justify-center text-sm font-semibold">
-                  MS
+                  MK
                 </div>
                 {!collapsed && (
                   <div className="text-left">
-                    <p className="text-sm font-medium text-white">Moiz Shah</p>
+                    <p className="text-sm font-medium text-white">{user?.name || user?.email || "User"}</p>
                     <p className="text-xs text-slate-300">Admin</p>
                   </div>
                 )}

@@ -50,7 +50,7 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-left pt-4">
               <Link href="/dashboard">
-                <button className="inline-flex items-left gap-2 rounded-xl bg-gradient-to-r from-teal-800 to-teal-700 px-8 py-4 text-lg text-white shadow-lg shadow-teal-500/25 transition hover:shadow-teal-500/40">
+                <button className="inline-flex items-left gap-2 rounded-xl bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 px-8 py-4 text-lg text-white shadow-lg shadow-teal-500/25 transition hover:shadow-teal-500/40">
                   Start Analysis
                   <ArrowRight className="h-5 w-5" />
                 </button>

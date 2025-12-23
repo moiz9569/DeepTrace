@@ -37,7 +37,7 @@ export default function FeaturesSection() {
         <LoginModal onClose={() => setShowLogin(false)} />
       )}
 
-      <div className="py-16">
+      <div className="h-screen py-16">
         <div className="rounded-2xl p-12">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">

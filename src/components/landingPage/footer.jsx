@@ -45,7 +45,7 @@ export default function Footer() {
               {/* BRAND */}
               <div className="md:col-span-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-xl bg-teal-600 shadow-lg">
+                  <div className="p-2 rounded-xl bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 shadow-lg">
                     <Sparkles className="h-5 w-5 text-white" />
                   </div>
                   <div>
@@ -64,7 +64,7 @@ export default function Footer() {
                   {[Twitter, Linkedin, Mail].map((Icon, index) => (
                     <button
                       key={index}
-                      className="rounded-xl flex justify-center items-center h-9 w-9 bg-teal-600 text-white hover:opacity-90 transition shadow-md"
+                      className="rounded-xl flex justify-center items-center h-9 w-9 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white hover:opacity-90 transition shadow-md"
                     >
                       <Icon className="h-4 w-4" />
                     </button>

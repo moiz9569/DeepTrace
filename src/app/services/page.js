@@ -111,7 +111,7 @@ export default function ServicesPage() {
 
     return (
         <>
-            <div className="min-h-screen bg-gradient-to-br from-slate-50/80 via-white to-teal-50/40 border-b border-slate-200/60">
+            <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 border-b border-slate-200/60">
                 <div className="mt-16 container mx-auto max-w-6xl p-6 relative z-10">
                     {/* Hero Section */}
                     <div className="text-center py-16 mb-16">

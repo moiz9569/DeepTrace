@@ -34,7 +34,7 @@ export default function CTASection() {
 
             <button
               onClick={handleClick}
-              className="flex mx-auto items-center py-4 px-10 rounded-2xl bg-gradient-to-r from-teal-700 to-teal-800 text-white text-lg shadow-xl hover:scale-105 transition"
+              className="flex mx-auto items-center py-4 px-10 rounded-2xl bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white text-lg shadow-xl hover:scale-105 transition"
             >
               Start Free Analysis
               <Sparkles className="ml-2 w-5 h-5" />

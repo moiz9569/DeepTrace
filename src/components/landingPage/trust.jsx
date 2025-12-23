@@ -36,7 +36,7 @@ export default function TrustIndicators() {
   if (!mounted) return null;
   
   return (
-    <div className="py-16">
+    <div className="h-screen py-16">
       <div className="bg-gray-500/5 rounded-2xl backdrop-blur-sm border-slate-200/40">
         <div className="container p-12 mx-auto px-4">
           <div className="text-center mb-16">
