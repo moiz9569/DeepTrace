@@ -281,10 +281,7 @@ export default function Dashboard() {
       )}
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
-        {/* Decorative Elements */}
-        <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 z-50"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-300/10 rounded-full blur-3xl"></div>
+        
 
         <div className="container mx-auto max-w-7xl p-6 relative z-10">
           {/* Welcome Message for logged-in users */}
