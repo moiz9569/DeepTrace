@@ -29,6 +29,9 @@ import {
   Cpu,
   User,
 } from "lucide-react";
+import { useAuth } from "../auth/AuthProvider";
+import { useRouter } from "next/navigation";
+import LoginModal from "../LoginModal";
 
 export default function ImageModal({ onClose }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -36,7 +39,9 @@ export default function ImageModal({ onClose }) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResults, setAnalysisResults] = useState(null);
   const fileInputRef = useRef(null);
-
+   const [showLogin, setShowLogin] = useState(false);
+    const { user } = useAuth();
+    const router = useRouter();
   // Cleanup object URLs
   useEffect(() => {
     return () => {
@@ -57,8 +62,32 @@ export default function ImageModal({ onClose }) {
   };
 
   const handleAnalyze = async () => {
-    if (!selectedFile) return;
+    if (!selectedFile) return alert("Please select an image");
 
+     // ✅ Logged in
+  if (user) {
+    router.push('/dashboard/picture-model');
+    return;
+  }
+  // ❌ Not logged in → ask backend
+  const res = await fetch("/api/auth/check-free-access", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ type: "image" }),
+  });
+
+  const data = await res.json();
+  console.log("IPdata",data)
+  if (!data.allowed) {
+  console.log("IP already used", data);
+    setShowLogin(true); // IP already used 
+    onClose();
+    alert("login for further use");
+    return;
+  }
+    console.log("working");
     setIsAnalyzing(true);
 
     try {
@@ -104,6 +133,8 @@ export default function ImageModal({ onClose }) {
   };
 
   return (
+    <>
+        
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl w-full max-w-3xl shadow-2xl relative overflow-y-auto max-h-[90vh]">
         {/* Close Button */}
@@ -188,5 +219,6 @@ export default function ImageModal({ onClose }) {
         </div>
       </div>
     </div>
+    </>
   );
 }

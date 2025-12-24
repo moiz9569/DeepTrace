@@ -22,15 +22,43 @@
 import { useState } from "react";
 import { X, Loader2, Zap, Cpu, User } from "lucide-react";
 import { Client } from "@gradio/client";
+import { useAuth } from "../auth/AuthProvider";
+import { useRouter } from "next/navigation";
+import LoginModal from "../LoginModal";
 
 export default function TextModal({ onClose }) {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-
+    const [showLogin, setShowLogin] = useState(false);
+    const { user } = useAuth();
+    const router = useRouter();
   const handleAnalyze = async () => {
-    if (!text.trim()) return;
+    // ✅ Logged in
+  if (user) {
+    router.push('/dashboard/text-model');
+    return;
+  }
+  // ❌ Not logged in → ask backend
+  const res = await fetch("/api/auth/check-free-access", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ type: "text" }),
+  });
 
+  const data = await res.json();
+  console.log("IPdata",data)
+  if (!data.allowed) {
+  console.log("IP already used", data);
+    setShowLogin(true); // IP already used 
+    onClose();
+    alert("login for further use");
+    return;
+  }
+    console.log("working");
+    if (!text.trim()) return;
     setLoading(true);
     setResult(null);
 
@@ -57,6 +85,8 @@ export default function TextModal({ onClose }) {
   };
 
   return (
+    <>
+
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl w-full max-w-xl shadow-2xl relative">
 
@@ -130,5 +160,6 @@ export default function TextModal({ onClose }) {
         </div>
       </div>
     </div>
+    </>
   );
 }

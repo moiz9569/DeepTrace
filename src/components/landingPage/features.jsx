@@ -33,27 +33,7 @@ const router = useRouter()
   // };
 
   const handleAnalyzeClick = async (type, path) => {
-  // ✅ Logged in
-  if (user) {
-    router.push(path);
-    return;
-  }
-
-  // ❌ Not logged in → ask backend
-  const res = await fetch("/api/auth/check-free-access", {
-    method: "POST",
-    headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ type: type }),
-  });
-
-  const data = await res.json();
-  console.log("IPdata",data)
-  if (!data.allowed) {
-    setShowLogin(true); // IP already used
-    return;
-  }
+  
 
   // 🆓 First time IP
   setActiveModal(type);
