@@ -363,7 +363,7 @@ ${analysisResults.verdict === "AI Generated"
                         <p className="text-slate-500 mb-6 max-w-sm mx-auto">
                           Supports JPG, PNG, WebP images up to 10MB
                         </p>
-                        <button className="px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300">
+                        <button className="px-6 py-3 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300">
                           Browse Files
                         </button>
                         <p className="text-sm text-slate-400 mt-4">
