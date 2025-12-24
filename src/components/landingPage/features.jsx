@@ -10,23 +10,55 @@ import {
   MessageSquare,
   Video,
 } from "lucide-react";
+import TextModal from "../modals/TextModal";
+import ImageModal from "../modals/ImageModal";
+import VideoModal from "../modals/VideoModal";
+import { useRouter } from "next/navigation";
 
 export default function FeaturesSection() {
   const { user, loading } = useAuth();
 
   const [mounted, setMounted] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-
+  const [activeModal, setActiveModal] = useState(null);
   useEffect(() => {
     setMounted(true);
   }, []);
+const router = useRouter()
+  // const handleProtectedClick = (e) => {
+  //   if (!user) {
+  //     e.preventDefault(); // 🔥 link navigation roko
+  //     setShowLogin(true); // 🔥 modal open
+  //   }
+  // };
 
-  const handleProtectedClick = (e) => {
-    if (!user) {
-      e.preventDefault(); // 🔥 link navigation roko
-      setShowLogin(true); // 🔥 modal open
-    }
-  };
+  const handleAnalyzeClick = async (type, path) => {
+  // ✅ Logged in
+  if (user) {
+    router.push(path);
+    return;
+  }
+
+  // ❌ Not logged in → ask backend
+  const res = await fetch("/api/auth/check-free-access", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ type: type }),
+  });
+
+  const data = await res.json();
+  console.log("IPdata",data)
+  if (!data.allowed) {
+    setShowLogin(true); // IP already used
+    return;
+  }
+
+  // 🆓 First time IP
+  setActiveModal(type);
+};
+
 
   if (!mounted) return null;
 
@@ -64,11 +96,11 @@ export default function FeaturesSection() {
                     Natural language processing to detect misinformation, bias,
                     and assess content credibility
                   </p>
-                  <Link href="/dashboard/text-model" onClick={handleProtectedClick}>
-                    <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-green-50 transition">
+        
+                    <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-green-50 transition" onClick={() => handleAnalyzeClick("text", "/dashboard/text-model")}>
                       Analyze Text
                     </button>
-                  </Link>
+        
                 </div>
               </div>
 
@@ -85,11 +117,9 @@ export default function FeaturesSection() {
                     Comprehensive image forensics to identify alterations,
                     forgeries, and digital manipulations
                   </p>
-                  <Link href="/dashboard/picture-model" onClick={handleProtectedClick}>
-                    <button className="bg-white/70 px-4 py-2 rounded-lg text-green-600 hover:bg-green-50 transition">
-                      Analyze Image
-                    </button>
-                  </Link>
+                  <button className="bg-white/70 px-4 py-2 rounded-lg text-green-600 hover:bg-green-50 transition" onClick={() => handleAnalyzeClick("image", "/dashboard/picture-model")}>
+                    Analyze Image
+                  </button>
                 </div>
               </div>
 
@@ -105,17 +135,24 @@ export default function FeaturesSection() {
                     Advanced video processing to detect deepfakes,
                     manipulations, and verify content authenticity
                   </p>
-                  <Link href="/dashboard/video-model" onClick={handleProtectedClick}>
-                    <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-teal-50 transition">
-                      Analyze Video
-                    </button>
-                  </Link>
+                  <button className="bg-white/70 px-4 py-2 rounded-lg text-teal-600 hover:bg-teal-50 transition" onClick={() => handleAnalyzeClick("video", "/dashboard/video-model")}>
+                    Analyze Video
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {activeModal === "text" && (
+  <TextModal onClose={() => setActiveModal(null)} />
+)}
+{activeModal === "image" && (
+  <ImageModal onClose={() => setActiveModal(null)} />
+)}
+{activeModal === "video" && (
+  <VideoModal onClose={() => setActiveModal(null)} />
+)}
     </>
   );
 }
