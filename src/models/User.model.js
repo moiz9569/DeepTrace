@@ -20,4 +20,7 @@ UserSchema.methods.matchPassword = function (enteredPassword) {
   return bcrypt.compare(enteredPassword, this.password);
 };
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+// export default mongoose.models.User || mongoose.model("User", UserSchema);
+
+const UserModel = mongoose.models.User || mongoose.model("User", UserSchema);
+export default UserModel;

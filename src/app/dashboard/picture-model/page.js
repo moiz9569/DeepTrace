@@ -25,6 +25,7 @@ import {
   User,
   Clock,
 } from "lucide-react";
+import axios from "axios";
 
 export default function PictureModel() {
   const { user, loading } = useAuth();
@@ -37,6 +38,7 @@ export default function PictureModel() {
   const [analysisResults, setAnalysisResults] = useState(null);
   const [history, setHistory] = useState([]);
   const [error, setError] = useState(null);
+  const [image, setImage] = useState(null);
 
   const fileInputRef = useRef(null);
 
@@ -56,7 +58,7 @@ export default function PictureModel() {
     };
   }, [imagePreview]);
 
-  const handleFileSelect = (event) => {
+  const handleFileSelect = async (event) => {
     const file = event.target.files?.[0];
     if (file) {
       if (!file.type.startsWith("image/")) {
@@ -70,7 +72,7 @@ export default function PictureModel() {
         setTimeout(() => setError(null), 3000);
         return;
       }
-
+      console.log("Selected file:", file);
       setSelectedFile(file);
       setAnalysisResults(null);
       setError(null);
@@ -143,7 +145,26 @@ export default function PictureModel() {
       }
 
       const result = await response.json();
+      console.log("image result", result);
+              let base64Image = null;
+      if (selectedFile) {
+        const reader = new FileReader();
+        base64Image = await new Promise((resolve, reject) => {
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(selectedFile);
+        });
+      }
 
+      // console.log("data",user.id,selectedFile,result.predicted_label,Math.round((result["AI Generated"] || 0) * 100),Math.round((result["Human Generated"] || 0) * 100))
+     const imageDetailResponse = await axios.post("/api/user/ImageDeatil", {
+        userId: user.id,
+        image: base64Image ,
+        label: result.predicted_label,
+        AiGenerated: Math.round((result["AI Generated"] || 0) * 100),
+        HumanGenerated: Math.round((result["Human Generated"] || 0) * 100),
+      });
+      console.log("imageDetailResponse",imageDetailResponse)
       clearInterval(progressInterval);
       setAnalysisProgress(100);
 

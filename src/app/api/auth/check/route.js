@@ -1,6 +1,7 @@
 // app/api/auth/check/route.js
+import { verifyToken } from "@/lib/auth";
 import { NextResponse } from "next/server";
-import { verifyToken } from "../../../../../lib/auth";
+// import { verifyToken } from "../../../../../lib/auth";
 
 export function GET(req) {
   const token = req.cookies.get("auth_token")?.value;

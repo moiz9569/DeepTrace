@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { Client } from "@gradio/client";
+import axios from "axios";
 
 export default function TextModel() {
   // 🔹 HOOKS MUST BE AT THE TOP
@@ -66,8 +67,8 @@ export default function TextModel() {
       const result = await client.predict("/classify_text", {
         text: inputText,
       });
-
-      clearInterval(interval);
+      console.log("result",result);
+           clearInterval(interval);
       setAnalysisProgress(100);
 
       // Small delay for smooth transition
@@ -78,7 +79,15 @@ export default function TextModel() {
       const output = result.data[0];
       const aiConfidence = Math.round(output.confidence * 100);
       const authenticity = 100 - aiConfidence;
-
+ console.log("textData",user.id,Math.round(output.confidence * 100),output.label);
+ const textDetailResponse = await axios.post("/api/user/TextDetail", {
+        userId: user.id,
+        text: inputText ,
+        label: output.label,
+        confidence: Math.round(output.confidence * 100),
+      
+      });
+      console.log("textDetailResponse",textDetailResponse)
       const newResult = {
         prediction: output.label === "AI" ? "AI Generated" : "Human Written",
         confidence: aiConfidence,
