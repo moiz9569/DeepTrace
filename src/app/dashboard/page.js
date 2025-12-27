@@ -28,6 +28,7 @@ import {
   LineChart,
   ChevronRight
 } from "lucide-react"
+import axios from "axios"
 
 export default function Dashboard() {
   const { user, loading } = useAuth()
@@ -111,6 +112,10 @@ export default function Dashboard() {
 
   // Check authentication on component mount and when auth state changes
   useEffect(() => {
+    // console.log("user", user?.id )
+    // axios.get("/api/user/dashboard?userId=" + user?.id) coorect also
+   
+   
     // Check if user is logged in by looking at localStorage or cookies
     const checkAuth = () => {
       // Check localStorage (common approach for JWT tokens)
@@ -146,7 +151,33 @@ export default function Dashboard() {
       }, 1000)
     }
   }, [loading, user])
+  useEffect(()=>{
+    console.log("user",user)
+    if (user?.id) {
+//     const res = axios.get("/api/user/dashboard", {
+//   params: {
+//     userId: user?.id,
+//   },
+// });
+      const userId = user?.id
+axios
+  .get("/api/user/dashboard", { params: { userId } })
+  .then((res1) => {
+    console.log(res1.data.totals.text.human); // ✅
+    console.log("res2",res1.data.totals.text.ai);
+console.log("res3",res1.data.totals.image.human);
+console.log("res4",res1.data.totals.image.ai);
+console.log("res5",res1.data.totals.totalAnalysis.text);
+console.log("res6",res1.data.totals.totalAnalysis.image);  
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+// console.log("res1",res?.data);
 
+    }
+    
+  },[user])
   // Handle successful login
   const handleLoginSuccess = () => {
     setIsAuthenticated(true)
@@ -378,7 +409,7 @@ export default function Dashboard() {
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               {[
                 { 
-                  href: "/video-model", 
+                  href: "dashboard/video-model", 
                   icon: Video, 
                   title: "Video Analysis", 
                   desc: "Frame-by-frame AI video detection", 
@@ -387,7 +418,7 @@ export default function Dashboard() {
                   model: "Video Forensics"
                 },
                 { 
-                  href: "/picture-model", 
+                  href: "dashboard/picture-model", 
                   icon: Eye, 
                   title: "Image Analysis", 
                   desc: "Advanced image authenticity detection", 
@@ -396,7 +427,7 @@ export default function Dashboard() {
                   model: "Image Classifier"
                 },
                 { 
-                  href: "/text-model", 
+                  href: "dashboard/text-model", 
                   icon: MessageSquare, 
                   title: "Text Analysis", 
                   desc: "AI vs human text classification", 
