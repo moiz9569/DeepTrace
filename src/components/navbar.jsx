@@ -37,7 +37,7 @@ export default function Navbar() {
       document.removeEventListener("openSignupModal", openSignupHandler);
     };
   }, []);
-  
+
 
   const handleProtectedClick = (e) => {
     if (!user) {
@@ -47,9 +47,9 @@ export default function Navbar() {
   };
 
   const handleLogout = async () => {
-  await logout();          // user null
-  router.push("/home");        // 🔥 force redirect to Home
-};
+    await logout();          // user null
+    router.push("/home");        // 🔥 force redirect to Home
+  };
 
   return (
     <>
@@ -57,8 +57,13 @@ export default function Navbar() {
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 rounded-lg flex items-center justify-center">
-              <Brain className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 bg-white rounded-2xl flex items-center justify-center">
+              {/* <Brain className="w-5 h-5 text-white" /> */}
+              <img
+                src="/image.png"
+                alt="Logo"
+                className="w-8 h-8 object-cover"
+              />
             </div>
             <span className="text-xl font-bold text-slate-200">
               DeepTrace

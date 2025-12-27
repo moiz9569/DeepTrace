@@ -49,7 +49,7 @@ export default function LoginModal({ onClose }) {
                 {/* HEADER */}
                 <div className="text-center mb-4">
                     <img
-                        src="/hashfor-new-logo.png"
+                        src="/image.png"
                         className="w-16 mx-auto mb-3"
                         alt="logo"
                     />
