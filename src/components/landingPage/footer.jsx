@@ -45,15 +45,15 @@ export default function Footer() {
               {/* BRAND */}
               <div className="md:col-span-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-xl bg-transparent ">
+                  <div className="w-[20%] rounded-xl ">
                     {/* <Sparkles className="h-5 w-5 text-white" /> */}
                     <img
-                      src="/image.png"
+                      src="/DeepTrace-logo3.png"
                       alt="Logo"
-                      className="w-12 h-12 object-cover"
+                      className="w-40 h-40 object-cover"
                     />
                   </div>
-                  <div>
+                  <div className="w-[80%] -mt-4">
                     <span className="text-lg font-bold text-slate-900">
                       DeepTrace
                     </span>

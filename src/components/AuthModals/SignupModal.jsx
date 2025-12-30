@@ -144,7 +144,7 @@ export default function SignupModal({ onClose }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-2xl bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white font-semibold"
+            className="w-full py-3 cursor-pointer rounded-2xl bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white font-semibold"
           >
             {loading ? "Creating Account..." : "Sign Up"}
           </button>

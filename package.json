@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@gradio/client": "^2.0.0",
+    "@tabler/icons-react": "^3.36.0",
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.8.0",

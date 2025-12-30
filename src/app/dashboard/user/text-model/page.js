@@ -162,8 +162,27 @@ ${
       <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-emerald-50/30">
         <div className="container mx-auto max-w-6xl p-6 relative z-10">
           {/* Header */}
-          <div className="mb-10">
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <div className="mb-10 flex justify-between items-center">
+           
+
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
+                  Text{" "}
+                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
+                    Authenticity
+                  </span>{" "}
+                  Analyzer
+                </h1>
+                <p className="text-base text-slate-600 max-w-2xl">
+                  Detect AI-generated content with advanced natural language
+                  processing. Analyze text patterns, writing style, and
+                  authenticity metrics.
+                </p>
+              </div>
+            </div>
+
+             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="p-2 bg-teal-600 rounded-xl">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
@@ -172,23 +191,6 @@ ${
                   AI Text Detector
                 </span>
                 <p className="text-sm text-slate-600">Advanced NLP Analysis</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">
-                  Text{" "}
-                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
-                    Authenticity
-                  </span>{" "}
-                  Analyzer
-                </h1>
-                <p className="text-lg text-slate-600 max-w-2xl">
-                  Detect AI-generated content with advanced natural language
-                  processing. Analyze text patterns, writing style, and
-                  authenticity metrics.
-                </p>
               </div>
             </div>
           </div>

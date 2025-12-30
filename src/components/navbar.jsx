@@ -48,30 +48,30 @@ export default function Navbar() {
       <nav className="absolute top-0 left-0 w-full bg-[#152022] px-6 py-3 z-40 shadow-sm">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-white rounded-2xl flex items-center justify-center">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-2xl flex items-center justify-center">
               {/* <Brain className="w-5 h-5 text-white" /> */}
               <img
-                src="/image.png"
+                src="/Deeptrace-new-logo.png"
                 alt="Logo"
-                className="w-8 h-8 object-cover"
+                className="w-10 h-10 object-cover"
               />
             </div>
             <span className="text-xl font-bold text-slate-200">
               DeepTrace
             </span>
-          </Link>
+          </div>
 
           {/* Nav Links */}
           {
             <div className="flex items-center gap-7">
-              <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-500">Home</Link>
-              <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-500">About</Link>
-              <Link href="/services" className="hidden md:inline text-slate-200 hover:text-slate-500">Services</Link>
-              <Link href="/contact" className="hidden md:inline text-slate-200 hover:text-slate-500">Contact</Link>
-              <Link href="/dashboard/text-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Text</Link>
-              <Link href="/dashboard/picture-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Image</Link>
-              <Link href="/dashboard/video-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-500">Video</Link>
+              <Link href="/" className="hidden md:inline text-slate-200 hover:text-slate-300">Home</Link>
+              <Link href="/about" className="hidden md:inline text-slate-200 hover:text-slate-300">About</Link>
+              <Link href="/services" className="hidden md:inline text-slate-200 hover:text-slate-300">Services</Link>
+              <Link href="/contact" className="hidden md:inline text-slate-200 hover:text-slate-300">Contact</Link>
+              <Link href="/dashboard/text-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-300">Text</Link>
+              <Link href="/dashboard/picture-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-300">Image</Link>
+              <Link href="/dashboard/video-model" onClick={handleProtectedClick} className="hidden md:inline text-slate-200 hover:text-slate-300">Video</Link>
             </div>
           }
 
@@ -90,13 +90,13 @@ export default function Navbar() {
               <>
                 <button
                   onClick={() => setShowLogin(true)}
-                  className="px-3 py-1 border rounded-lg text-slate-200 hover:text-slate-500"
+                  className="px-3 py-1 border cursor-pointer rounded-lg text-slate-200 bg-transparent hover:bg-teal-800 hover:border-none hover:text-white"
                 >
                   Login
                 </button>
                 <button
                   onClick={() => setShowSignup(true)}
-                  className="px-3 py-1 bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
+                  className="px-3 py-1 cursor-pointer bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
                 >
                   Sign Up
                 </button>

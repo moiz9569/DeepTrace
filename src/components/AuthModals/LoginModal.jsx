@@ -104,7 +104,7 @@ export default function LoginModal({ onClose }) {
 
                     <button
                         type="submit"
-                        className="w-full py-3 rounded-2xl bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white font-semibold"
+                        className="w-full py-3 cursor-pointer rounded-2xl bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white font-semibold"
                     >
                         {loading ? "Signing in..." : "Sign In"}
                     </button>

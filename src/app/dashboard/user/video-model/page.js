@@ -334,8 +334,24 @@ ${
             </div>
           )}
 
-          {/* Header */}
-          <div className="mb-10">
+          <div className=" flex justify-between items-center">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
+                  Video{" "}
+                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
+                    Authenticity
+                  </span>{" "}
+                  Analyzer
+                </h1>
+                <p className="text-base text-slate-600 max-w-2xl">
+                  Detect AI-generated videos using advanced computer vision
+                  models. Analyze video frames, motion patterns, and
+                  authenticity metrics.
+                </p>
+              </div>
+            </div>
+
             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
               <div className="p-2 bg-teal-600 rounded-xl">
                 <Film className="w-5 h-5 text-white" />
@@ -349,39 +365,23 @@ ${
                 </p>
               </div>
             </div>
+          </div>
 
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">
-                  Video{" "}
-                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
-                    Authenticity
-                  </span>{" "}
-                  Analyzer
-                </h1>
-                <p className="text-lg text-slate-600 max-w-2xl">
-                  Detect AI-generated videos using advanced computer vision
-                  models. Analyze video frames, motion patterns, and
-                  authenticity metrics.
-                </p>
+          <div className="hidden w-80 lg:block p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-300 shadow-sm">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-slate-100 rounded-lg">
+                <Shield className="w-6 h-6 text-teal-600" />
               </div>
-              <div className="hidden lg:block p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-100 rounded-lg">
-                    <Shield className="w-6 h-6 text-teal-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-500">Supported</p>
-                    <p className="text-xl font-bold text-slate-900">
-                      MP4, AVI, MOV
-                    </p>
-                  </div>
-                </div>
+              <div>
+                <p className="text-sm text-slate-500">Supported</p>
+                <p className="text-xl font-bold text-slate-900">
+                  MP4, AVI, MOV
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-8 mt-6">
             {/* Upload Section - Takes 2 columns */}
             <div className="lg:col-span-2 space-y-8">
               <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
@@ -404,7 +404,7 @@ ${
                       {selectedFile && (
                         <button
                           onClick={handleRemoveVideo}
-                          className="px-4 py-2 text-sm border border-red-300/80 bg-white text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200 flex items-center gap-2"
+                          className="px-4 py-2 cursor-pointer text-sm border border-red-300/80 bg-white text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200 flex items-center gap-2"
                         >
                           <X className="w-4 h-4" />
                           Remove
@@ -432,7 +432,7 @@ ${
                         <p className="text-slate-500 mb-6 max-w-sm mx-auto">
                           Supports MP4, AVI, MOV videos up to 500MB
                         </p>
-                        <button className="px-6 py-3 bg-linear-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300">
+                        <button className="px-6 py-3 cursor-pointer bg-linear-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300">
                           Browse Files
                         </button>
                         <p className="text-sm text-slate-400 mt-4">
@@ -487,7 +487,7 @@ ${
                             <div className="absolute inset-0 flex items-center justify-center">
                               <button
                                 onClick={togglePlayPause}
-                                className="p-4 bg-black/30 backdrop-blur-sm rounded-full hover:bg-black/50 transition-all duration-300 transform hover:scale-110"
+                                className="p-4 cursor-pointer bg-black/30 backdrop-blur-sm rounded-full hover:bg-black/50 transition-all duration-300 transform hover:scale-110"
                               >
                                 {isPlaying ? (
                                   <PauseCircle className="w-16 h-16 text-white/90" />
@@ -523,7 +523,7 @@ ${
                           <div className="flex items-center justify-between mt-3">
                             <button
                               onClick={togglePlayPause}
-                              className="px-4 py-2 bg-linear-to-r from-teal-600 to-emerald-600 text-white rounded-lg hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300 flex items-center gap-2"
+                              className="px-4 cursor-pointer py-2 bg-linear-to-r from-teal-600 to-emerald-600 text-white rounded-lg hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300 flex items-center gap-2"
                             >
                               {isPlaying ? (
                                 <>
@@ -582,7 +582,7 @@ ${
                     <button
                       onClick={handleReset}
                       disabled={isAnalyzing || !selectedFile}
-                      className="px-6 py-3 border border-slate-300/80 bg-white text-slate-700 hover:bg-slate-50 rounded-xl transition-all duration-300 flex items-center gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-6 py-3 cursor-pointer border border-slate-300/80 bg-white text-slate-700 hover:bg-slate-50 rounded-xl transition-all duration-300 flex items-center gap-2 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <RotateCcw className="w-4 h-4" />
                       Clear All
@@ -594,7 +594,7 @@ ${
                       className={`flex-1 py-3 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
                         isAnalyzing || !selectedFile
                           ? "bg-slate-400 cursor-not-allowed"
-                          : "bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 hover:scale-105 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 transform hover:-translate-y-0.5"
+                          : "bg-linear-to-r from-teal-800 via-teal-700 to-teal-800  cursor-pointer hover:scale-105 shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 transform hover:-translate-y-0.5"
                       }`}
                     >
                       {isAnalyzing ? (
