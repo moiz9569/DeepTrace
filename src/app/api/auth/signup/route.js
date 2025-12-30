@@ -1,5 +1,5 @@
 // app/api/auth/signup/route.js
-import { setTokenCookie } from "@/lib/auth";
+import { createToken, setTokenCookie } from "@/lib/auth";
 import connectDB from "@/lib/db";
 import UserModel from "@/models/User.model";
 import { NextResponse } from "next/server";

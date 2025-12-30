@@ -1,22 +1,14 @@
-//scr/components/navbar.jsx
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Brain } from "lucide-react";
 import { useAuth } from "@/components/auth/AuthProvider";
-import LoginModal from "@/components/LoginModal";
-import SignupModal from "@/components/SignupModal";
+import LoginModal from "@/components/AuthModals/LoginModal";
+import SignupModal from "@/components/AuthModals/SignupModal";
 
 export default function Navbar() {
   const { user, logout, loading } = useAuth();
-  const pathname = usePathname();
-
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-
-  const isHome = pathname === "/";
 
   // Listen for custom events to open modals from within modals
   useEffect(() => {
@@ -41,14 +33,14 @@ export default function Navbar() {
 
   const handleProtectedClick = (e) => {
     if (!user) {
-      e.preventDefault(); // 🔥 link navigation roko
-      setShowLogin(true); // 🔥 modal open
+      e.preventDefault(); 
+      setShowLogin(true);
     }
   };
 
   const handleLogout = async () => {
-    await logout();          // user null
-    router.push("/home");        // 🔥 force redirect to Home
+    await logout();         
+    router.push("/home"); 
   };
 
   return (
@@ -96,18 +88,15 @@ export default function Navbar() {
               </button>
             ) : (
               <>
-                {/* 🔥 LOGIN MODAL TRIGGER */}
                 <button
                   onClick={() => setShowLogin(true)}
                   className="px-3 py-1 border rounded-lg text-slate-200 hover:text-slate-500"
                 >
                   Login
                 </button>
-
-                {/* 🔥 SIGNUP MODAL TRIGGER */}
                 <button
                   onClick={() => setShowSignup(true)}
-                  className="px-3 py-1 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
+                  className="px-3 py-1 bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
                 >
                   Sign Up
                 </button>
@@ -116,13 +105,9 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-
-      {/* 🔥 LOGIN MODAL */}
       {showLogin && (
         <LoginModal onClose={() => setShowLogin(false)} />
       )}
-
-      {/* 🔥 SIGNUP MODAL */}
       {showSignup && (
         <SignupModal onClose={() => setShowSignup(false)} />
       )}

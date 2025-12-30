@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Sparkles } from "lucide-react";
-import LoginModal from "@/components/LoginModal";
+import LoginModal from "@/components/AuthModals/LoginModal";
 
 export default function CTASection() {
   const { user } = useAuth();
@@ -28,13 +28,13 @@ export default function CTASection() {
               Ready to Get Started?
             </h2>
 
-            <p className="text-white mb-9 max-w-2xl mx-auto text-lg bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 backdrop-blur-sm rounded-xl p-4">
+            <p className="text-white mb-9 max-w-2xl mx-auto text-lg bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 backdrop-blur-sm rounded-xl p-4">
               Join thousands of professionals who trust Truth Seeker.
             </p>
 
             <button
               onClick={handleClick}
-              className="flex mx-auto items-center py-4 px-10 rounded-2xl bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white text-lg shadow-xl hover:scale-105 transition"
+              className="flex mx-auto items-center py-4 px-10 rounded-2xl bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white text-lg shadow-xl hover:scale-105 transition"
             >
               Start Free Analysis
               <Sparkles className="ml-2 w-5 h-5" />

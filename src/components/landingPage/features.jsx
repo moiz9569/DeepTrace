@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/AuthProvider";
-import LoginModal from "@/components/LoginModal";
+import LoginModal from "@/components/AuthModals/LoginModal";
 
 import {
   Eye,
@@ -53,7 +53,7 @@ const router = useRouter()
         <div className="rounded-2xl p-12">
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-5xl font-bold text-slate-900 mb-2 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+              <h2 className="text-5xl font-bold text-transparent mb-2 bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text">
                 Professional AI Analysis
               </h2>
               <p className="text-lg text-slate-600 max-w-xl mx-auto bg-white/50 backdrop-blur-sm rounded-xl px-4 border border-white/50">
@@ -66,7 +66,7 @@ const router = useRouter()
               {/* TEXT */}
               <div className="rounded-2xl bg-gray-400/10 backdrop-blur-sm hover:bg-gray-400/20 transition-all duration-500">
                 <div className="p-8 text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-orange-100/50">
+                  <div className="w-20 h-20 bg-linear-to-br from-green-100 to-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-orange-100/50">
                     <MessageSquare className="w-10 h-10 text-teal-600" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">

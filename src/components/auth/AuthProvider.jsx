@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
     try {
       const res = await fetch('/api/auth/check', { credentials: 'include' });
       const data = await res.json();
+      console.log('Auth check in AuthProvider:', data);
       setUser(data.user || null);
     } catch (e) {
       console.error('Auth check failed', e);
@@ -39,7 +40,7 @@ export function AuthProvider({ children }) {
     const data = await res.json();
     if (res.ok) {
       setUser(data.user);
-      router.push('/dashboard');
+      router.push('/dashboard/user');
     }
     return data;
   }
@@ -54,7 +55,7 @@ export function AuthProvider({ children }) {
     const data = await res.json();
     if (res.ok) {
       setUser(data.user);
-      router.push('/dashboard');
+      router.push('/dashboard/user');
     }
     return data;
   }

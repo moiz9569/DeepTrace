@@ -154,7 +154,6 @@ import { X, Loader2, Zap, Cpu, User, Sparkles, AlertCircle, CheckCircle } from "
 import { Client } from "@gradio/client";
 import { useAuth } from "../auth/AuthProvider";
 import { useRouter } from "next/navigation";
-import LoginModal from "../LoginModal";
 
 export default function TextModal({ onClose }) {
   const [text, setText] = useState("");
@@ -221,17 +220,17 @@ export default function TextModal({ onClose }) {
   return (
     <>
       <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4">
-        <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl w-full max-w-2xl shadow-2xl relative overflow-hidden border border-slate-200">
+        <div className="bg-linear-to-br from-white to-slate-50 rounded-3xl w-full max-w-2xl shadow-2xl relative overflow-hidden border border-slate-200">
           
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-32 h-32 bg-teal-100/30 rounded-full -translate-x-16 -translate-y-16"></div>
           <div className="absolute bottom-0 right-0 w-40 h-40 bg-blue-100/20 rounded-full translate-x-20 translate-y-20"></div>
           
           {/* Header */}
-          <div className="relative p-8 border-b border-slate-100 bg-gradient-to-r from-teal-50 to-blue-50">
+          <div className="relative p-8 border-b border-slate-100 bg-linear-to-r from-teal-50 to-blue-50">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 rounded-xl">
+                <div className="p-2 bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 rounded-xl">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -257,7 +256,7 @@ export default function TextModal({ onClose }) {
             {/* Free usage info */}
             {!user && (
               <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                <AlertCircle className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
                 <p className="text-sm text-blue-800">
                   <span className="font-medium">Free one-time analysis</span> available. Login for unlimited access and advanced features.
                 </p>
@@ -277,7 +276,7 @@ export default function TextModal({ onClose }) {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Paste or type your text here to analyze whether it's AI-generated or human-written..."
-                  className="w-full min-h-[180px] text-slate-900 border-2 border-slate-200 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all resize-none hover:border-slate-300"
+                  className="w-full min-h-45 text-slate-900 border-2 border-slate-200 rounded-xl p-4 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all resize-none hover:border-slate-300"
                 />
                 <div className="absolute bottom-3 right-3 text-xs text-slate-400">
                   {text.length} characters
@@ -292,10 +291,10 @@ export default function TextModal({ onClose }) {
               className={`w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-3 transition-all relative overflow-hidden
                 ${loading || !text.trim()
                   ? "bg-slate-300 cursor-not-allowed"
-                  : "bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 hover:from-teal-700 hover:to-teal-700 hover:shadow-lg active:scale-[0.99] shadow-md"
+                  : "bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 hover:from-teal-700 hover:to-teal-700 hover:shadow-lg active:scale-[0.99] shadow-md"
                 }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shimmer"></div>
               {loading ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />

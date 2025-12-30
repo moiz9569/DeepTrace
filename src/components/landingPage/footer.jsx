@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/AuthProvider";
-import LoginModal from "@/components/LoginModal";
+import LoginModal from "@/components/AuthModals/LoginModal";
 
 import {
   Sparkles,
