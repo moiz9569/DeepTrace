@@ -17,7 +17,7 @@ import {
 
 export default function UserSidebar({ children }) {
   const [collapsed, setCollapsed] = useState(false);
-  const { user } = useAuth();
+  const { user,logout } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const [logoutLoading, setLogoutLoading] = useState(false);
@@ -43,6 +43,7 @@ export default function UserSidebar({ children }) {
   const Logout = async () => {
     try {
       setLogoutLoading(true);
+      logout()
       await new Promise((resolve) => setTimeout(resolve, 2500));
       router.push("/");
     } catch (error) {

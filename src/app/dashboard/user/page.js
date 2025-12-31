@@ -34,7 +34,9 @@ export default function Dashboard() {
   const router = useRouter()
   const [showLogin, setShowLogin] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  
+  const [dashboardData, setDashboardData] = useState([])
+  const [imageDetail,setImageDetail] = useState([])
+  const [total,setTotal] = useState([])
   const [recentAnalyses] = useState([
     { 
       id: 1, 
@@ -97,12 +99,13 @@ export default function Dashboard() {
       model: "RoBERTa"
     },
   ])
+const [latestData, setLatestData] = useState([]);
 
   const stats = {
-    totalAnalyses: 127,
-    imagesProcessed: 89,
-    textsExamined: 234,
-    avgAccuracy: 92.4,
+    imageAnalysis: dashboardData?.totalAnalysis?.image || 0,
+    textAnalysis: dashboardData?.totalAnalysis?.text || 0,
+    videoAnalysis: dashboardData?.totalAnalysis?.video || 0,
+    totalAnalysis: dashboardData?.totalAnalysis?.text + dashboardData?.totalAnalysis?.image  || 0,
     aiDetected: 67,
     humanVerified: 183,
     avgProcessingTime: "2.3 min",
@@ -150,7 +153,53 @@ export default function Dashboard() {
       }, 1000)
     }
   }, [loading, user])
-  useEffect(()=>{
+
+
+const fetchLatest = async (userId) => {
+  try {
+    const [imageRes, textRes] = await Promise.all([
+      axios.get("/api/user/ImageDeatil", { params: { userId } }),
+      axios.get("/api/user/TextDetail", { params: { userId } }),
+    ]);
+
+    // 🛡️ SAFETY: object ho ya array → array bana do
+    const imageRaw = imageRes?.data?.imageDetail || [];
+    const textRaw = textRes?.data?.textDetail || [];
+
+    const images = (Array.isArray(imageRaw) ? imageRaw : [imageRaw])
+      .filter(Boolean)
+      .map((item) => ({
+        ...item,
+        type: "image",
+      }));
+
+    const texts = (Array.isArray(textRaw) ? textRaw : [textRaw])
+      .filter(Boolean)
+      .map((item) => ({
+        ...item,
+        type: "text",
+      }));
+
+    // 🔥 DONO MILA DO
+    const combined = [...images, ...texts];
+
+    // 🔥 LATEST FIRST
+    combined.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    setTotal(combined)
+    // 🔥 SIRF TOP 5
+    const latestFive = combined.slice(0, 5);
+
+    setLatestData(latestFive);
+    console.log("Latest 5", latestFive);
+
+  } catch (err) {
+    console.error("Fetch latest error:", err);
+  }
+};
+
+ useEffect(()=>{
     console.log("user",user)
     if (user?.id) {
 //     const res = axios.get("/api/user/dashboard", {
@@ -158,24 +207,43 @@ export default function Dashboard() {
 //     userId: user?.id,
 //   },
 // });
-      const userId = user?.id
+ const userId = user?.id
 axios
   .get("/api/user/dashboard", { params: { userId } })
   .then((res1) => {
-    console.log(res1.data.totals.text.human); // ✅
-    console.log("res2",res1.data.totals.text.ai);
-console.log("res3",res1.data.totals.image.human);
-console.log("res4",res1.data.totals.image.ai);
-console.log("res5",res1.data.totals.totalAnalysis.text);
-console.log("res6",res1.data.totals.totalAnalysis.image);  
+//     console.log(res1.data.totals.text.human); // ✅
+//     console.log("res2",res1.data.totals.text.ai);
+// console.log("res3",res1.data.totals.image.human);
+// console.log("res4",res1.data.totals.image.ai);
+// console.log("res5",res1.data.totals.totalAnalysis.text);
+// console.log("res6",res1.data.totals.totalAnalysis.image); 
+setDashboardData(res1?.data?.totals) ;
   })
   .catch((err) => {
     console.error(err);
   });
 // console.log("res1",res?.data);
+// axios.get("/api/user/ImageDeatil", {params: {
+//       userId, // ya jo bhi tumhara logged-in user id hai
+//     }}).then((data)=>{
+//     console.log("image detail",data.data?.imageDetail)
+//    }).catch((err)=>{
+//     console.log("err",err)
+//    })
+//    axios.get("/api/user/TextDetail", {params: {
+//       userId, // ya jo bhi tumhara logged-in user id hai
+//     }}).then((data)=>{
+//     console.log("text detail",data?.data?.textDetail)
+//    }).catch((err)=>{
+//     console.log("err",err?.data)
+//    }) 
+  fetchLatest(userId)
 
-    }
+  }
     
+  
+   
+  //  console.log("getData",getData)
   },[user])
   // Handle successful login
   const handleLoginSuccess = () => {
@@ -355,10 +423,10 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
             {/* Quick Stats Overview */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
               {[
-                { icon: Shield, value: stats.totalAnalyses, label: "Total Analyses", color: "emerald", change: "+12%" },
-                { icon: Target, value: `${stats.avgAccuracy}%`, label: "Avg Accuracy", color: "emerald", change: "+2.1%" },
-                { icon: Users, value: stats.humanVerified, label: "Human Verified", color: "emerald", change: "+8%" },
-                { icon: Cpu, value: stats.modelsUsed, label: "Active Models", color: "emerald", change: "Active" },
+                { icon: Shield, value: stats.imageAnalysis, label: "Image Analysis", color: "emerald", change: "+12%" },
+                { icon: Target, value: stats.textAnalysis, label: "Text Analysis", color: "emerald", change: "+2.1%" },
+                { icon: Users, value: stats.videoAnalysis, label: "Video Analysis", color: "emerald", change: "+8%" },
+                { icon: Cpu, value: stats.totalAnalysis, label: "Total Analysis", color: "emerald", change: "Active" },
               ].map((stat, index) => (
                 <div key={index} className="bg-white/80 backdrop-blur-sm border border-slate-300 rounded-2xl p-3 hover:shadow-lg transition-all duration-300 group">
                   <div className="flex items-center justify-between mb-4">
@@ -398,7 +466,7 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
   <div className="grid md:grid-cols-3 gap-5 mb-6">
     {[
       {
-        href: "dashboard/video-model",
+        href: "video-model",
         icon: Video,
         title: "Video Analysis",
         desc: "Frame-by-frame AI video detection",
@@ -407,16 +475,16 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
         model: "Video Forensics",
       },
       {
-        href: "dashboard/picture-model",
+        href: "text-model",
         icon: Eye,
-        title: "Image Analysis",
+        title: "picture-model",
         desc: "Advanced image authenticity detection",
         color: "emerald",
         stats: "96.7% accuracy",
         model: "Image Classifier",
       },
       {
-        href: "dashboard/text-model",
+        href: "text-model",
         icon: MessageSquare,
         title: "Text Analysis",
         desc: "AI vs human text classification",
@@ -494,7 +562,7 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
             </div>
             <div>
               <h2 className="text-lg font-semibold text-slate-900">
-                Recent Analyses
+                Recent Analysis
               </h2>
               <p className="text-xs text-slate-500">
                 Latest AI detection results
@@ -503,74 +571,81 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
           </div>
 
           <div className="text-xs text-slate-500">
-            Showing {recentAnalyses.length} of 127 analyses
+            Showing {latestData.length} of {total?.length} analyses
           </div>
         </div>
       </div>
 
       {/* List */}
       <div className="divide-y divide-slate-200/60">
-        {recentAnalyses.map((analysis) => (
-          <div
-            key={analysis.id}
-            className="flex items-center justify-between p-5 
-            hover:bg-white/50 transition-all duration-300 group"
-          >
-            {/* Left */}
-            <div className="flex items-center gap-3.5">
-              <div
-                className={`p-2.5 rounded-xl ${getStatusColor(analysis.status)} 
-                group-hover:scale-105 transition-transform`}
-              >
-                {getTypeIcon(analysis.type)}
-              </div>
+  {latestData?.map((analysis) => (
+    <div
+      key={analysis._id}
+      className="flex items-center justify-between p-5 
+      hover:bg-white/50 transition-all duration-300 group"
+    >
+      {/* LEFT */}
+      <div className="flex items-center gap-3.5">
+        <div
+          className={`p-2.5 rounded-xl ${getStatusColor(analysis.label)} 
+          group-hover:scale-105 transition-transform`}
+        >
+          {getTypeIcon(analysis.type)}
+        </div>
 
-              <div className="space-y-0.5">
-                <div className="text-slate-900 text-sm font-medium 
-                  group-hover:text-slate-950 transition-colors">
-                  {analysis.name}
-                </div>
-
-                <div className="flex items-center gap-2 text-[11px] text-slate-500">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {analysis.timestamp}
-                  </span>
-                  <span>•</span>
-                  <span>{analysis.size}</span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    {getModelIcon(analysis.model)}
-                    {analysis.model}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right */}
-            <div className="flex items-center gap-3">
-              {analysis.confidence && (
-                <div
-                  className={`text-xs px-3 py-1.5 rounded-lg font-semibold 
-                  border backdrop-blur-sm ${getConfidenceColor(analysis.confidence)}`}
-                >
-                  {analysis.confidence}% confidence
-                </div>
-              )}
-
-              <div
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg 
-                border backdrop-blur-sm ${getStatusColor(analysis.status)}`}
-              >
-                {getStatusIcon(analysis.status)}
-                <span className="capitalize text-xs font-medium">
-                  {analysis.status}
-                </span>
-              </div>
-            </div>
+        <div className="space-y-0.5">
+          {/* TITLE */}
+          <div className="text-slate-900 text-sm font-medium">
+            {analysis.type === "image"
+              ? "Image Analysis"
+              : "Text Analysis"}
           </div>
-        ))}
+
+          {/* META */}
+          <div className="flex items-center gap-2 text-[11px] text-slate-500">
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {new Date(analysis.createdAt).toLocaleString()}
+            </span>
+
+            {analysis.type === "image" && (
+              <>
+                <span>•</span>
+                <span>{analysis.size}</span>
+              </>
+            )}
+
+            <span>•</span>
+            <span>{analysis.label}</span>
+          </div>
+        </div>
       </div>
+
+      {/* RIGHT */}
+      <div className="flex items-center gap-3">
+        {analysis.confidence && (
+          <div
+            className={`text-xs px-3 py-1.5 rounded-lg font-semibold 
+            border backdrop-blur-sm ${getConfidenceColor(analysis.confidence)}`}
+          >
+            {analysis.confidence}% confidence
+          </div>
+        )}
+
+        <div
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg 
+          border backdrop-blur-sm ${getStatusColor(analysis.label)}`}
+        >
+          {getStatusIcon(analysis.label)}
+          <span className="capitalize text-xs font-medium">
+            {analysis.label}
+          </span>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
 
       {/* View All */}
       <div className="p-5 border-t border-slate-200/60 bg-white/40">
@@ -579,7 +654,7 @@ console.log("res6",res1.data.totals.totalAnalysis.image);
             if (!user) {
               setShowLogin(true);
             } else {
-              router.push("/history");
+              router.push("/dashboard/user/details");
             }
           }}
           className="w-full py-2.5 px-4 border border-slate-300/80 bg-white 

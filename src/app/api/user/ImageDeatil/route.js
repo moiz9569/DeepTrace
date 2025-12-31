@@ -16,9 +16,9 @@ export async function POST(req) {
     await connectDB();
 
     // Parse request body
-    const { userId, image, label,AiGenerated,HumanGenerated } = await req.json();
+    const { userId, image, label,AiGenerated,HumanGenerated, size } = await req.json();
     // console.log("data",userId,image,label,AiGenerated,HumanGenerated);
-    if (!userId || !image || !label || !AiGenerated || !HumanGenerated) {
+    if (!userId || !image || !label || !AiGenerated || !HumanGenerated || !size) {
       return NextResponse.json(
         { success: false, error: "All fields are required" },
         { status: 400 }
@@ -58,7 +58,8 @@ export async function POST(req) {
         image : imageUrl,
         label,
         AiGenerated,
-        HumanGenerated
+        HumanGenerated,
+        size
     })
 
      return NextResponse.json(
@@ -75,7 +76,7 @@ export async function POST(req) {
 }
 
 
-export async function GET(){
+export async function GET(request){
 try {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get("userId");
@@ -83,9 +84,9 @@ try {
       // Connect to the database
     await connectDB();
     let imageDetail;
-    if (!userId) {
+    if (userId) {
         // Fetch user by userId
-    imageDetail = await ImageModel.findOne({ _id: userId });
+    imageDetail = await ImageModel.find({ userId: userId }).sort({createdAt: -1});
 
     }else{
         imageDetail = await ImageModel.find({ }).sort({ createdAt: -1 });

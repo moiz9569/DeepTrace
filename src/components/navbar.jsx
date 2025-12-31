@@ -39,8 +39,9 @@ export default function Navbar() {
   };
 
   const handleLogout = async () => {
-    await logout();         
-    router.push("/home"); 
+    await logout();  
+    // setUser(null);       
+    router.push("/"); 
   };
 
   return (

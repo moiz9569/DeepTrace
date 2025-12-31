@@ -42,17 +42,17 @@ export async function POST(req) {
 }
 
 
-export async function GET(){
+export async function GET(request){
 try {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get("userId");
-    console.log("userIds",userId);
+    console.log("userIds of TextDetail",userId);
       // Connect to the database
     await connectDB();
     let textDetail;
-    if (!userId) {
+    if (userId) {
         // Fetch user by userId
-    textDetail = await TextModel.findOne({ _id: userId });
+    textDetail = await TextModel.find({ userId: userId }).sort({ createdAt: -1 });
 
     }else{
         textDetail = await TextModel.find({ }).sort({ createdAt: -1 });

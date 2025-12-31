@@ -7,6 +7,7 @@ const ImageModelSchema = new mongoose.Schema({
   label: { type: String, required: true },
   AiGenerated: { type: Number, required: true },
   HumanGenerated: { type: Number, required: true },
+  size: { type: String, required: true },
 },{timestamps:true});
 
 

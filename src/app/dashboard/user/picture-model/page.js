@@ -151,7 +151,7 @@ export default function PictureModel() {
           reader.readAsDataURL(selectedFile);
         });
       }
-
+      console.log("selectedFile",selectedFile?.size)
       // console.log("data",user.id,selectedFile,result.predicted_label,Math.round((result["AI Generated"] || 0) * 100),Math.round((result["Human Generated"] || 0) * 100))
       const imageDetailResponse = await axios.post("/api/user/ImageDeatil", {
         userId: user.id,
@@ -159,6 +159,7 @@ export default function PictureModel() {
         label: result.predicted_label,
         AiGenerated: Math.round((result["AI Generated"] || 0) * 100),
         HumanGenerated: Math.round((result["Human Generated"] || 0) * 100),
+        size : (selectedFile?.size / (1024 * 1024)).toFixed(2) + " MB",
       });
       console.log("imageDetailResponse", imageDetailResponse);
       clearInterval(progressInterval);
