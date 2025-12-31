@@ -396,7 +396,7 @@ const AnalysisDetails = () => {
 
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-semibold capitalize">
+                    <h3 className="font-semibold text-black capitalize">
                       {item.type} Analysis
                     </h3>
                     <span

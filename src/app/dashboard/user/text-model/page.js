@@ -335,7 +335,7 @@ ${
               </div>
 
               {/* History Section */}
-              {history.length > 0 && (
+              {/* {history.length > 0 && (
                 <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm overflow-hidden">
                   <div className="border-b border-slate-200/60 bg-linear-to-r from-white to-slate-50/80 p-6">
                     <div className="flex items-center gap-3">
@@ -392,7 +392,7 @@ ${
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Results Section - Takes 1 column */}
