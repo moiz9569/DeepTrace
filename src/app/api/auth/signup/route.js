@@ -64,3 +64,16 @@ export async function POST(req) {
   }
 }
 
+export async function GET() {
+  try {
+    await connectDB();
+    const users = await UserModel.find({}).sort({createdAt : -1});
+    return NextResponse.json({ users });
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    return NextResponse.json(
+      { success: false, error: "Server error. Please try again later." },
+      { status: 500 }
+    );
+  }
+}

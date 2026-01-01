@@ -40,7 +40,11 @@ export function AuthProvider({ children }) {
     const data = await res.json();
     if (res.ok) {
       setUser(data.user);
-      router.push('/dashboard/user');
+      if (data.user.role === "user") {
+        router.push('/dashboard/user');
+      }else{
+        router.push('/dashboard/admin');
+      }
     }
     return data;
   }

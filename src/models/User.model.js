@@ -5,10 +5,12 @@ const UserSchema = new mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
   password: String,
-  role: { type: String, default: "user" },
+  role: { type: String, 
+    enum : ["user", "admin"],
+    default: "user" },
   plan: { type: String, default: "free" },
   credits: { type: Number, default: 20 },
-});
+},{timestamps: true});
 
 // Mongoose 7+ no longer uses next()
 UserSchema.pre("save", async function () {
