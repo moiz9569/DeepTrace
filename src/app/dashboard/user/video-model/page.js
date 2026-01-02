@@ -333,57 +333,63 @@ ${
               </div>
             </div>
           )}
-
-          <div className=" flex justify-between items-center">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
+<div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-10">
+  {/* LEFT CONTENT */}
+  <div className="flex-1 max-w-3xl">
+    <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
                   Video{" "}
                   <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
                     Authenticity
                   </span>{" "}
                   Analyzer
                 </h1>
-                <p className="text-base text-slate-600 max-w-2xl">
-                  Detect AI-generated videos using advanced computer vision
+
+    <p className="text-sm sm:text-base text-slate-600">
+      Detect AI-generated videos using advanced computer vision
                   models. Analyze video frames, motion patterns, and
                   authenticity metrics.
-                </p>
-              </div>
-            </div>
+    </p>
 
-            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="p-2 bg-teal-600 rounded-xl">
-                <Film className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="text-emerald-800 font-semibold">
-                  AI Video Detector
-                </span>
-                <p className="text-sm text-slate-600">
-                  Advanced Video Forensics
-                </p>
-              </div>
-            </div>
-          </div>
+    {/* BADGE */}
+    <div className="mt-5 inline-flex items-center gap-3 bg-white/80 backdrop-blur-md 
+    border border-emerald-200 rounded-2xl px-4 sm:px-5 py-3 
+    shadow-sm hover:shadow-md transition-shadow duration-300 w-fit">
+      <div className="p-2 bg-teal-600 rounded-xl">
+        <Film className="w-5 h-5 text-white" />
+      </div>
 
-          <div className="hidden w-80 lg:block p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-300 shadow-sm">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-slate-100 rounded-lg">
-                <Shield className="w-6 h-6 text-teal-600" />
-              </div>
-              <div>
-                <p className="text-sm text-slate-500">Supported</p>
-                <p className="text-xl font-bold text-slate-900">
-                  MP4, AVI, MOV
-                </p>
-              </div>
-            </div>
-          </div>
+      <div>
+        <span className="text-emerald-800 font-semibold text-sm sm:text-base">
+          AI Video Detector
+        </span>
+        <p className="text-xs sm:text-sm text-slate-600">
+          Advanced Video Forensics
+        </p>
+      </div>
+    </div>
+  </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 mt-6">
+  {/* RIGHT SIDE CARD (Always Visible) */}
+  <div className="w-full sm:w-96 lg:w-80 p-4 bg-white/60 backdrop-blur-sm 
+  rounded-2xl border border-slate-300 shadow-sm self-start">
+    <div className="flex items-center gap-3">
+      <div className="p-2 bg-slate-100 rounded-lg">
+        <Shield className="w-6 h-6 text-teal-600" />
+      </div>
+
+      <div>
+        <p className="text-sm text-slate-500">Supported</p>
+        <p className="text-lg sm:text-xl font-bold text-slate-900">
+          MP4, AVI, MOV
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 gap-6 sm:gap-8 mt-8">
             {/* Upload Section - Takes 2 columns */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
               <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
                 <div className="border-b border-slate-200/60 bg-linear-to-r from-white to-slate-50/80 p-6">
                   <div className="flex items-center justify-between">
@@ -716,7 +722,7 @@ ${
             </div>
 
             {/* Results Section - Takes 1 column */}
-            <div className="space-y-8">
+            <div className="space-y-8 lg:flex xl:flex-col gap-10">
               {/* Results Card */}
               <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
                 <div className="border-b border-slate-200/60 bg-linear-to-r from-white to-slate-50/80 p-6">

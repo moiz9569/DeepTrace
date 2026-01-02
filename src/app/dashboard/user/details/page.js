@@ -333,7 +333,7 @@ const AnalysisDetails = () => {
 
   /* ================= UI ================= */
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6 space-y-10">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 p-6 space-y-10">
       {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: -15 }}
@@ -349,7 +349,7 @@ const AnalysisDetails = () => {
       </motion.div>
 
       {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <StatCard title="Image Analysis" value={stats.image} icon={<IconPhoto />} />
         <StatCard title="Text Analysis" value={stats.text} icon={<IconTextSize />} />
         <StatCard title="Video Analysis" value={stats.video} icon={<IconVideo />} />

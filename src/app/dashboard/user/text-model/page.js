@@ -162,40 +162,46 @@ ${
       <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-emerald-50/30">
         <div className="container mx-auto max-w-6xl p-6 relative z-10">
           {/* Header */}
-          <div className="mb-10 flex justify-between items-center">
-           
+          <div className="mb-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+  {/* LEFT CONTENT */}
+  <div className="max-w-3xl">
+    <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 leading-tight">
+      Text{" "}
+      <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
+        Authenticity
+      </span>{" "}
+      Analyzer
+    </h1>
 
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
-                  Text{" "}
-                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
-                    Authenticity
-                  </span>{" "}
-                  Analyzer
-                </h1>
-                <p className="text-base text-slate-600 max-w-2xl">
-                  Detect AI-generated content with advanced natural language
-                  processing. Analyze text patterns, writing style, and
-                  authenticity metrics.
-                </p>
-              </div>
-            </div>
+    <p className="text-sm sm:text-base text-slate-600">
+      Detect AI-generated content with advanced natural language
+      processing. Analyze text patterns, writing style, and
+      authenticity metrics.
+    </p>
+  </div>
 
-             <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="p-2 bg-teal-600 rounded-xl">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="text-emerald-800 font-semibold">
-                  AI Text Detector
-                </span>
-                <p className="text-sm text-slate-600">Advanced NLP Analysis</p>
-              </div>
-            </div>
-          </div>
+  {/* RIGHT BADGE */}
+  <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md 
+  border border-emerald-200 rounded-2xl px-4 sm:px-5 w-fit lg:w-[60%] xl:w-96 py-3 
+  shadow-sm hover:shadow-md transition-shadow duration-300 
+  ">
+    <div className="p-2 bg-teal-600 rounded-xl">
+      <Sparkles className="w-5 h-5 text-white" />
+    </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+    <div>
+      <span className="text-emerald-800 font-semibold text-sm sm:text-base">
+        AI Text Detector
+      </span>
+      <p className="text-xs sm:text-sm text-slate-600">
+        Advanced NLP Analysis
+      </p>
+    </div>
+  </div>
+</div>
+
+
+          <div className="grid xl:grid-cols-3 gap-8">
             {/* Input Section - Takes 2 columns */}
             <div className="lg:col-span-2 space-y-8">
               <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
@@ -396,9 +402,9 @@ ${
             </div>
 
             {/* Results Section - Takes 1 column */}
-            <div className="space-y-8">
+            <div className="space-y-8 lg:flex lg:gap-5 xl:gap-0 xl:flex-col">
               {/* Results Card */}
-              <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
+              <div className="bg-white/80 w-full backdrop-blur-sm border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden">
                 <div className="border-b border-slate-200/60 bg-linear-to-r from-white to-slate-50/80 p-6">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-teal-600 rounded-lg">

@@ -13,22 +13,33 @@ import {
   ChevronRight,
   LogOut,
   User,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function UserSidebar({ children }) {
   const [collapsed, setCollapsed] = useState(false);
-  const { user,logout } = useAuth();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { user, logout } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
   const [logoutLoading, setLogoutLoading] = useState(false);
   const router = useRouter();
   const userMenuRef = useRef(null);
+  const sidebarRef = useRef(null);
 
   // Close user menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
         setUserMenuOpen(false);
+      }
+      
+      // Close mobile sidebar when clicking outside
+      if (sidebarRef.current && 
+          !sidebarRef.current.contains(event.target) && 
+          !event.target.closest('[data-sidebar-toggle]')) {
+        setIsMobileOpen(false);
       }
     };
 
@@ -40,10 +51,10 @@ export default function UserSidebar({ children }) {
     router.push("/dashboard/user/profile");
   };
 
-  const Logout = async () => {
+  const handleLogout = async () => {
     try {
       setLogoutLoading(true);
-      logout()
+      logout();
       await new Promise((resolve) => setTimeout(resolve, 2500));
       router.push("/");
     } catch (error) {
@@ -90,17 +101,40 @@ export default function UserSidebar({ children }) {
     // },
   ];
 
+  // Handle responsive behavior
+  const toggleSidebar = () => {
+    if (window.innerWidth < 768) { // md breakpoint
+      setIsMobileOpen(!isMobileOpen);
+    } else {
+      setCollapsed(!collapsed);
+    }
+  };
+
+  // Close mobile sidebar on route change
+  useEffect(() => {
+    setIsMobileOpen(false);
+  }, [pathname]);
+
   return (
     <div className="min-h-screen bg-slate-50 rounded-2xl">
       {/* ================= HEADER ================= */}
-      <header className="fixed top-0 left-0 shadow-sm right-0 z-30 h-16 bg-transparent rounded-2xl backdrop-blur-md">
-        <div className="h-full px-6 flex items-center justify-end gap-4">
+      <header className="fixed top-0 left-0 shadow-sm right-0 z-40 md:z-30 h-16 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div className="h-full px-4 md:px-6 flex items-center justify-between md:justify-end gap-4">
+          {/* Mobile Menu Toggle Button */}
+          <button
+            data-sidebar-toggle
+            onClick={toggleSidebar}
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition-colors"
+          >
+            {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
           {/* Welcome Badge */}
           <div
-            className="hidden sm:flex items-center gap-2 px-4 py-2 
-      bg-linear-to-r from-teal-50 to-emerald-50 
-      border border-emerald-200 
-      rounded-full text-sm text-emerald-700 shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 
+            bg-linear-to-r from-teal-50 to-emerald-50 
+            border border-emerald-200 
+            rounded-full text-sm text-emerald-700 shadow-sm"
           >
             <span className="opacity-80">Welcome,</span>
             <span className="font-semibold truncate max-w-30">
@@ -115,10 +149,10 @@ export default function UserSidebar({ children }) {
               <button
                 onClick={handleProfileClick}
                 className="flex cursor-pointer items-center gap-2 px-4 py-2 
-          rounded-full bg-teal-600/90 hover:bg-teal-700 
-          text-white shadow-md transition-all"
+                rounded-full bg-teal-600/90 hover:bg-teal-700 
+                text-white shadow-md transition-all"
               >
-                <span className="hidden sm:inline text-sm font-medium truncate max-w-25">
+                <span className="inline text-sm font-medium truncate max-w-25">
                   View Profile
                 </span>
               </button>
@@ -129,13 +163,21 @@ export default function UserSidebar({ children }) {
 
       {/* ================= SIDEBAR ================= */}
       <aside
-        className={`fixed top-0 rounded-r-2xl left-0 z-50 h-full bg-teal-900 transition-all duration-300
-          ${collapsed ? "w-20" : "w-64"}`}
+        ref={sidebarRef}
+        className={`fixed top-0 rounded-r-2xl left-0 z-30 md:z-40 h-full bg-teal-900 transition-all duration-300
+          ${
+            // Responsive classes
+            isMobileOpen 
+              ? "translate-x-0 w-64 shadow-2xl" 
+              : "-translate-x-full md:translate-x-0"
+          }
+          ${collapsed ? "md:w-20" : "md:w-64"}
+        `}
       >
         <div className="h-full flex flex-col">
           <div className="flex-1">
-            <header className="mt-3 bg-teal-900">
-              <div className="h-16 flex p-7 items-center gap-3">
+            <header className="mt-20 md:mt-3 bg-teal-900">
+              <div className={`h-16 flex ${collapsed ? "p-4 justify-center" : "p-7"} items-center gap-3`}>
                 <img
                   src="/Deeptrace-new-logo.png"
                   className={`${
@@ -143,7 +185,7 @@ export default function UserSidebar({ children }) {
                   } transition-all duration-300`}
                   alt="logo"
                 />
-                {!collapsed && (
+                {!collapsed && !isMobileOpen && (
                   <div className="leading-tight">
                     <p className="text-sm font-semibold text-slate-200">
                       DeepTrace
@@ -151,18 +193,20 @@ export default function UserSidebar({ children }) {
                     <p className="text-xs text-slate-300">User Dashboard</p>
                   </div>
                 )}
+                <div className="leading-tight md:hidden">
+                    <p className="text-sm font-semibold text-slate-200">
+                      DeepTrace
+                    </p>
+                    <p className="text-xs text-slate-300">User Dashboard</p>
+                  </div>
               </div>
             </header>
 
-            {/* Collapse Toggle */}
-            <div
-              className={`flex ${
-                collapsed ? "justify-center" : "justify-end"
-              } px-3`}
-            >
+            {/* Collapse Toggle - Hidden on mobile, shown on desktop */}
+            <div className={`hidden md:flex ${collapsed ? "justify-center" : "justify-end"} px-3`}>
               <button
                 onClick={() => setCollapsed(!collapsed)}
-                className="h-8 w-8 rounded-lg flex items-center justify-center"
+                className="h-8 w-8 rounded-lg flex items-center justify-center hover:bg-teal-800 transition-colors"
               >
                 {collapsed ? (
                   <ChevronRight className="h-4 w-4 text-white" />
@@ -175,7 +219,7 @@ export default function UserSidebar({ children }) {
             <nav className="px-3 mt-2 space-y-6">
               {sections.map((section) => (
                 <div key={section.title}>
-                  {!collapsed && (
+                  {(!collapsed || isMobileOpen) && (
                     <p className="px-3 mb-2 text-xs font-semibold text-slate-200">
                       {section.title}
                     </p>
@@ -190,20 +234,22 @@ export default function UserSidebar({ children }) {
                           key={item.path}
                           onClick={() => router.push(item.path)}
                           className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 transition
-    ${
-      active
-        ? "bg-emerald-50 text-emerald-900"
-        : "text-slate-200 cursor-pointer hover:bg-emerald-50 hover:text-teal-900"
-    }`}
+                          ${
+                            active
+                              ? "bg-emerald-50 text-emerald-900"
+                              : "text-slate-200 cursor-pointer hover:bg-emerald-50 hover:text-teal-900"
+                          }`}
                         >
                           <Icon
                             className={`h-5 w-5 transition-colors
-      ${
-        active ? "text-emerald-600" : "text-slate-200 group-hover:text-teal-900"
-      }`}
+                            ${
+                              active 
+                                ? "text-emerald-600" 
+                                : "text-slate-200 group-hover:text-teal-900"
+                            }`}
                           />
 
-                          {!collapsed && (
+                          {(!collapsed || isMobileOpen) && (
                             <span className="text-sm font-medium">
                               {item.label}
                             </span>
@@ -217,24 +263,48 @@ export default function UserSidebar({ children }) {
             </nav>
           </div>
 
-          {/* User Menu */}
+          {/* Logout Button */}
           <div className="p-3 border-t border-teal-800" ref={userMenuRef}>
             <button
-              onClick={Logout}
-              className="flex items-center cursor-pointer gap-3 w-full px-8 py-2.5 text-sm text-red-500 hover:text-red-600 transition-colors"
+              onClick={handleLogout}
+              className={`flex items-center cursor-pointer gap-3 w-full px-3 py-2.5 text-sm ${
+                logoutLoading ? "text-slate-400" : "text-red-500 hover:text-red-600"
+              } transition-colors rounded-lg hover:bg-teal-800`}
+              disabled={logoutLoading}
             >
-              <LogOut className="h-4 w-4" />
-              <span className="text-base">Logout</span>
+              <LogOut className={`h-4 w-4 ${logoutLoading ? "animate-pulse" : ""}`} />
+              {(!collapsed || isMobileOpen) && (
+                <span className="text-base">
+                  {logoutLoading ? "Logging out..." : "Logout"}
+                </span>
+              )}
             </button>
           </div>
         </div>
       </aside>
+
+      {/* Overlay for mobile */}
+      {isMobileOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-20 md:hidden"
+          onClick={() => setIsMobileOpen(false)}
+        />
+      )}
+
+      {/* Main Content */}
       <main
-        className={`pt-16 transition-all duration-300 ${
-          collapsed ? "ml-20" : "ml-64"
-        }`}
+        className={`pt-16 transition-all duration-300
+          ${
+            // Responsive margin
+            isMobileOpen 
+              ? "ml-0" 
+              : collapsed 
+                ? "md:ml-20" 
+                : "md:ml-64"
+          }
+        `}
       >
-        <div className="p-1">{children}</div>
+        <div className="p-4 md:p-6">{children}</div>
       </main>
     </div>
   );

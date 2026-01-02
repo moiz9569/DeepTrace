@@ -1,18 +1,18 @@
-"use client"
-import { useState, useEffect } from "react"
-import { useAuth } from "@/components/auth/AuthProvider"
-import LoginModal from "@/components/AuthModals/LoginModal"
-import { useRouter } from "next/navigation"
-import { 
-  Video, 
-  Eye, 
-  MessageSquare, 
-  Activity, 
-  Clock, 
-  CheckCircle, 
-  AlertTriangle, 
-  BarChart3, 
-  Sparkles, 
+"use client";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/components/auth/AuthProvider";
+import LoginModal from "@/components/AuthModals/LoginModal";
+import { useRouter } from "next/navigation";
+import {
+  Video,
+  Eye,
+  MessageSquare,
+  Activity,
+  Clock,
+  CheckCircle,
+  AlertTriangle,
+  BarChart3,
+  Sparkles,
   TrendingUp,
   Shield,
   Cpu,
@@ -25,28 +25,28 @@ import {
   Users,
   Target,
   LineChart,
-  ChevronRight
-} from "lucide-react"
-import axios from "axios"
+  ChevronRight,
+} from "lucide-react";
+import axios from "axios";
 
 export default function Dashboard() {
-  const { user, loading } = useAuth()
-  const router = useRouter()
-  const [showLogin, setShowLogin] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [dashboardData, setDashboardData] = useState([])
-  const [imageDetail,setImageDetail] = useState([])
-  const [total,setTotal] = useState([])
+  const { user, loading } = useAuth();
+  const router = useRouter();
+  const [showLogin, setShowLogin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [dashboardData, setDashboardData] = useState([]);
+  const [imageDetail, setImageDetail] = useState([]);
+  const [total, setTotal] = useState([]);
   const [recentAnalyses] = useState([
-    { 
-      id: 1, 
-      type: "video", 
-      name: "interview_clip.mp4", 
-      status: "completed", 
-      confidence: 94, 
+    {
+      id: 1,
+      type: "video",
+      name: "interview_clip.mp4",
+      status: "completed",
+      confidence: 94,
       timestamp: "2 hours ago",
       size: "45.2 MB",
-      model: "Video Forensics"
+      model: "Video Forensics",
     },
     {
       id: 2,
@@ -56,220 +56,216 @@ export default function Dashboard() {
       confidence: null,
       timestamp: "5 minutes ago",
       size: "8.7 MB",
-      model: "Image Classifier"
+      model: "Image Classifier",
     },
-    { 
-      id: 3, 
-      type: "text", 
-      name: "news_article.txt", 
-      status: "completed", 
-      confidence: 87, 
+    {
+      id: 3,
+      type: "text",
+      name: "news_article.txt",
+      status: "completed",
+      confidence: 87,
       timestamp: "1 day ago",
       size: "15.3 KB",
-      model: "RoBERTa"
+      model: "RoBERTa",
     },
-    { 
-      id: 4, 
-      type: "video", 
-      name: "security_footage.mp4", 
-      status: "flagged", 
-      confidence: 23, 
+    {
+      id: 4,
+      type: "video",
+      name: "security_footage.mp4",
+      status: "flagged",
+      confidence: 23,
       timestamp: "3 hours ago",
       size: "128 MB",
-      model: "Video Forensics"
+      model: "Video Forensics",
     },
-    { 
-      id: 5, 
-      type: "image", 
-      name: "product_image.png", 
-      status: "completed", 
-      confidence: 96, 
+    {
+      id: 5,
+      type: "image",
+      name: "product_image.png",
+      status: "completed",
+      confidence: 96,
       timestamp: "Yesterday",
       size: "4.2 MB",
-      model: "Image Classifier"
+      model: "Image Classifier",
     },
-    { 
-      id: 6, 
-      type: "text", 
-      name: "research_paper.txt", 
-      status: "completed", 
-      confidence: 91, 
+    {
+      id: 6,
+      type: "text",
+      name: "research_paper.txt",
+      status: "completed",
+      confidence: 91,
       timestamp: "4 days ago",
       size: "82.1 KB",
-      model: "RoBERTa"
+      model: "RoBERTa",
     },
-  ])
-const [latestData, setLatestData] = useState([]);
+  ]);
+  const [latestData, setLatestData] = useState([]);
 
   const stats = {
     imageAnalysis: dashboardData?.totalAnalysis?.image || 0,
     textAnalysis: dashboardData?.totalAnalysis?.text || 0,
     videoAnalysis: dashboardData?.totalAnalysis?.video || 0,
-    totalAnalysis: dashboardData?.totalAnalysis?.text + dashboardData?.totalAnalysis?.image  || 0,
+    totalAnalysis:
+      dashboardData?.totalAnalysis?.text +
+        dashboardData?.totalAnalysis?.image || 0,
     aiDetected: 67,
     humanVerified: 183,
     avgProcessingTime: "2.3 min",
-    modelsUsed: 3
-  }
+    modelsUsed: 3,
+  };
 
   // Check authentication on component mount and when auth state changes
   useEffect(() => {
     // console.log("user", user?.id )
     // axios.get("/api/user/dashboard?userId=" + user?.id) coorect also
-   
-   
+
     // Check if user is logged in by looking at localStorage or cookies
     const checkAuth = () => {
       // Check localStorage (common approach for JWT tokens)
-      const token = localStorage.getItem('token') || localStorage.getItem('auth-token')
-      
+      const token =
+        localStorage.getItem("token") || localStorage.getItem("auth-token");
+
       // If using cookies, check document.cookie
-      const hasAuthCookie = document.cookie.includes('auth-token') || 
-                           document.cookie.includes('token')
-      
+      const hasAuthCookie =
+        document.cookie.includes("auth-token") ||
+        document.cookie.includes("token");
+
       // If either exists, consider user authenticated
       if (token || hasAuthCookie || user) {
-        setIsAuthenticated(true)
-        setShowLogin(false)
+        setIsAuthenticated(true);
+        setShowLogin(false);
       } else {
-        setIsAuthenticated(false)
-        setShowLogin(true)
+        setIsAuthenticated(false);
+        setShowLogin(true);
       }
-    }
+    };
 
     // Initial check
-    checkAuth()
-    
+    checkAuth();
+
     // Also check when loading state changes
     if (!loading && user) {
-      setIsAuthenticated(true)
-      setShowLogin(false)
+      setIsAuthenticated(true);
+      setShowLogin(false);
     }
-    
+
     if (!loading && !user) {
       // Give a small delay to allow auth state to update
       setTimeout(() => {
-        checkAuth()
-      }, 1000)
+        checkAuth();
+      }, 1000);
     }
-  }, [loading, user])
+  }, [loading, user]);
 
+  const fetchLatest = async (userId) => {
+    try {
+      const [imageRes, textRes] = await Promise.all([
+        axios.get("/api/user/ImageDeatil", { params: { userId } }),
+        axios.get("/api/user/TextDetail", { params: { userId } }),
+      ]);
 
-const fetchLatest = async (userId) => {
-  try {
-    const [imageRes, textRes] = await Promise.all([
-      axios.get("/api/user/ImageDeatil", { params: { userId } }),
-      axios.get("/api/user/TextDetail", { params: { userId } }),
-    ]);
+      // 🛡️ SAFETY: object ho ya array → array bana do
+      const imageRaw = imageRes?.data?.imageDetail || [];
+      const textRaw = textRes?.data?.textDetail || [];
 
-    // 🛡️ SAFETY: object ho ya array → array bana do
-    const imageRaw = imageRes?.data?.imageDetail || [];
-    const textRaw = textRes?.data?.textDetail || [];
+      const images = (Array.isArray(imageRaw) ? imageRaw : [imageRaw])
+        .filter(Boolean)
+        .map((item) => ({
+          ...item,
+          type: "image",
+        }));
 
-    const images = (Array.isArray(imageRaw) ? imageRaw : [imageRaw])
-      .filter(Boolean)
-      .map((item) => ({
-        ...item,
-        type: "image",
-      }));
+      const texts = (Array.isArray(textRaw) ? textRaw : [textRaw])
+        .filter(Boolean)
+        .map((item) => ({
+          ...item,
+          type: "text",
+        }));
 
-    const texts = (Array.isArray(textRaw) ? textRaw : [textRaw])
-      .filter(Boolean)
-      .map((item) => ({
-        ...item,
-        type: "text",
-      }));
+      // 🔥 DONO MILA DO
+      const combined = [...images, ...texts];
 
-    // 🔥 DONO MILA DO
-    const combined = [...images, ...texts];
+      // 🔥 LATEST FIRST
+      combined.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setTotal(combined);
+      // 🔥 SIRF TOP 5
+      const latestFive = combined.slice(0, 5);
 
-    // 🔥 LATEST FIRST
-    combined.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
-    setTotal(combined)
-    // 🔥 SIRF TOP 5
-    const latestFive = combined.slice(0, 5);
+      setLatestData(latestFive);
+      console.log("Latest 5", latestFive);
+    } catch (err) {
+      console.error("Fetch latest error:", err);
+    }
+  };
 
-    setLatestData(latestFive);
-    console.log("Latest 5", latestFive);
-
-  } catch (err) {
-    console.error("Fetch latest error:", err);
-  }
-};
-
- useEffect(()=>{
-    console.log("user",user)
+  useEffect(() => {
+    console.log("user", user);
     if (user?.id) {
-//     const res = axios.get("/api/user/dashboard", {
-//   params: {
-//     userId: user?.id,
-//   },
-// });
- const userId = user?.id
-axios
-  .get("/api/user/dashboard", { params: { userId } })
-  .then((res1) => {
-//     console.log(res1.data.totals.text.human); // ✅
-//     console.log("res2",res1.data.totals.text.ai);
-// console.log("res3",res1.data.totals.image.human);
-// console.log("res4",res1.data.totals.image.ai);
-// console.log("res5",res1.data.totals.totalAnalysis.text);
-// console.log("res6",res1.data.totals.totalAnalysis.image); 
-setDashboardData(res1?.data?.totals) ;
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-// console.log("res1",res?.data);
-// axios.get("/api/user/ImageDeatil", {params: {
-//       userId, // ya jo bhi tumhara logged-in user id hai
-//     }}).then((data)=>{
-//     console.log("image detail",data.data?.imageDetail)
-//    }).catch((err)=>{
-//     console.log("err",err)
-//    })
-//    axios.get("/api/user/TextDetail", {params: {
-//       userId, // ya jo bhi tumhara logged-in user id hai
-//     }}).then((data)=>{
-//     console.log("text detail",data?.data?.textDetail)
-//    }).catch((err)=>{
-//     console.log("err",err?.data)
-//    }) 
-  fetchLatest(userId)
+      //     const res = axios.get("/api/user/dashboard", {
+      //   params: {
+      //     userId: user?.id,
+      //   },
+      // });
+      const userId = user?.id;
+      axios
+        .get("/api/user/dashboard", { params: { userId } })
+        .then((res1) => {
+          //     console.log(res1.data.totals.text.human); // ✅
+          //     console.log("res2",res1.data.totals.text.ai);
+          // console.log("res3",res1.data.totals.image.human);
+          // console.log("res4",res1.data.totals.image.ai);
+          // console.log("res5",res1.data.totals.totalAnalysis.text);
+          // console.log("res6",res1.data.totals.totalAnalysis.image);
+          setDashboardData(res1?.data?.totals);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      // console.log("res1",res?.data);
+      // axios.get("/api/user/ImageDeatil", {params: {
+      //       userId, // ya jo bhi tumhara logged-in user id hai
+      //     }}).then((data)=>{
+      //     console.log("image detail",data.data?.imageDetail)
+      //    }).catch((err)=>{
+      //     console.log("err",err)
+      //    })
+      //    axios.get("/api/user/TextDetail", {params: {
+      //       userId, // ya jo bhi tumhara logged-in user id hai
+      //     }}).then((data)=>{
+      //     console.log("text detail",data?.data?.textDetail)
+      //    }).catch((err)=>{
+      //     console.log("err",err?.data)
+      //    })
+      fetchLatest(userId);
+    }
 
-  }
-    
-  
-   
-  //  console.log("getData",getData)
-  },[user])
+    //  console.log("getData",getData)
+  }, [user]);
   // Handle successful login
   const handleLoginSuccess = () => {
-    setIsAuthenticated(true)
-    setShowLogin(false)
+    setIsAuthenticated(true);
+    setShowLogin(false);
     // Force a refresh to update auth state
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   // Handle closing login modal
   const handleCloseLoginModal = () => {
     if (!isAuthenticated) {
-      router.push("/")
+      router.push("/");
     }
-    setShowLogin(false)
-  }
+    setShowLogin(false);
+  };
 
   // Handle model link clicks
   const handleModelClick = (e, href) => {
     if (!isAuthenticated) {
-      e.preventDefault()
-      setShowLogin(true)
+      e.preventDefault();
+      setShowLogin(true);
     } else {
-      router.push(href)
+      router.push(href);
     }
-  }
+  };
 
   // Loading state
   if (loading) {
@@ -278,23 +274,27 @@ setDashboardData(res1?.data?.totals) ;
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mb-4"></div>
         <p className="text-slate-600 font-medium">Loading dashboard...</p>
       </div>
-    )
+    );
   }
 
   // Show login modal if not authenticated
   if (!isAuthenticated && !loading) {
     return (
       <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-emerald-50/30">
-        <LoginModal 
-          onClose={handleCloseLoginModal} 
+        <LoginModal
+          onClose={handleCloseLoginModal}
           onLoginSuccess={handleLoginSuccess}
         />
         <div className="container mx-auto max-w-7xl p-6">
           <div className="flex items-center justify-center min-h-[60vh]">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mb-4 mx-auto"></div>
-              <h2 className="text-xl font-semibold text-slate-900 mb-2">Authentication Required</h2>
-              <p className="text-slate-600">Please login to access the dashboard</p>
+              <h2 className="text-xl font-semibold text-slate-900 mb-2">
+                Authentication Required
+              </h2>
+              <p className="text-slate-600">
+                Please login to access the dashboard
+              </p>
               <button
                 onClick={() => setShowLogin(true)}
                 className="mt-4 px-6 py-2 bg-linear-to-r from-teal-600 to-emerald-600 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300"
@@ -305,115 +305,110 @@ setDashboardData(res1?.data?.totals) ;
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Dashboard functions (same as before)
   const getStatusIcon = (status) => {
     switch (status) {
       case "completed":
-        return <CheckCircle className="w-4 h-4 text-green-600" />
+        return <CheckCircle className="w-4 h-4 text-green-600" />;
       case "processing":
-        return <Clock className="w-4 h-4 text-orange-500 animate-pulse" />
+        return <Clock className="w-4 h-4 text-orange-500 animate-pulse" />;
       case "flagged":
-        return <AlertTriangle className="w-4 h-4 text-red-500" />
+        return <AlertTriangle className="w-4 h-4 text-red-500" />;
       default:
-        return <Activity className="w-4 h-4 text-slate-500" />
+        return <Activity className="w-4 h-4 text-slate-500" />;
     }
-  }
+  };
 
   const getTypeIcon = (type) => {
     switch (type) {
       case "video":
-        return <PlayCircle className="w-5 h-5 text-teal-600" />
+        return <PlayCircle className="w-5 h-5 text-teal-600" />;
       case "image":
-        return <ImageIcon className="w-5 h-5 text-emerald-600" />
+        return <ImageIcon className="w-5 h-5 text-emerald-600" />;
       case "text":
-        return <FileText className="w-5 h-5 text-amber-600" />
+        return <FileText className="w-5 h-5 text-amber-600" />;
       default:
-        return <Activity className="w-5 h-5" />
+        return <Activity className="w-5 h-5" />;
     }
-  }
+  };
 
   const getStatusColor = (status) => {
     switch (status) {
       case "completed":
-        return "bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-700"
+        return "bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-700";
       case "processing":
-        return "bg-gradient-to-r from-orange-50 to-amber-50 border-orange-200 text-orange-700"
+        return "bg-gradient-to-r from-orange-50 to-amber-50 border-orange-200 text-orange-700";
       case "flagged":
-        return "bg-gradient-to-r from-red-50 to-rose-50 border-red-200 text-red-700"
+        return "bg-gradient-to-r from-red-50 to-rose-50 border-red-200 text-red-700";
       default:
-        return "bg-slate-50 border-slate-200 text-slate-700"
+        return "bg-slate-50 border-slate-200 text-slate-700";
     }
-  }
+  };
 
   const getConfidenceColor = (confidence) => {
-    if (!confidence) return "bg-slate-100 text-slate-600"
-    if (confidence >= 80) return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800"
-    if (confidence >= 60) return "bg-gradient-to-r from-yellow-100 to-amber-100 text-amber-800"
-    return "bg-gradient-to-r from-red-100 to-rose-100 text-red-800"
-  }
+    if (!confidence) return "bg-slate-100 text-slate-600";
+    if (confidence >= 80)
+      return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800";
+    if (confidence >= 60)
+      return "bg-gradient-to-r from-yellow-100 to-amber-100 text-amber-800";
+    return "bg-gradient-to-r from-red-100 to-rose-100 text-red-800";
+  };
 
   const getModelIcon = (model) => {
     switch (model) {
       case "Video Forensics":
-        return <Video className="w-4 h-4" />
+        return <Video className="w-4 h-4" />;
       case "Image Classifier":
-        return <Eye className="w-4 h-4" />
+        return <Eye className="w-4 h-4" />;
       case "RoBERTa":
-        return <Cpu className="w-4 h-4" />
+        return <Cpu className="w-4 h-4" />;
       default:
-        return <Database className="w-4 h-4" />
+        return <Database className="w-4 h-4" />;
     }
-  }
+  };
 
   return (
     <>
       {/* Login Modal - always available but conditionally shown */}
       {showLogin && (
-        <LoginModal 
-          onClose={handleCloseLoginModal} 
+        <LoginModal
+          onClose={handleCloseLoginModal}
           onLoginSuccess={handleLoginSuccess}
         />
       )}
 
       <div className="min-h-screen bg-linear-to-br from-slate-50 via-white to-emerald-50/30">
-        
-
         <div className="container mx-auto max-w-7xl p-6 relative z-10">
           {/* Rest of the dashboard content... */}
           {/* Header Section */}
           <div className="mb-10">
-            <div className="flex items-center justify-between mb-8">
+            <div className="md:flex items-center justify-between mb-8">
               <div>
-                {/* <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-emerald-200 rounded-2xl px-5 py-3 mb-6 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  <div className="p-2 bg-teal-600 rounded-xl">
-                    <Sparkles className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <span className="text-emerald-800 font-semibold">AI Detection Suite</span>
-                    <p className="text-sm text-slate-600">Real-time Analytics Dashboard</p>
-                  </div>
-                </div> */}
-                
-                <h1 className="text-4xl md:text-4xl font-bold text-slate-900 mb-3">
-                  Analysis <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">Dashboard</span>
+                <h1 className="text-4xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">
+                  Analysis{" "}
+                  <span className="bg-linear-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">
+                    Dashboard
+                  </span>
                 </h1>
-                <p className="text-base text-slate-600 max-w-3xl">
+                <p className="md:text-sm lg:text-base text-slate-600 max-w-3xl">
                   Monitor and manage all AI authenticity analyses in real-time.
                 </p>
               </div>
-              
-              <div className="hidden lg:flex items-center gap-4">
-                <div className="p-4 bg-white/60 w-40 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm">
+
+              <div className="flex items-center gap-4">
+                <div className="p-4 bg-white/60 mt-4 md:mt-0 w-44 md:w-32 lg:w-40 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-linear-to-br from-teal-500 to-emerald-500 rounded-lg">
                       <TrendingUp className="w-4 h-4 text-white" />
                     </div>
                     <div>
                       <p className="text-sm text-slate-500">Uptime</p>
-                      <p className="text-base font-bold text-slate-900">99.8%</p>
+                      <p className="text-base font-bold text-slate-900">
+                        99.8%
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -421,16 +416,45 @@ setDashboardData(res1?.data?.totals) ;
             </div>
 
             {/* Quick Stats Overview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
               {[
-                { icon: Shield, value: stats.imageAnalysis, label: "Image Analysis", color: "emerald", change: "+12%" },
-                { icon: Target, value: stats.textAnalysis, label: "Text Analysis", color: "emerald", change: "+2.1%" },
-                { icon: Users, value: stats.videoAnalysis, label: "Video Analysis", color: "emerald", change: "+8%" },
-                { icon: Cpu, value: stats.totalAnalysis, label: "Total Analysis", color: "emerald", change: "Active" },
+                {
+                  icon: Shield,
+                  value: stats.imageAnalysis,
+                  label: "Image Analysis",
+                  color: "emerald",
+                  change: "+12%",
+                },
+                {
+                  icon: Target,
+                  value: stats.textAnalysis,
+                  label: "Text Analysis",
+                  color: "emerald",
+                  change: "+2.1%",
+                },
+                {
+                  icon: Users,
+                  value: stats.videoAnalysis,
+                  label: "Video Analysis",
+                  color: "emerald",
+                  change: "+8%",
+                },
+                {
+                  icon: Cpu,
+                  value: stats.totalAnalysis,
+                  label: "Total Analysis",
+                  color: "emerald",
+                  change: "Active",
+                },
               ].map((stat, index) => (
-                <div key={index} className="bg-white/80 backdrop-blur-sm border border-slate-300 rounded-2xl p-3 hover:shadow-lg transition-all duration-300 group">
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm border border-slate-300 rounded-2xl p-3 hover:shadow-lg transition-all duration-300 group"
+                >
                   <div className="flex items-center justify-between mb-4">
-                    <div className={`p-2 bg-linear-to-br from-${stat.color}-100 to-${stat.color}-50 rounded-xl`}>
+                    <div
+                      className={`p-2 bg-linear-to-br from-${stat.color}-100 to-${stat.color}-50 rounded-xl`}
+                    >
                       <stat.icon className={`w-6 h-6 text-${stat.color}-600`} />
                     </div>
                     <div className="flex items-center gap-1 text-xs font-medium px-2 py-1 bg-white/60 rounded-lg border border-slate-200/50">
@@ -439,7 +463,9 @@ setDashboardData(res1?.data?.totals) ;
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <div className="text-2xl font-bold text-slate-900 group-hover:text-slate-950">{stat.value}</div>
+                    <div className="text-2xl font-bold text-slate-900 group-hover:text-slate-950">
+                      {stat.value}
+                    </div>
                     <div className="text-sm text-slate-600">{stat.label}</div>
                   </div>
                 </div>
@@ -448,120 +474,129 @@ setDashboardData(res1?.data?.totals) ;
           </div>
 
           {/* Quick Actions */}
-        <div className="mb-8">
-  <div className="flex items-center justify-between mb-5">
-    <div className="flex items-center gap-2.5">
-      <div className="p-1.5 bg-linear-to-br from-teal-500 to-emerald-500 rounded-md">
-        <Zap className="w-3 h-3 text-white" />
-      </div>
-      <h2 className="text-lg font-semibold text-slate-900">
-        Quick Analysis
-      </h2>
-    </div>
-    <p className="text-xs text-slate-500">
-      Select a model to start analyzing
-    </p>
-  </div>
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-linear-to-br from-teal-500 to-emerald-500 rounded-md">
+                  <Zap className="w-3 h-3 text-white" />
+                </div>
+                <h2 className="text-lg font-semibold text-slate-900">
+                  Quick Analysis
+                </h2>
+              </div>
+              <p className="text-xs text-slate-500">
+                Select a model to start analyzing
+              </p>
+            </div>
 
-  <div className="grid md:grid-cols-3 gap-5 mb-6">
-    {[
-      {
-        href: "user/video-model",
-        icon: Video,
-        title: "Video Analysis",
-        desc: "Frame-by-frame AI video detection",
-        color: "teal",
-        stats: "94.2% accuracy",
-        model: "Video Forensics",
-      },
-      {
-        href: "user/picture-model",
-        icon: Eye,
-        title: "Picture Analysis",
-        desc: "Advanced image authenticity detection",
-        color: "emerald",
-        stats: "96.7% accuracy",
-        model: "Image Classifier",
-      },
-      {
-        href: "user/text-model",
-        icon: MessageSquare,
-        title: "Text Analysis",
-        desc: "AI vs human text classification",
-        color: "amber",
-        stats: "92.4% accuracy",
-        model: "RoBERTa",
-      },
-    ].map((item, index) => (
-      <div
-        key={index}
-        onClick={(e) => handleModelClick(e, item.href)}
-        className="bg-white/80 backdrop-blur-sm border border-slate-300 rounded-2xl 
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+              {[
+                {
+                  href: "user/video-model",
+                  icon: Video,
+                  title: "Video Analysis",
+                  desc: "Frame-by-frame AI video detection",
+                  color: "teal",
+                  stats: "94.2% accuracy",
+                  model: "Video Forensics",
+                },
+                {
+                  href: "user/picture-model",
+                  icon: Eye,
+                  title: "Picture Analysis",
+                  desc: "Advanced image authenticity detection",
+                  color: "emerald",
+                  stats: "96.7% accuracy",
+                  model: "Image Classifier",
+                },
+                {
+                  href: "user/text-model",
+                  icon: MessageSquare,
+                  title: "Text Analysis",
+                  desc: "AI vs human text classification",
+                  color: "amber",
+                  stats: "92.4% accuracy",
+                  model: "RoBERTa",
+                },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  onClick={(e) => handleModelClick(e, item.href)}
+                  className="bg-white/80 backdrop-blur-sm border border-slate-300 rounded-2xl 
         hover:shadow-xl transition-all duration-500 group cursor-pointer overflow-hidden"
-      >
-        <div className="p-5">
-          <div className="flex items-center justify-between mb-4">
-            <div
-              className={`p-2 bg-linear-to-br from-${item.color}-100 to-${item.color}-50 
+                >
+                  <div className="p-5">
+                    <div className="flex items-center justify-between mb-4">
+                      <div
+                        className={`p-2 bg-linear-to-br from-${item.color}-100 to-${item.color}-50 
               rounded-lg group-hover:scale-105 transition-transform duration-300`}
-            >
-              <item.icon className={`w-6 h-6 text-${item.color}-600`} />
-            </div>
+                      >
+                        <item.icon
+                          className={`w-6 h-6 text-${item.color}-600`}
+                        />
+                      </div>
 
-            <div className="text-[11px] font-medium px-2.5 py-1 
+                      <div
+                        className="text-[11px] font-medium px-2.5 py-1 
               bg-white/60 backdrop-blur-sm rounded-full 
-              border border-slate-200/50 text-slate-600">
-              {item.stats}
+              border border-slate-200/50 text-slate-600"
+                      >
+                        {item.stats}
+                      </div>
+                    </div>
+
+                    <h3
+                      className="text-lg font-semibold text-slate-900 mb-2.5 
+            group-hover:text-teal-700 transition-colors"
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-600 text-xs mb-3">{item.desc}</p>
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
+                        <Database className="w-3 h-3" />
+                        <span>{item.model}</span>
+                      </div>
+
+                      <div
+                        className="flex items-center gap-1.5 text-xs font-medium 
+              text-teal-600 group-hover:text-teal-700"
+                      >
+                        <span>Start Analysis</span>
+                        <ChevronRight
+                          className="w-3.5 h-3.5 
+                group-hover:translate-x-0.5 transition-transform duration-300"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold text-slate-900 mb-2.5 
-            group-hover:text-teal-700 transition-colors">
-            {item.title}
-          </h3>
-
-          <p className="text-slate-600 text-xs mb-3">
-            {item.desc}
-          </p>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
-              <Database className="w-3 h-3" />
-              <span>{item.model}</span>
-            </div>
-
-            <div className="flex items-center gap-1.5 text-xs font-medium 
-              text-teal-600 group-hover:text-teal-700">
-              <span>Start Analysis</span>
-              <ChevronRight className="w-3.5 h-3.5 
-                group-hover:translate-x-0.5 transition-transform duration-300" />
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
-
-          <div className="gap-6">
+       <div className="w-full grid grid-cols-1 gap-6">
   {/* Left Column - Recent Analyses */}
-  <div className="lg:col-span-2 space-y-6">
-
-    {/* Recent Analyses Table */}
-    <div className="bg-white/80 backdrop-blur-sm border border-slate-200/60 
-      rounded-2xl shadow-sm hover:shadow-md transition-all duration-500 overflow-hidden">
-
+  <div className="space-y-6">
+    <div
+      className="bg-white/80 backdrop-blur-sm border border-slate-200/60 
+      rounded-2xl shadow-sm hover:shadow-md transition-all duration-500 overflow-hidden"
+    >
       {/* Header */}
-      <div className="border-b border-slate-200/60 
-        bg-linear-to-r from-white to-slate-50/80 p-5">
-        <div className="flex items-center justify-between">
+      <div
+        className="border-b border-slate-200/60 
+        bg-linear-to-r from-white to-slate-50/80 
+        p-4 sm:p-5"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-linear-to-br from-teal-500 to-emerald-500 rounded-md">
               <BarChart3 className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900">
                 Recent Analysis
               </h2>
               <p className="text-xs text-slate-500">
@@ -578,77 +613,80 @@ setDashboardData(res1?.data?.totals) ;
 
       {/* List */}
       <div className="divide-y divide-slate-200/60">
-  {latestData?.map((analysis) => (
-    <div
-      key={analysis._id}
-      className="flex items-center justify-between p-5 
-      hover:bg-white/50 transition-all duration-300 group"
-    >
-      {/* LEFT */}
-      <div className="flex items-center gap-3.5">
-        <div
-          className={`p-2.5 rounded-xl ${getStatusColor(analysis.label)} 
-          group-hover:scale-105 transition-transform`}
-        >
-          {getTypeIcon(analysis.type)}
-        </div>
-
-        <div className="space-y-0.5">
-          {/* TITLE */}
-          <div className="text-slate-900 text-sm font-medium">
-            {analysis.type === "image"
-              ? "Image Analysis"
-              : "Text Analysis"}
-          </div>
-
-          {/* META */}
-          <div className="flex items-center gap-2 text-[11px] text-slate-500">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {new Date(analysis.createdAt).toLocaleString()}
-            </span>
-
-            {analysis.type === "image" && (
-              <>
-                <span>•</span>
-                <span>{analysis.size}</span>
-              </>
-            )}
-
-            <span>•</span>
-            <span>{analysis.label}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* RIGHT */}
-      <div className="flex items-center gap-3">
-        {analysis.confidence && (
+        {latestData?.map((analysis) => (
           <div
-            className={`text-xs px-3 py-1.5 rounded-lg font-semibold 
-            border backdrop-blur-sm ${getConfidenceColor(analysis.confidence)}`}
+            key={analysis._id}
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between 
+            gap-4 p-4 sm:p-5 
+            hover:bg-white/50 transition-all duration-300 group"
           >
-            {analysis.confidence}% confidence
+            {/* LEFT */}
+            <div className="flex items-start gap-3.5 min-w-0">
+              <div
+                className={`p-2.5 rounded-xl ${getStatusColor(
+                  analysis.label
+                )} group-hover:scale-105 transition-transform`}
+              >
+                {getTypeIcon(analysis.type)}
+              </div>
+
+              <div className="space-y-0.5 min-w-0">
+                <div className="text-slate-900 text-sm font-medium truncate">
+                  {analysis.type === "image"
+                    ? "Image Analysis"
+                    : "Text Analysis"}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {new Date(analysis.createdAt).toLocaleString()}
+                  </span>
+
+                  {analysis.type === "image" && (
+                    <>
+                      <span>•</span>
+                      <span>{analysis.size}</span>
+                    </>
+                  )}
+
+                  <span>•</span>
+                  <span>{analysis.label}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3">
+              {analysis.confidence && (
+                <div
+                  className={`text-xs px-3 py-1.5 rounded-lg font-semibold 
+                  border backdrop-blur-sm ${getConfidenceColor(
+                    analysis.confidence
+                  )}`}
+                >
+                  {analysis.confidence}% confidence
+                </div>
+              )}
+
+              <div
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg 
+                border backdrop-blur-sm ${getStatusColor(
+                  analysis.label
+                )}`}
+              >
+                {getStatusIcon(analysis.label)}
+                <span className="capitalize text-xs font-medium">
+                  {analysis.label}
+                </span>
+              </div>
+            </div>
           </div>
-        )}
-
-        <div
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg 
-          border backdrop-blur-sm ${getStatusColor(analysis.label)}`}
-        >
-          {getStatusIcon(analysis.label)}
-          <span className="capitalize text-xs font-medium">
-            {analysis.label}
-          </span>
-        </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
 
       {/* View All */}
-      <div className="p-5 border-t border-slate-200/60 bg-white/40">
+      <div className="p-4 sm:p-5 border-t border-slate-200/60 bg-white/40">
         <button
           onClick={() => {
             if (!user) {
@@ -666,7 +704,6 @@ setDashboardData(res1?.data?.totals) ;
           <ChevronRight className="w-3.5 h-3.5" />
         </button>
       </div>
-
     </div>
   </div>
 </div>
@@ -675,37 +712,34 @@ setDashboardData(res1?.data?.totals) ;
           {/* Footer Note */}
           <div className="mt-12 pt-8 border-t border-slate-200/60 text-center">
             <p className="text-slate-500 text-sm">
-              Real-time dashboard • Updates every 30 seconds • Powered by AI Detection Suite
+              Real-time dashboard • Updates every 30 seconds • Powered by AI
+              Detection Suite
             </p>
             <p className="text-slate-400 text-xs mt-2">
-              Last data refresh: Just now • System status: All services operational
+              Last data refresh: Just now • System status: All services
+              operational
             </p>
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
-
-
-
-
-
 
 // "use client"
 
 // import { useState } from "react"
 // import Link from "next/link"
-// import { 
-//   Video, 
-//   Eye, 
-//   MessageSquare, 
-//   Activity, 
-//   Clock, 
-//   CheckCircle, 
-//   AlertTriangle, 
-//   BarChart3, 
-//   Sparkles, 
+// import {
+//   Video,
+//   Eye,
+//   MessageSquare,
+//   Activity,
+//   Clock,
+//   CheckCircle,
+//   AlertTriangle,
+//   BarChart3,
+//   Sparkles,
 //   TrendingUp,
 //   Shield,
 //   Cpu,
@@ -723,12 +757,12 @@ setDashboardData(res1?.data?.totals) ;
 
 // export default function Dashboard() {
 //   const [recentAnalyses] = useState([
-//     { 
-//       id: 1, 
-//       type: "video", 
-//       name: "interview_clip.mp4", 
-//       status: "completed", 
-//       confidence: 94, 
+//     {
+//       id: 1,
+//       type: "video",
+//       name: "interview_clip.mp4",
+//       status: "completed",
+//       confidence: 94,
 //       timestamp: "2 hours ago",
 //       size: "45.2 MB",
 //       model: "Video Forensics"
@@ -743,42 +777,42 @@ setDashboardData(res1?.data?.totals) ;
 //       size: "8.7 MB",
 //       model: "Image Classifier"
 //     },
-//     { 
-//       id: 3, 
-//       type: "text", 
-//       name: "news_article.txt", 
-//       status: "completed", 
-//       confidence: 87, 
+//     {
+//       id: 3,
+//       type: "text",
+//       name: "news_article.txt",
+//       status: "completed",
+//       confidence: 87,
 //       timestamp: "1 day ago",
 //       size: "15.3 KB",
 //       model: "RoBERTa"
 //     },
-//     { 
-//       id: 4, 
-//       type: "video", 
-//       name: "security_footage.mp4", 
-//       status: "flagged", 
-//       confidence: 23, 
+//     {
+//       id: 4,
+//       type: "video",
+//       name: "security_footage.mp4",
+//       status: "flagged",
+//       confidence: 23,
 //       timestamp: "3 hours ago",
 //       size: "128 MB",
 //       model: "Video Forensics"
 //     },
-//     { 
-//       id: 5, 
-//       type: "image", 
-//       name: "product_image.png", 
-//       status: "completed", 
-//       confidence: 96, 
+//     {
+//       id: 5,
+//       type: "image",
+//       name: "product_image.png",
+//       status: "completed",
+//       confidence: 96,
 //       timestamp: "Yesterday",
 //       size: "4.2 MB",
 //       model: "Image Classifier"
 //     },
-//     { 
-//       id: 6, 
-//       type: "text", 
-//       name: "research_paper.txt", 
-//       status: "completed", 
-//       confidence: 91, 
+//     {
+//       id: 6,
+//       type: "text",
+//       name: "research_paper.txt",
+//       status: "completed",
+//       confidence: 91,
 //       timestamp: "4 days ago",
 //       size: "82.1 KB",
 //       model: "RoBERTa"
@@ -876,16 +910,16 @@ setDashboardData(res1?.data?.totals) ;
 //                   <p className="text-sm text-slate-600">Real-time Analytics Dashboard</p>
 //                 </div>
 //               </div>
-              
+
 //               <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3">
 //                 Analysis <span className="bg-gradient-to-r from-teal-700 to-teal-800 bg-clip-text text-transparent">Dashboard</span>
 //               </h1>
 //               <p className="text-lg text-slate-600 max-w-3xl">
-//                 Monitor and manage all AI authenticity analyses in real-time. Track performance metrics, 
+//                 Monitor and manage all AI authenticity analyses in real-time. Track performance metrics,
 //                 review historical data, and access advanced detection tools.
 //               </p>
 //             </div>
-            
+
 //             <div className="hidden lg:flex items-center gap-4">
 //               <div className="p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200/60 shadow-sm">
 //                 <div className="flex items-center gap-3">
@@ -939,32 +973,32 @@ setDashboardData(res1?.data?.totals) ;
 //             </div>
 //             <p className="text-sm text-slate-500">Select a model to start analyzing</p>
 //           </div>
-          
+
 //           <div className="grid md:grid-cols-3 gap-6 mb-8">
 //             {[
-//               { 
-//                 href: "/video-model", 
-//                 icon: Video, 
-//                 title: "Video Analysis", 
-//                 desc: "Frame-by-frame AI video detection", 
+//               {
+//                 href: "/video-model",
+//                 icon: Video,
+//                 title: "Video Analysis",
+//                 desc: "Frame-by-frame AI video detection",
 //                 color: "teal",
 //                 stats: "94.2% accuracy",
 //                 model: "Video Forensics"
 //               },
-//               { 
-//                 href: "/picture-model", 
-//                 icon: Eye, 
-//                 title: "Image Analysis", 
-//                 desc: "Advanced image authenticity detection", 
+//               {
+//                 href: "/picture-model",
+//                 icon: Eye,
+//                 title: "Image Analysis",
+//                 desc: "Advanced image authenticity detection",
 //                 color: "emerald",
 //                 stats: "96.7% accuracy",
 //                 model: "Image Classifier"
 //               },
-//               { 
-//                 href: "/text-model", 
-//                 icon: MessageSquare, 
-//                 title: "Text Analysis", 
-//                 desc: "AI vs human text classification", 
+//               {
+//                 href: "/text-model",
+//                 icon: MessageSquare,
+//                 title: "Text Analysis",
+//                 desc: "AI vs human text classification",
 //                 color: "amber",
 //                 stats: "92.4% accuracy",
 //                 model: "RoBERTa"
@@ -1023,12 +1057,12 @@ setDashboardData(res1?.data?.totals) ;
 //                   </div>
 //                 </div>
 //               </div>
-              
+
 //               <div className="p-0">
 //                 <div className="divide-y divide-slate-200/60">
 //                   {recentAnalyses.map((analysis) => (
-//                     <div 
-//                       key={analysis.id} 
+//                     <div
+//                       key={analysis.id}
 //                       className="flex items-center justify-between p-6 hover:bg-white/50 transition-all duration-300 group"
 //                     >
 //                       <div className="flex items-center gap-4">
@@ -1068,7 +1102,7 @@ setDashboardData(res1?.data?.totals) ;
 //                     </div>
 //                   ))}
 //                 </div>
-                
+
 //                 {/* View All Button */}
 //                 <div className="p-6 border-t border-slate-200/60 bg-white/40">
 //                   <Link href="/history">
