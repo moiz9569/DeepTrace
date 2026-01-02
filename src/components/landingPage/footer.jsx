@@ -1,142 +1,252 @@
-"use client";
+// "use client";
 
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+// import Link from "next/link";
+// import { useAuth } from "@/components/auth/AuthProvider";
+// import LoginModal from "@/components/AuthModals/LoginModal";
+
+// import {
+//   Sparkles,
+//   Mail,
+//   Linkedin,
+//   Twitter,
+// } from "lucide-react";
+
+// export default function Footer() {
+//   const { user } = useAuth();
+//   const [mounted, setMounted] = useState(false);
+//   const [showLogin, setShowLogin] = useState(false);
+
+//   useEffect(() => {
+//     setMounted(true);
+//   }, []);
+
+//   const handleProtectedClick = (e) => {
+//     if (!user) {
+//       e.preventDefault(); // 🔥 navigation stop
+//       setShowLogin(true); // 🔥 modal open
+//     }
+//   };
+
+//   if (!mounted) return null;
+
+//   return (
+//     <>
+//       {/* ✅ LOGIN MODAL */}
+//       {showLogin && !user && (
+//         <LoginModal onClose={() => setShowLogin(false)} />
+//       )}
+
+//       <footer className="bg-white">
+//         <div className="p-7 px-12">
+//           <div className="max-w-8xl mx-auto">
+//             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+//               {/* BRAND */}
+//               <div className="md:col-span-1">
+//                 <div className="flex items-center gap-3 mb-4">
+//                   <div className="w-[20%] rounded-xl ">
+//                     {/* <Sparkles className="h-5 w-5 text-white" /> */}
+//                     <img
+//                       src="/DeepTrace-logo3.png"
+//                       alt="Logo"
+//                       className="w-40 h-40 object-cover"
+//                     />
+//                   </div>
+//                   <div className="w-[80%] -mt-4">
+//                     <span className="text-lg font-bold text-slate-900">
+//                       DeepTrace
+//                     </span>
+//                     <p className="text-xs text-gray-500">Powered by AI</p>
+//                   </div>
+//                 </div>
+
+//                 <p className="text-sm text-slate-500 mb-6">
+//                   Professional platform trusted worldwide.
+//                 </p>
+
+//                 <div className="flex items-center gap-3">
+//                   {[Twitter, Linkedin, Mail].map((Icon, index) => (
+//                     <button
+//                       key={index}
+//                       className="rounded-xl flex justify-center items-center h-9 w-9 bg-white text-teal-800 hover:opacity-90 transition border"
+//                     >
+//                       <Icon className="h-4 w-4" />
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* LINKS */}
+//               {[
+//                 {
+//                   title: "Product",
+//                   links: ["Features", "Pricing", "Case Studies"],
+//                 },
+//                 {
+//                   title: "Company",
+//                   links: ["About Us", "Careers", "Blog"],
+//                 },
+//                 {
+//                   title: "Resources",
+//                   links: ["Documentation", "API Reference", "Support"],
+//                 },
+//               ].map((section, index) => (
+//                 <div key={index}>
+//                   <h4 className="font-semibold text-slate-900 mb-4">
+//                     {section.title}
+//                   </h4>
+//                   <ul className="space-y-3 text-sm text-gray-500">
+//                     {section.links.map((link, i) => (
+//                       <li key={i}>
+//                         <Link
+//                           href="/"
+//                           onClick={handleProtectedClick}
+//                           className="hover:text-slate-700 transition"
+//                         >
+//                           {link}
+//                         </Link>
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </div>
+//               ))}
+//             </div>
+
+//             {/* BOTTOM */}
+//             <div className="pt-4 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4 px-2 pr-6">
+//               <p className="text-sm text-gray-500">
+//                 © 2025 DeepTrace. All rights reserved.
+//               </p>
+
+//               <div className="flex items-center gap-6 text-sm text-gray-500">
+//                 {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+//                   (item, index) => (
+//                     <Link
+//                       key={index}
+//                       href="/"
+//                       onClick={handleProtectedClick}
+//                       className="hover:text-slate-700 transition"
+//                     >
+//                       {item}
+//                     </Link>
+//                   )
+//                 )}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </footer>
+//     </>
+//   );
+// }
+
+import { FaTelegramPlane } from "react-icons/fa";
+import { RiTwitterXFill } from "react-icons/ri";
+import { FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
-import { useAuth } from "@/components/auth/AuthProvider";
-import LoginModal from "@/components/AuthModals/LoginModal";
 
-import {
-  Sparkles,
-  Mail,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
-
-export default function Footer() {
-  const { user } = useAuth();
-  const [mounted, setMounted] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handleProtectedClick = (e) => {
-    if (!user) {
-      e.preventDefault(); // 🔥 navigation stop
-      setShowLogin(true); // 🔥 modal open
-    }
-  };
-
-  if (!mounted) return null;
-
+const Footer = () => {
   return (
-    <>
-      {/* ✅ LOGIN MODAL */}
-      {showLogin && !user && (
-        <LoginModal onClose={() => setShowLogin(false)} />
-      )}
+    <footer className="relative py-12 pt-10 mt-10 overflow-hidden bg-black">
+      {/* Background Glow Effect */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 opacity-90"></div>
+        <div className="absolute w-72 h-72 md:w-100 md:h-100 rounded-full bg-sigma-glow top-[-10%] right-[-10%] opacity-20"></div>
+      </div>
 
-      <footer className="bg-white">
-        <div className="p-7 px-12">
-          <div className="max-w-8xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      {/* Footer Content */}
+      <div className="container mx-auto px-6 md:px-2 lg:px-10 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0">
+          {/* Logo */}
 
-              {/* BRAND */}
-              <div className="md:col-span-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-[20%] rounded-xl ">
-                    {/* <Sparkles className="h-5 w-5 text-white" /> */}
-                    <img
-                      src="/DeepTrace-logo3.png"
-                      alt="Logo"
-                      className="w-40 h-40 object-cover"
-                    />
-                  </div>
-                  <div className="w-[80%] -mt-4">
-                    <span className="text-lg font-bold text-slate-900">
-                      DeepTrace
-                    </span>
-                    <p className="text-xs text-gray-500">Powered by AI</p>
-                  </div>
-                </div>
+          <div className="flex items-center gap-0">
+            <img
+              src="/DeepTrace-new-logo3.png"
+              alt="Hashfor Logo"
+              className="w-12 h-12 sm:w-20 sm:h-20 object-contain"
+            />
 
-                <p className="text-sm text-slate-500 mb-6">
-                  Professional platform trusted worldwide.
-                </p>
+            <h2 className="font-exo-2 text-white text-lg sm:text-xl md:text-2xl font-bold gradient-text -ml-1 sm:ml-2 leading-none">
+              DeepTrace
+            </h2>
+          </div>
 
-                <div className="flex items-center gap-3">
-                  {[Twitter, Linkedin, Mail].map((Icon, index) => (
-                    <button
-                      key={index}
-                      className="rounded-xl flex justify-center items-center h-9 w-9 bg-white text-teal-800 hover:opacity-90 transition border"
-                    >
-                      <Icon className="h-4 w-4" />
-                    </button>
-                  ))}
-                </div>
-              </div>
+          {/* Navigation Links */}
+          <div className="flex flex-wrap justify-center md:justify-start space-x-4 md:space-x-6">
+            {[
+              {
+                name: "Home",
+                link: "/",
+              },
+              {
+                name: "About Us",
+                link: "/aboutus",
+              },
+              {
+                name: "Contact Us",
+                link: "/contactus",
+              },
+              {
+                name: "Blog",
+                link: "/blogs",
+              },
+            ].map((item, index) => (
+              <Link
+                key={index}
+                href={item.link}
+                className="font-inter text-white/60 hover:text-white text-base md:text-sm transition-colors duration-300"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
 
-              {/* LINKS */}
-              {[
-                {
-                  title: "Product",
-                  links: ["Features", "Pricing", "Case Studies"],
-                },
-                {
-                  title: "Company",
-                  links: ["About Us", "Careers", "Blog"],
-                },
-                {
-                  title: "Resources",
-                  links: ["Documentation", "API Reference", "Support"],
-                },
-              ].map((section, index) => (
-                <div key={index}>
-                  <h4 className="font-semibold text-slate-900 mb-4">
-                    {section.title}
-                  </h4>
-                  <ul className="space-y-3 text-sm text-gray-500">
-                    {section.links.map((link, i) => (
-                      <li key={i}>
-                        <Link
-                          href="/"
-                          onClick={handleProtectedClick}
-                          className="hover:text-slate-700 transition"
-                        >
-                          {link}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            {/* BOTTOM */}
-            <div className="pt-4 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-4 px-2 pr-6">
-              <p className="text-sm text-gray-500">
-                © 2025 DeepTrace. All rights reserved.
-              </p>
-
-              <div className="flex items-center gap-6 text-sm text-gray-500">
-                {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
-                  (item, index) => (
-                    <Link
-                      key={index}
-                      href="/"
-                      onClick={handleProtectedClick}
-                      className="hover:text-slate-700 transition"
-                    >
-                      {item}
-                    </Link>
-                  )
-                )}
-              </div>
-            </div>
+          {/* Social Icons */}
+          <div className="flex space-x-4">
+            {[
+              { icon: FaTelegramPlane, link: "https://t.me/yourusername" },
+              {
+                icon: FaLinkedin,
+                link: "https://www.linkedin.com/in/hashfor-seo-2888a83a0/",
+              },
+              { icon: RiTwitterXFill, link: "https://x.com/hashfor38" },
+              // { icon: FaRedditAlien, link: "https://reddit.com/user/yourusername" },
+            ].map(({ icon: Icon, link }, index) => (
+              <Link
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 hover:scale-110 hover:shadow-glow"
+              >
+                <Icon className="text-2xl" />
+              </Link>
+            ))}
           </div>
         </div>
-      </footer>
-    </>
+
+        {/* Footer Bottom */}
+        <div className="border-t border-white/10 pt-6 mt-6 text-center md:text-left font-inter">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <Link
+              href="#"
+              className="text-white/60 hover:text-white text-sm transition-colors duration-300"
+            >
+              Terms & Conditions | Privacy Policy
+            </Link>
+            <Link
+              href="https://www.bawdicsoft.com/"
+              target="blank"
+              className="text-white/60 hover:text-white text-sm transition-colors duration-300"
+            >
+              © 2025 BawdicSoft. All rights reserved.
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
-}
+};
+
+export default Footer;

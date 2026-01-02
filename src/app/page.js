@@ -4,6 +4,7 @@ import FeaturesSection from "@/components/landingPage/features";
 import CTASection from "@/components/landingPage/cta";
 import Footer from "@/components/landingPage/footer";
 import StrategySection from "@/components/landingPage/strategy";
+import Animate from "@/components/landingPage/animate";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <FeaturesSection />
       <StrategySection />
+      <Animate />
       <TrustIndicators />
       <CTASection />
       <Footer />
