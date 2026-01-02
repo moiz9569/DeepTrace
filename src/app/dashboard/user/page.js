@@ -466,7 +466,7 @@ setDashboardData(res1?.data?.totals) ;
   <div className="grid md:grid-cols-3 gap-5 mb-6">
     {[
       {
-        href: "video-model",
+        href: "user/video-model",
         icon: Video,
         title: "Video Analysis",
         desc: "Frame-by-frame AI video detection",
@@ -475,16 +475,16 @@ setDashboardData(res1?.data?.totals) ;
         model: "Video Forensics",
       },
       {
-        href: "text-model",
+        href: "user/picture-model",
         icon: Eye,
-        title: "picture-model",
+        title: "Picture Analysis",
         desc: "Advanced image authenticity detection",
         color: "emerald",
         stats: "96.7% accuracy",
         model: "Image Classifier",
       },
       {
-        href: "text-model",
+        href: "user/text-model",
         icon: MessageSquare,
         title: "Text Analysis",
         desc: "AI vs human text classification",
