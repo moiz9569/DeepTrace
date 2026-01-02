@@ -82,12 +82,12 @@ export default function UserSidebar({ children }) {
         },
       ],
     },
-    {
-      title: "OTHERS",
-      items: [
-        { label: "Settings", icon: Settings, path: "/dashboard/user/settings" },
-      ],
-    },
+    // {
+    //   title: "OTHERS",
+    //   items: [
+    //     { label: "Settings", icon: Settings, path: "/dashboard/user/settings" },
+    //   ],
+    // },
   ];
 
   return (
