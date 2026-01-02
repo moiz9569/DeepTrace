@@ -1,63 +1,3 @@
-// "use client";
-// import { useState, useEffect } from "react";
-// import { CheckCircle } from "lucide-react";
-
-// export default function TrustIndicators() {
-//   const [mounted, setMounted] = useState(false);
-
-//   useEffect(() => {
-//     setMounted(true);
-//   }, []);
-
-//   if (!mounted) return null;
-
-//   return (
-//     <div className="h-screen py-16">
-//       <div className="bg-gray-500/5 rounded-2xl backdrop-blur-sm border-slate-200/40">
-//         <div className="container p-12 mx-auto px-4">
-//           <div className="text-center mb-16">
-//             <h2 className="text-5xl font-bold text-slate-900 bg-gray-100/5">
-//               Trusted by Professionals
-//             </h2>
-//             <p className="text-slate-600 text-lg bg-white/40 rounded-xl p-3 border border-white/50 max-w-md mx-auto">
-//               Industry-leading accuracy and reliability
-//             </p>
-//           </div>
-
-//           <div className="grid md:grid-cols-4 gap-8 text-center max-w-5xl mx-auto">
-//             {[
-//               { value: "99.7%", label: "Accuracy Rate", color: "teal" },
-//               { value: "<1s", label: "Processing Time", color: "green" },
-//               { value: "1M+", label: "Files Analyzed", color: "green" },
-//               { value: "24/7", label: "Availability", color: "slate" },
-//             ].map((stat, index) => (
-//               <div
-//                 key={index}
-//                 className="bg-green-400/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 shadow-sm hover:shadow-md hover:bg-white/10 transition-all duration-300 group"
-//               >
-//                 <div
-//                   className={`text-4xl font-bold text-${stat.color}-600 mb-2 group-hover:scale-105 transition-transform duration-300`}
-//                 >
-//                   {stat.value}
-//                 </div>
-//                 <div className="text-slate-600 font-medium flex items-center justify-center gap-1">
-//                   <CheckCircle className="w-4 h-4" />
-//                   {stat.label}
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
-
 "use client";
 import { useState, useEffect } from "react";
 import { CheckCircle, Shield, Zap, Target, BarChart3, Clock, Users, Globe, Award, TrendingUp } from "lucide-react";
@@ -74,7 +14,7 @@ export default function TrustIndicators() {
 
   const stats = [
     { 
-      value: "99.7%", 
+      value: "95%", 
       label: "Accuracy Rate", 
       icon: Target,
       color: "teal",
@@ -82,7 +22,7 @@ export default function TrustIndicators() {
       description: "Industry-leading detection precision"
     },
     { 
-      value: "<1s", 
+      value: "<5s", 
       label: "Processing Time", 
       icon: Zap,
       color: "cyan",
@@ -110,8 +50,8 @@ export default function TrustIndicators() {
   const features = [
     { icon: Shield, text: "Enterprise Security", color: "text-teal-600" },
     { icon: Users, text: "Global Coverage", color: "text-cyan-600" },
-    { icon: Globe, text: "Multi-language", color: "text-emerald-600" },
-    { icon: Award, text: "Certified", color: "text-violet-600" },
+    { icon: Globe, text: "AI-Powered", color: "text-emerald-600" },
+    { icon: Award, text: "Trusted & Verified", color: "text-violet-600" },
   ];
 
   return (
@@ -151,11 +91,11 @@ export default function TrustIndicators() {
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
             <span className="bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-              Trusted by Professionals
+              Trusted AI Content Detection
             </span>
             <br />
             <span className="text-lg md:text-xl font-normal text-slate-600 mt-4 block">
-              Industry-leading accuracy and reliability
+              Accurate detection of AI-generated text, images, and videos
             </span>
           </motion.h2>
           
@@ -166,7 +106,7 @@ export default function TrustIndicators() {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
           >
-            Join thousands of security professionals, researchers, and enterprises 
+            Join thousands of researchers, educators, and businesses  
             who rely on Deeptrace for accurate AI content detection.
           </motion.p>
         </motion.div>
@@ -277,7 +217,7 @@ export default function TrustIndicators() {
               <h3 className="text-2xl font-bold text-slate-900">Industry Recognition</h3>
               <div className="space-y-4">
                 {[
-                  { name: "Security Weekly", quote: "Best AI detection accuracy in 2024" },
+                  { name: "Security Weekly", quote: "Best AI detection accuracy in 2025" },
                   { name: "Tech Research", quote: "Enterprise-ready with military-grade security" },
                   { name: "AI Review Board", quote: "Top performer in independent testing" },
                 ].map((testimonial, idx) => (

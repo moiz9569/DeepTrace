@@ -45,7 +45,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full bg-[#152022] px-6 py-3 z-40 shadow-sm">
+      <nav className="absolute top-0 left-0 w-full bg-[#011107] px-6 py-3 z-40 shadow-sm">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">

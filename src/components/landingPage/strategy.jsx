@@ -41,14 +41,14 @@ const StrategySection = () => {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold max-w-3xl mb-5">
-            <span className="text-slate-100">Precision AI Detection</span>
+            <span className="text-slate-100">Accurate AI Content Detection</span>
             <br />
-            <span className="text-teal-400">For Digital Trust</span>
+            <span className="text-teal-400">Built for Digital Trust</span>
           </h2>
 
           <p className="text-sm text-slate-400 max-w-xl leading-relaxed">
             Scalable AI-driven detection systems built to protect organizations
-            from synthetic media threats.
+            from misinformation and synthetic media.
           </p>
         </motion.div>
 
@@ -69,14 +69,14 @@ const StrategySection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">
-                    Multi-Layered Detection
+                    Advanced AI Detection Engine
                   </h3>
                   <p className="text-sm text-slate-400 leading-relaxed">
-                    AI models combining statistical analysis, neural inference,
-                    and pattern recognition for high-accuracy detection.
+                    AI models combining linguistic patterns, visual artifacts,
+                    and statistical signals for high-accuracy detection.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {["AI Models", "Neural Patterns", "Real-time"].map((t) => (
+                    {["AI vs Human", "Pattern Analysis", "Real-Time Detection"].map((t) => (
                       <span
                         key={t}
                         className="px-2 py-1 text-xs bg-teal-900/30 text-teal-300 rounded-full border border-teal-700/30"
@@ -104,10 +104,10 @@ const StrategySection = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">
-                    Enterprise-Ready APIs
+                    Seamless Platform Integration
                   </h3>
                   <p className="text-sm text-slate-400 mb-4">
-                    Seamless integration with scalable, secure, API-first
+                    Easily integration with scalable, secure, API-first
                     detection infrastructure.
                   </p>
 
@@ -136,13 +136,6 @@ const StrategySection = () => {
             className="flex justify-end"
           >
             <div className="relative bg-slate-900/70 border border-slate-700/50 rounded-2xl p-6 max-w-xl overflow-hidden backdrop-blur">
-              {/* <div className="absolute inset-0 opacity-20">
-                <img
-                  src="/deeptrace-bg.jpg"
-                  className="w-full h-full object-cover"
-                />
-              </div> */}
-
               <div className="relative flex gap-4">
                 <div className="w-12 h-12 rounded-xl bg-emerald-900/40 flex items-center justify-center">
                   <IconCheckupList className="w-6 h-6 text-emerald-400" />
@@ -152,11 +145,11 @@ const StrategySection = () => {
                     Trust & Transparency
                   </h3>
                   <p className="text-sm text-slate-400 mb-4">
-                    Explainable AI reports with confidence scoring and audit
+                    Explainable AI results with confidence scoring and audit
                     trails.
                   </p>
 
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3">
                     {[IconBrandFacebook, IconBrandX, IconBrandInstagram].map(
                       (Icon, i) => (
                         <div
@@ -168,50 +161,11 @@ const StrategySection = () => {
                       )
                     )}
                   </div>
-
-                  {/* <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { v: "100%", l: "Reports" },
-                      { v: "95%", l: "Explainable AI" },
-                      { v: "98%", l: "Accuracy" },
-                      { v: "100%", l: "Audit Logs" },
-                    ].map((i) => (
-                      <div
-                        key={i.l}
-                        className="p-2 rounded-lg bg-white/5 border border-white/10"
-                      >
-                        <div className="text-lg font-semibold text-white">
-                          {i.v}
-                        </div>
-                        <div className="text-[11px] text-slate-400">
-                          {i.l}
-                        </div>
-                      </div>
-                    ))}
-                  </div> */}
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-
-        {/* Stats */}
-        {/* <div className="mt-14 pt-8 border-t border-slate-800 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { v: "10M+", l: "Analyzed", i: IconScale },
-            { v: "98.5%", l: "Accuracy", i: IconGauge },
-            { v: "500+", l: "Clients", i: IconShieldCheck },
-            { v: "<2s", l: "Speed", i: IconCpu },
-          ].map((s) => (
-            <div key={s.l} className="text-center">
-              <div className="mx-auto mb-3 w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center border border-slate-700">
-                <s.i className="w-5 h-5 text-teal-400" />
-              </div>
-              <div className="text-xl font-bold text-white">{s.v}</div>
-              <div className="text-xs text-slate-400">{s.l}</div>
-            </div>
-          ))}
-        </div> */}
       </div>
     </section>
   );
