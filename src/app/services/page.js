@@ -23,6 +23,9 @@ import LoginModal from "@/components/AuthModals/LoginModal";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
 import Footer from "@/components/landingPage/footer";
+import TextModal from "@/components/modals/TextModal";
+import ImageModal from "@/components/modals/ImageModal";
+import VideoModal from "@/components/modals/VideoModal";
 import { motion } from "framer-motion";
 
 export default function ServicesPage() {
@@ -30,32 +33,29 @@ export default function ServicesPage() {
     {
       icon: FileText,
       title: "Text Authenticity Analysis",
-      description: "Detect AI-written text instantly using state-of-the-art NLP. Style analysis included.",
-      color: "teal",
+      description: "...",
       gradient: "from-teal-500 to-emerald-500",
       bgGradient: "from-teal-50 to-emerald-50",
-      href: "/text-model",
-      stats: { accuracy: "95%", speed: "<2s" }
+      stats: { accuracy: "95%", speed: "<2s" },
+      modalType: "text",
     },
     {
       icon: ImageIcon,
       title: "Image Verification",
-      description: "Analyze images for deepfake signs and manipulation with high accuracy.",
-      color: "cyan",
+      description: "...",
       gradient: "from-cyan-500 to-blue-500",
       bgGradient: "from-cyan-50 to-blue-50",
-      href: "/picture-model",
-      stats: { accuracy: "84%", speed: "<5s" }
+      stats: { accuracy: "84%", speed: "<5s" },
+      modalType: "image",
     },
     {
       icon: Video,
       title: "Video Deepfake Detection",
-      description: "Verify video authenticity with frame-by-frame analysis. Detect deepfakes and tampering.",
-      color: "emerald",
+      description: "...",
       gradient: "from-emerald-500 to-green-500",
       bgGradient: "from-emerald-50 to-green-50",
-      href: "/video-model",
-      stats: { accuracy: "81%", speed: "<10s" }
+      stats: { accuracy: "81%", speed: "<10s" },
+      modalType: "video",
     },
   ];
 
@@ -63,45 +63,69 @@ export default function ServicesPage() {
     {
       icon: Shield,
       title: "Enterprise Security",
-      description: "Military-grade encryption with SOC 2 Type II, ISO 27001, and GDPR compliance for complete data protection.",
+      description:
+        "Military-grade encryption with SOC 2 Type II, ISO 27001, and GDPR compliance for complete data protection.",
       color: "teal",
       gradient: "from-teal-50 to-cyan-50",
-      features: ["SOC 2 Type II", "ISO 27001", "GDPR Compliant", "Zero-knowledge"],
-      iconColor: "text-teal-600"
+      features: [
+        "SOC 2 Type II",
+        "ISO 27001",
+        "GDPR Compliant",
+        "Zero-knowledge",
+      ],
+      iconColor: "text-teal-600",
     },
     {
       icon: Cloud,
       title: "Cloud API",
-      description: "Scalable FASTAPI with comprehensive documentation, SDKs, and 99.9% uptime SLA.",
+      description:
+        "Scalable FASTAPI with comprehensive documentation, SDKs, and 99.9% uptime SLA.",
       color: "cyan",
       gradient: "from-cyan-50 to-blue-50",
       features: ["FASTAPI", "Dockers", "GraphQL", "Huggingface"],
-      iconColor: "text-cyan-600"
+      iconColor: "text-cyan-600",
     },
     {
       icon: Users,
       title: "Team Collaboration",
-      description: "Shared workspaces with role-based access control and collaborative workflows for teams.",
+      description:
+        "Shared workspaces with role-based access control and collaborative workflows for teams.",
       color: "emerald",
       gradient: "from-emerald-50 to-green-50",
-      features: ["Role-based Access", "Shared Projects", "Real-time Updates", "Team Analytics"],
-      iconColor: "text-emerald-600"
+      features: [
+        "Role-based Access",
+        "Shared Projects",
+        "Real-time Updates",
+        "Team Analytics",
+      ],
+      iconColor: "text-emerald-600",
     },
     {
       icon: Globe,
       title: "Global Infrastructure",
-      description: "Low-latency processing with edge computing and data centers across 15+ regions worldwide.",
+      description:
+        "Low-latency processing with edge computing and data centers across 15+ regions worldwide.",
       color: "violet",
       gradient: "from-violet-50 to-purple-50",
-      features: ["99.9% Uptime", "Edge Computing", "Global CDN", "Auto-scaling"],
-      iconColor: "text-violet-600"
+      features: [
+        "99.9% Uptime",
+        "Edge Computing",
+        "Global CDN",
+        "Auto-scaling",
+      ],
+      iconColor: "text-violet-600",
     },
   ];
 
   const { user } = useAuth();
   const router = useRouter();
   const [showLogin, setShowLogin] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
   const [hoveredService, setHoveredService] = useState(null);
+
+  const handleAnalyzeClick = async (type) => {
+    setActiveModal(type);
+  };
 
   const handleClick = () => {
     if (!user) {
@@ -118,11 +142,14 @@ export default function ServicesPage() {
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-100/20 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-100/20 rounded-full blur-3xl" />
-          <div className="absolute inset-0 opacity-5" style={{
-            backgroundImage: `linear-gradient(to right, #14b8a6 1px, transparent 1px),
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `linear-gradient(to right, #14b8a6 1px, transparent 1px),
                              linear-gradient(to bottom, #14b8a6 1px, transparent 1px)`,
-            backgroundSize: '80px 80px',
-          }} />
+              backgroundSize: "80px 80px",
+            }}
+          />
         </div>
 
         <div className="relative container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
@@ -133,23 +160,22 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 ">
-              
-            </div>
-            
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 "></div>
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-              <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
                 DeepTrace Services
               </span>
               <br />
-              <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
                 For Every Need
               </span>
             </h1>
-            
+
             <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Comprehensive AI-powered verification tools for text, images, and video content. 
-              Trusted by enterprises worldwide for unmatched accuracy and reliability.
+              Comprehensive AI-powered verification tools for text, images, and
+              video content. Trusted by enterprises worldwide for unmatched
+              accuracy and reliability.
             </p>
           </motion.div>
 
@@ -162,7 +188,7 @@ export default function ServicesPage() {
           >
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center gap-3 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                   <Target className="w-7 h-7 text-white" />
                 </div>
                 <div>
@@ -170,7 +196,8 @@ export default function ServicesPage() {
                     Core Detection Services
                   </h2>
                   <p className="text-slate-600 mt-2">
-                    Specialized AI models for comprehensive content verification across all media types
+                    Specialized AI models for comprehensive content verification
+                    across all media types
                   </p>
                 </div>
               </div>
@@ -189,22 +216,35 @@ export default function ServicesPage() {
                   className="relative group"
                 >
                   {/* Glow Effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-br from-teal-400/10 via-cyan-400/10 to-emerald-400/10 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <Link href={service.href}>
+                  <div className="absolute -inset-0.5 bg-linear-to-br from-teal-400/10 via-cyan-400/10 to-emerald-400/10 rounded-3xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleAnalyzeClick(service.modalType)}
+                  >
                     <div className="relative h-full bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-100/50 overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:shadow-teal-100/30 group-hover:border-teal-200">
                       {/* Top Gradient Bar */}
-                      <div className={`h-2 bg-gradient-to-r ${service.gradient}`} />
-                      
+                      <div
+                        className={`h-2 bg-linear-to-r ${service.gradient}`}
+                      />
+
                       <div className="p-8">
                         {/* Icon & Stats */}
                         <div className="flex items-start justify-between mb-6">
-                          <div className={`w-16 h-16 rounded-2xl ${service.bgGradient} border border-slate-200 flex items-center justify-center`}>
-                            <service.icon className={`w-8 h-8 bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`} />
+                          <div
+                            className={`w-16 h-16 rounded-2xl ${service.bgGradient} border border-slate-200 flex items-center justify-center`}
+                          >
+                            <service.icon
+                              className={`w-8 h-8 bg-linear-to-r ${service.gradient} bg-clip-text text-transparent`}
+                            />
                           </div>
                           <div className="text-right">
-                            <div className="text-2xl font-bold text-slate-900">{service.stats.accuracy}</div>
-                            <div className="text-sm text-slate-500">Accuracy</div>
+                            <div className="text-2xl font-bold text-slate-900">
+                              {service.stats.accuracy}
+                            </div>
+                            <div className="text-sm text-slate-500">
+                              Accuracy
+                            </div>
                           </div>
                         </div>
 
@@ -216,19 +256,25 @@ export default function ServicesPage() {
                           {service.description}
                         </p>
 
-                        
-
                         {/* Bottom Stats & CTA */}
                         <div className="flex items-center justify-between pt-6 border-t border-slate-100">
                           <div className="flex items-center gap-4">
                             <div className="text-center">
-                              <div className="text-lg font-bold text-slate-900">{service.stats.speed}</div>
-                              <div className="text-xs text-slate-500">Speed</div>
+                              <div className="text-lg font-bold text-slate-900">
+                                {service.stats.speed}
+                              </div>
+                              <div className="text-xs text-slate-500">
+                                Speed
+                              </div>
                             </div>
                             <div className="h-8 w-px bg-slate-200" />
                             <div className="text-center">
-                              <div className="text-lg font-bold text-slate-900">24/7</div>
-                              <div className="text-xs text-slate-500">Support</div>
+                              <div className="text-lg font-bold text-slate-900">
+                                24/7
+                              </div>
+                              <div className="text-xs text-slate-500">
+                                Support
+                              </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-2 text-teal-600 font-semibold">
@@ -238,7 +284,7 @@ export default function ServicesPage() {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -253,7 +299,7 @@ export default function ServicesPage() {
           >
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center gap-3 mb-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                   <Layers className="w-7 h-7 text-white" />
                 </div>
                 <div>
@@ -261,7 +307,8 @@ export default function ServicesPage() {
                     Enterprise Solutions
                   </h2>
                   <p className="text-slate-600 mt-2">
-                    Complete infrastructure and tools for organizations of all sizes
+                    Complete infrastructure and tools for organizations of all
+                    sizes
                   </p>
                 </div>
               </div>
@@ -279,10 +326,14 @@ export default function ServicesPage() {
                 >
                   <div className="relative h-full bg-white rounded-2xl border border-slate-100 shadow-lg shadow-slate-100/50 p-6 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-teal-100/30 group-hover:border-teal-200">
                     {/* Top Gradient */}
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-t-2xl" />
-                    
-                    <div className={`w-12 h-12 rounded-xl ${solution.gradient} border border-slate-200 flex items-center justify-center mb-4`}>
-                      <solution.icon className={`w-6 h-6 ${solution.iconColor}`} />
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-teal-400 to-cyan-400 rounded-t-2xl" />
+
+                    <div
+                      className={`w-12 h-12 rounded-xl ${solution.gradient} border border-slate-200 flex items-center justify-center mb-4`}
+                    >
+                      <solution.icon
+                        className={`w-6 h-6 ${solution.iconColor}`}
+                      />
                     </div>
 
                     <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-slate-800 transition-colors duration-300">
@@ -316,11 +367,11 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
-            
-            <div className="relative bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 rounded-3xl border border-teal-100 overflow-hidden">
+            <div className="absolute -inset-4 bg-linear-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
+
+            <div className="relative bg-linear-to-r from-teal-50 via-cyan-50 to-emerald-50 rounded-3xl border border-teal-100 overflow-hidden">
               <div className="p-8 md:p-12 text-center">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 mb-6">
                   <Sparkles className="w-10 h-10 text-white" />
                 </div>
 
@@ -329,30 +380,33 @@ export default function ServicesPage() {
                 </h2>
 
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-                  Join thousands of organizations that trust DeepTrace for accurate, 
-                  reliable AI content verification. Get started in minutes.
+                  Join thousands of organizations that trust DeepTrace for
+                  accurate, reliable AI content verification. Get started in
+                  minutes.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={handleClick}
-                    className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-8 py-4 text-white font-semibold hover:shadow-lg hover:shadow-teal-200 transition-all duration-300"
+                    className="group cursor-pointer relative overflow-hidden rounded-xl bg-linear-to-r from-teal-600 to-emerald-600 px-8 py-4 text-white font-semibold hover:shadow-lg hover:shadow-teal-200 transition-all duration-300"
                   >
                     <div className="relative flex items-center justify-center gap-2">
                       <span>Start Free Trial</span>
                       <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
-                  
-                  <button className="px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
+
+                  <button className="px-8 cursor-pointer py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
                     Schedule Demo
                   </button>
                 </div>
-                
+
                 <div className="flex flex-wrap justify-center gap-6 mt-8">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-teal-500" />
-                    <span className="text-sm text-slate-600">No credit card required</span>
+                    <span className="text-sm text-slate-600">
+                      No credit card required
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-teal-500" />
@@ -360,20 +414,32 @@ export default function ServicesPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-teal-500" />
-                    <span className="text-sm text-slate-600">Full enterprise features</span>
+                    <span className="text-sm text-slate-600">
+                      Full enterprise features
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-        
+
         {/* Footer */}
         <Footer />
       </div>
-      
+
       {/* LOGIN MODAL */}
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+
+      {activeModal === "text" && (
+        <TextModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "image" && (
+        <ImageModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "video" && (
+        <VideoModal onClose={() => setActiveModal(null)} />
+      )}
     </>
   );
 }

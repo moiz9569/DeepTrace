@@ -162,17 +162,17 @@ export default function Navbar() {
                 </button>
               ) : (
                 <>
-                  <button
+                  {/* <button
                     onClick={() => setShowLogin(true)}
                     className="px-3 py-1 border cursor-pointer rounded-lg text-slate-200 bg-transparent hover:bg-teal-800 hover:border-none hover:text-white"
                   >
                     Login
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => setShowSignup(true)}
                     className="px-3 py-1 w-22 cursor-pointer bg-linear-to-r from-teal-800 via-teal-700 to-teal-800 text-white rounded-lg"
                   >
-                    Sign Up
+                    Login
                   </button>
                 </>
               )}

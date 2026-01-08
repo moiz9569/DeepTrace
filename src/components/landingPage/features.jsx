@@ -226,7 +226,7 @@ export default function FeaturesSection() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleAnalyzeClick(feature.id)}
-                      className={`w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white border ${feature.borderColor} ${feature.buttonColor} font-semibold transition-all duration-300 group-hover:shadow-md`}
+                      className={`w-full flex cursor-pointer items-center justify-center gap-2 py-4 px-6 rounded-xl bg-white border ${feature.borderColor} ${feature.buttonColor} font-semibold transition-all duration-300 group-hover:shadow-md`}
                     >
                       <span>Analyze {feature.title.split(" ")[1]}</span>
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -254,10 +254,10 @@ export default function FeaturesSection() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button className="px-6 py-3 bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
+                <button className="px-6 py-3 cursor-pointer bg-teal-600 text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors">
                   Analyze Content Free
                 </button>
-                <button className="px-6 py-3 bg-white text-teal-700 font-semibold rounded-lg border border-teal-200 hover:bg-teal-50 transition-colors">
+                <button className="px-6 py-3 cursor-pointer bg-white text-teal-700 font-semibold rounded-lg border border-teal-200 hover:bg-teal-50 transition-colors">
                   Explore Detection API
                 </button>
               </div>

@@ -255,7 +255,7 @@ export default function TrustIndicators() {
               <div className="p-6 rounded-2xl bg-linear-to-r from-slate-900 to-slate-800">
                 <h4 className="text-xl font-bold text-white mb-2">Ready to get started?</h4>
                 <p className="text-slate-300 mb-4">Join thousands of satisfied professionals</p>
-                <button className="w-full py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
+                <button className="w-full cursor-pointer py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
                   Start Free Trial
                 </button>
               </div>

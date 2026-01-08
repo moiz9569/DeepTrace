@@ -24,7 +24,7 @@ const Footer = () => {
               className="w-12 h-12 sm:w-20 sm:h-20 object-contain"
             />
 
-            <h2 className="font-exo-2 text-white text-lg sm:text-xl md:text-2xl font-bold gradient-text -ml-1 sm:ml-2 leading-none">
+            <h2 className="font-exo-2 text-white text-lg sm:text-xl md:text-2xl font-bold gradient-text ml-1 sm:ml-2 leading-none">
               DeepTrace
             </h2>
           </div>

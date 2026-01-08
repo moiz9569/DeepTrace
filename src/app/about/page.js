@@ -103,11 +103,11 @@ export default function AboutPage() {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               Redefining Digital
             </span>
             <br />
-            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
               Authenticity
             </span>
           </h1>
@@ -125,13 +125,13 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="relative mb-20"
         >
-          <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/5 via-cyan-500/5 to-emerald-500/5 rounded-3xl blur-xl" />
+          <div className="absolute -inset-4 bg-linear-to-r from-teal-500/5 via-cyan-500/5 to-emerald-500/5 rounded-3xl blur-xl" />
           
           <div className="relative bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/50 overflow-hidden">
             <div className="p-8 md:p-12">
               <div className="flex flex-col md:flex-row md:items-start gap-8">
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+                <div className="shrink-0">
+                  <div className="w-20 h-20 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                     <Target className="w-10 h-10 text-white" />
                   </div>
                 </div>
@@ -150,8 +150,8 @@ export default function AboutPage() {
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {values.map((value, index) => (
-                        <div key={index} className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-100">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-50 to-cyan-50 flex items-center justify-center">
+                        <div key={index} className="flex items-center gap-3 p-4 rounded-xl bg-linear-to-br from-white to-slate-50 border border-slate-100">
+                          <div className="w-10 h-10 rounded-lg bg-linear-to-br from-teal-50 to-cyan-50 flex items-center justify-center">
                             <value.icon className="w-5 h-5 text-teal-600" />
                           </div>
                           <div>
@@ -194,15 +194,15 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1 }}
                 className="relative group"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-br from-teal-400/10 via-cyan-400/10 to-emerald-400/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -inset-0.5 bg-linear-to-br from-teal-400/10 via-cyan-400/10 to-emerald-400/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative bg-white rounded-2xl border border-slate-100 shadow-lg shadow-slate-100/50 p-6 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-teal-100/30 group-hover:border-teal-200">
                   {/* Top Gradient Bar */}
-                  <div className={`h-2 bg-gradient-to-r ${feat.gradient} rounded-t-2xl -mx-6 -mt-6 mb-6`} />
+                  <div className={`h-2 bg-linear-to-r ${feat.gradient} rounded-t-2xl -mx-6 -mt-6 mb-6`} />
                   
                   <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-xl ${feat.bgGradient} border border-slate-200 flex items-center justify-center flex-shrink-0`}>
-                      <feat.icon className={`w-6 h-6 bg-gradient-to-r ${feat.gradient} bg-clip-text text-transparent`} />
+                    <div className={`w-12 h-12 rounded-xl ${feat.bgGradient} border border-slate-200 flex items-center justify-center shrink-0`}>
+                      <feat.icon className={`w-6 h-6 bg-linear-to-r ${feat.gradient} bg-clip-text text-transparent`} />
                     </div>
                     
                     <div className="flex-1">
@@ -228,9 +228,9 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="relative mb-20"
         >
-          <div className="absolute -inset-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl blur-xl" />
+          <div className="absolute -inset-4 bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl blur-xl" />
           
-          <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl border border-slate-700/50 overflow-hidden">
+          <div className="relative bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl border border-slate-700/50 overflow-hidden">
             <div className="p-8 md:p-12">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -251,7 +251,7 @@ export default function AboutPage() {
                     transition={{ delay: i * 0.1 }}
                     className="text-center group"
                   >
-                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-${stat.color}-900/30 to-${stat.color}-800/20 border border-${stat.color}-700/30 mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-br from-${stat.color}-900/30 to-${stat.color}-800/20 border border-${stat.color}-700/30 mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <stat.icon className={`w-8 h-8 text-${stat.color}-400`} />
                     </div>
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
@@ -276,11 +276,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/10 to-cyan-500/10 rounded-3xl blur opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -inset-0.5 bg-linear-to-r from-teal-500/10 to-cyan-500/10 rounded-3xl blur opacity-0 hover:opacity-100 transition-opacity duration-500" />
             
             <div className="relative bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-100/50 p-8">
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-100 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-teal-50 to-cyan-50 border border-teal-100 flex items-center justify-center">
                   <Cpu className="w-7 h-7 text-teal-600" />
                 </div>
                 <div>
@@ -302,7 +302,7 @@ export default function AboutPage() {
                 ].map((tech, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 bg-gradient-to-br from-slate-50 to-slate-100 text-slate-700 rounded-xl text-sm font-medium border border-slate-200"
+                    className="px-4 py-2 bg-linear-to-br from-slate-50 to-slate-100 text-slate-700 rounded-xl text-sm font-medium border border-slate-200"
                   >
                     {tech.name}
                   </span>
@@ -318,11 +318,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-3xl blur opacity-0 hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -inset-0.5 bg-linear-to-r from-emerald-500/10 to-green-500/10 rounded-3xl blur opacity-0 hover:opacity-100 transition-opacity duration-500" />
             
             <div className="relative bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-100/50 p-8">
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-100 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-emerald-50 to-green-50 border border-emerald-100 flex items-center justify-center">
                   <Shield className="w-7 h-7 text-emerald-600" />
                 </div>
                 <div>
@@ -338,7 +338,7 @@ export default function AboutPage() {
                   { cert: "GDPR Compliant", icon: Globe, color: "text-emerald-600" },
                   { cert: "HIPAA Ready", icon: Heart, color: "text-violet-600" },
                 ].map((cert, i) => (
-                  <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-100">
+                  <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-linear-to-br from-white to-slate-50 border border-slate-100">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-center">
                         <cert.icon className={`w-5 h-5 ${cert.color}`} />
@@ -360,9 +360,9 @@ export default function AboutPage() {
           viewport={{ once: true }}
           className="relative"
         >
-          <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
+          <div className="absolute -inset-4 bg-linear-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
           
-          <div className="relative bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 rounded-3xl border border-teal-100 overflow-hidden">
+          <div className="relative bg-linear-to-r from-teal-50 via-cyan-50 to-emerald-50 rounded-3xl border border-teal-100 overflow-hidden">
             <div className="p-8 md:p-12 text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
                 Ready to Verify Your Digital Content?
@@ -373,14 +373,14 @@ export default function AboutPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 px-8 py-4 text-white font-semibold hover:shadow-lg hover:shadow-teal-200 transition-all duration-300">
+                <button className="group cursor-pointer relative overflow-hidden rounded-xl bg-linear-to-r from-teal-600 to-emerald-600 px-8 py-4 text-white font-semibold hover:shadow-lg hover:shadow-teal-200 transition-all duration-300">
                   <div className="relative flex items-center justify-center gap-2">
                     <span>Start Free Trial</span>
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </button>
                 
-                <button className="px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
+                <button className="px-8 cursor-pointer py-4 bg-white text-slate-700 font-semibold rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
                   Schedule Demo
                 </button>
               </div>

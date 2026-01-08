@@ -147,11 +147,11 @@ export default function ContactPage() {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-            <span className="bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               Let's Connect &
             </span>
             <br />
-            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-teal-600 via-cyan-600 to-emerald-600 bg-clip-text text-transparent">
               Build Something Great
             </span>
           </h1>
@@ -172,13 +172,13 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
+              <div className="absolute -inset-0.5 bg-linear-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
               
               <div className="relative bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/50 overflow-hidden">
                 {/* Form Header */}
-                <div className="border-b border-slate-100 bg-gradient-to-r from-white to-slate-50/80 p-6 md:p-8">
+                <div className="border-b border-slate-100 bg-linear-to-r from-white to-slate-50/80 p-6 md:p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                       <Send className="w-7 h-7 text-white" />
                     </div>
                     <div>
@@ -198,7 +198,7 @@ export default function ContactPage() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="p-8 md:p-12 text-center"
                   >
-                    <div className="inline-flex p-6 bg-gradient-to-br from-teal-50 to-emerald-50 rounded-3xl border border-teal-100 mb-6">
+                    <div className="inline-flex p-6 bg-linear-to-br from-teal-50 to-emerald-50 rounded-3xl border border-teal-100 mb-6">
                       <CheckCircle className="w-16 h-16 text-emerald-600" />
                     </div>
                     <h3 className="text-3xl font-bold text-slate-900 mb-4">
@@ -342,10 +342,10 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`group relative w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
+                      className={`group cursor-pointer relative w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
                         isSubmitting
                           ? "bg-slate-400 cursor-not-allowed"
-                          : "bg-gradient-to-r from-teal-600 to-emerald-600 hover:shadow-lg hover:shadow-teal-200"
+                          : "bg-linear-to-r from-teal-600 to-emerald-600 hover:shadow-lg hover:shadow-teal-200"
                       }`}
                     >
                       {isSubmitting ? (
@@ -380,12 +380,12 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-br from-teal-500/10 to-emerald-500/10 rounded-3xl blur" />
+              <div className="absolute -inset-0.5 bg-linear-to-br from-teal-500/10 to-emerald-500/10 rounded-3xl blur" />
               
               <div className="relative bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-100/50 overflow-hidden">
-                <div className="border-b border-slate-100 bg-gradient-to-r from-white to-slate-50/80 p-6 md:p-8">
+                <div className="border-b border-slate-100 bg-linear-to-r from-white to-slate-50/80 p-6 md:p-8">
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                       <Users className="w-7 h-7 text-white" />
                     </div>
                     <div>
@@ -410,10 +410,10 @@ export default function ContactPage() {
                         transition={{ delay: index * 0.1 }}
                         className="group"
                       >
-                        <div className="p-4 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-slate-100 hover:border-teal-200 transition-all duration-300">
+                        <div className="p-4 rounded-2xl bg-linear-to-br from-white to-slate-50 border border-slate-100 hover:border-teal-200 transition-all duration-300">
                           <div className="flex items-start gap-4">
                             <div className={`w-12 h-12 rounded-xl ${info.bgGradient} border border-slate-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                              <info.icon className={`w-6 h-6 bg-gradient-to-r ${info.gradient} bg-clip-text text-transparent`} />
+                              <info.icon className={`w-6 h-6 bg-linear-to-r ${info.gradient} bg-clip-text text-transparent`} />
                             </div>
                             <div className="flex-1">
                               <h3 className="text-lg font-semibold text-slate-900 mb-1">
@@ -452,9 +452,9 @@ export default function ContactPage() {
           viewport={{ once: true }}
           className="relative mt-20"
         >
-          <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
+          <div className="absolute -inset-4 bg-linear-to-r from-teal-500/10 via-cyan-500/10 to-emerald-500/10 rounded-3xl blur-xl" />
           
-          <div className="relative bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-3xl border border-slate-700 overflow-hidden">
+          <div className="relative bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 rounded-3xl border border-slate-700 overflow-hidden">
             <div className="p-8 md:p-12 text-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Ready to Get Started?
@@ -463,10 +463,10 @@ export default function ContactPage() {
                 Join thousands of organizations using DeepTrace for accurate AI content detection.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-slate-100 transition-colors">
+                <button className="px-8 cursor-pointer py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-slate-100 transition-colors">
                   Schedule Demo
                 </button>
-                <button className="px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all">
+                <button className="px-8 cursor-pointer py-4 bg-linear-to-r from-teal-500 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all">
                   Start Free Trial
                 </button>
               </div>

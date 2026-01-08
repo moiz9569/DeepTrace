@@ -54,7 +54,7 @@ export default function SignupModal({ onClose }) {
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-black/20 hover:bg-black/60 text-white flex items-center justify-center"
+          className="absolute cursor-pointer top-5 right-5 w-8 h-8 rounded-full bg-black/20 hover:bg-black/60 text-white flex items-center justify-center"
         >
           <FiX />
         </button>

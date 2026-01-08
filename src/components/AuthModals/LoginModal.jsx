@@ -41,7 +41,7 @@ export default function LoginModal({ onClose }) {
                 {/* CLOSE */}
                 <button
                     onClick={onClose}
-                    className="absolute top-5 right-5 w-8 h-8 rounded-full bg-black/20 hover:bg-black/60 text-white flex items-center justify-center"
+                    className="absolute cursor-pointer top-5 right-5 w-8 h-8 rounded-full bg-black/20 hover:bg-black/60 text-white flex items-center justify-center"
                 >
                     <FiX />
                 </button>
@@ -49,7 +49,7 @@ export default function LoginModal({ onClose }) {
                 {/* HEADER */}
                 <div className="text-center mb-4">
                     <img
-                        src="/image.png"
+                        src="/DeepTrace-new-logo3.png"
                         className="w-16 mx-auto mb-3"
                         alt="logo"
                     />

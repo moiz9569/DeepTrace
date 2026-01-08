@@ -387,7 +387,7 @@ export default function ImageModal({ onClose }) {
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                className="p-2 cursor-pointer hover:bg-slate-100 rounded-full transition-colors"
               >
                 <X className="w-5 h-5 text-slate-500" />
               </button>

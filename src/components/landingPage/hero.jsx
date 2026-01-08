@@ -93,7 +93,7 @@ export default function HeroSection() {
         >
           <div className="absolute inset-0 bg-linear-to-b from-transparent via-[#020617]/50 to-[#020617] opacity-50" />
           <motion.img
-            src="/deeptrace-bg.jpg"
+            src="/bg-pic.png"
             alt="AI Detection Background"
             className="h-full w-full scale-x-[-1] object-cover object-center"
             initial={{ scale: 1.2 }}
@@ -162,7 +162,7 @@ export default function HeroSection() {
       {/* 5. MAIN CONTENT - CENTERED & PROFESSIONAL */}
       <div className="relative z-30 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8 md:pt-0">
         <div className="max-w-7xl w-full">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Column - Main Content */}
             <div className="w-full space-y-6 md:space-y-8 lg:space-y-10 order-2 lg:order-1">
               {/* Animated Badge - Hidden on mobile if empty */}
@@ -176,13 +176,13 @@ export default function HeroSection() {
               </motion.div>
 
               {/* Main Heading with Staggered Animation */}
-              <div className="space-y-4">
+              <div className="space-y-4 w-150 lg:w-175">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight">
                     <span className="block bg-linear-to-r from-slate-200 via-teal-200 to-slate-200 bg-clip-text text-transparent">
                       Detect AI-Generated
                     </span>
@@ -197,7 +197,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-base sm:text-lg md:text-xl text-slate-300/90 max-w-2xl leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl text-slate-300/90 max-w-sm sm:max-w-2xl leading-relaxed"
                 >
                   Advanced AI detection for text, images, and videos. 
                   <span className="text-teal-300 font-semibold"> Instantly verify</span> AI-generated or human-written content with scientific accuracy.
@@ -209,7 +209,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
+                className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 sm:w-auto md:w-167.5 lg:w-175 gap-3 sm:gap-4"
               >
                 {[
                   { icon: Scan, text: "Real-Time Detection", color: "text-teal-400" },
@@ -218,10 +218,10 @@ export default function HeroSection() {
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-2 p-3 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
+                    className="flex items-center gap-2 p-3 h-16 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10"
                   >
                     <feature.icon className={`w-4 h-4 ${feature.color}`} />
-                    <span className="text-xs sm:text-sm text-slate-300">
+                    <span className="text-xs md:text-base text-slate-300">
                       {isMobile && feature.text.includes("Multi-Format Detection") 
                         ? "Text, Image & Video" 
                         : feature.text}
@@ -241,9 +241,9 @@ export default function HeroSection() {
                   <motion.button
                     whileHover={{ scale: isMobile ? 1 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group relative w-full overflow-hidden rounded-xl bg-linear-to-r from-teal-700 via-teal-600 to-emerald-600 p-0.5"
+                    className="group cursor-pointer relative w-full overflow-hidden rounded-xl bg-linear-to-r from-teal-700 via-teal-600 to-emerald-600 p-0.5"
                   >
-                    <div className="relative flex items-center justify-center gap-2 sm:gap-3 rounded-[11px] bg-linear-to-r from-teal-800 to-teal-900 px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white transition-all group-hover:from-teal-700 group-hover:to-emerald-700">
+                    <div className="relative flex items-center justify-center gap-2 sm:gap-3 rounded-[11px] bg-linear-to-r from-teal-800 to-teal-900 px-4 sm:px-6 md:w-60 lg:w-full md:px-0 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white transition-all group-hover:from-teal-700 group-hover:to-emerald-700">
                       <span>Start AI Detection</span>
                       <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -254,7 +254,7 @@ export default function HeroSection() {
                   <motion.button
                     whileHover={{ scale: isMobile ? 1 : 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full rounded-xl border border-teal-500/30 bg-white/5 backdrop-blur-xl px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-slate-300 transition-all hover:bg-white/10 hover:border-teal-400/50"
+                    className="rounded-xl cursor-pointer border border-teal-500/30 bg-white/5 backdrop-blur-xl px-4 w-full md:w-60 sm:px-6 md:px-0 lg:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-slate-300 transition-all hover:bg-white/10 hover:border-teal-400/50"
                   >
                     See How It Works
                   </motion.button>
