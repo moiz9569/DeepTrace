@@ -50,7 +50,7 @@ export default function SignupModal({ onClose }) {
       />
 
       {/* Modal */}
-      <div className="relative z-10 w-full max-w-md bg-white/30 backdrop-blur-xl rounded-2xl shadow-2xl p-6">
+      <div className="relative z-10 w-full max-w-md bg-gray-400 backdrop-blur-xl rounded-2xl shadow-2xl p-6">
         {/* Close */}
         <button
           onClick={onClose}

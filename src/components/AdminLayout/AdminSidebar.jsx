@@ -15,7 +15,7 @@ import {
   User,
 } from "lucide-react";
 
-export default function UserSidebar({ children }) {
+export default function AdminSidebar({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const { user,logout } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -149,7 +149,7 @@ export default function UserSidebar({ children }) {
                     <p className="text-sm font-semibold text-slate-200">
                       DeepTrace
                     </p>
-                    <p className="text-xs text-slate-300">User Dashboard</p>
+                    <p className="text-xs text-slate-300">Admin Dashboard</p>
                   </div>
                 )}
               </div>
