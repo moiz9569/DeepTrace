@@ -91,6 +91,11 @@ export default function UserSidebar({ children }) {
           icon: Video,
           path: "/dashboard/user/video-model",
         },
+        {
+          label: "apiKey",
+          icon: Settings,
+          path: "/dashboard/user/apiKey",
+        },
       ],
     },
     // {

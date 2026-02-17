@@ -93,7 +93,7 @@ export default function ApiKeyPage() {
           <li>
             Use it in your requests in the header as: <code>x-api-key: YOUR_KEY</code>
           </li>
-          <li>Call the endpoint: <code>/api/detect</code> with your media file.</li>
+          <li>Call the endpoint: <code>/api/text or /api/image</code> with your media file.</li>
           <li>Your free credits will be automatically deducted.</li>
         </ol>
       </div>
