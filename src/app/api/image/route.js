@@ -1,0 +1,62 @@
+import { consumeCredit, verifyApiKey } from "@/lib/verifyApiKey";
+import { NextResponse } from "next/server";
+
+export async function POST(req) {
+
+  // 1️⃣ Read body
+  const { image } = await req.json();
+
+  if (!image) {
+    return NextResponse.json(
+      { success: false, error: "Image is required" },
+      { status: 400 }
+    );
+  }
+
+  // 2️⃣ VERIFY ONLY (no deduction yet)
+  const check = await verifyApiKey(req, "image");
+  if (check.error) {
+    return NextResponse.json(
+      { success: false, error: check.error },
+      { status: check.status }
+    );
+  }
+
+  try {
+
+    // 3️⃣ Call HuggingFace Space properly
+    const response = await fetch(
+      "https://mohitai24-image-detector-model.hf.space/predict",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ image })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("HF request failed");
+    }
+
+    const result = await response.json();
+
+    // 4️⃣ SUCCESS → NOW deduct credit
+    await consumeCredit(check.user, "image");
+
+    return NextResponse.json({
+      success: true,
+      data: result,
+      creditsLeft: check.user.freeImageCredits - 1,
+    });
+
+  } catch (err) {
+    console.error("HF ERROR:", err);
+
+    return NextResponse.json(
+      { success: false, error: "AI processing failed" },
+      { status: 500 }
+    );
+  }
+}
