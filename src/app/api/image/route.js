@@ -94,20 +94,38 @@ export async function POST(req) {
     const buffer = Buffer.from(bytes);
 
     // 3️⃣ Call HuggingFace
+    // const response = await fetch(
+    //   "https://mohitai24-image-detector-model.hf.space/predict",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/octet-stream"
+    //     },
+    //     body: buffer
+    //   }
+    // );
+    const base64Image = buffer.toString("base64");
     const response = await fetch(
-      "https://mohitai24-image-detector-model.hf.space/predict",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/octet-stream"
-        },
-        body: buffer
-      }
-    );
+  "https://mohitai24-image-detector-model.hf.space/run/predict",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      data: [`data:image/jpeg;base64,${base64Image}`]
+    })
+  }
+);
 
+    // if (!response.ok) {
+    //   throw new Error("HF request failed");
+    // }
     if (!response.ok) {
-      throw new Error("HF request failed");
-    }
+  const errorText = await response.text();
+  console.error("HF RESPONSE ERROR:", errorText);
+  throw new Error(errorText);
+}
 
     const result = await response.json();
 
@@ -117,7 +135,7 @@ export async function POST(req) {
     return NextResponse.json({
       success: true,
       data: result,
-      creditsLeft: check.user.freeImageCredits,
+      creditsLeft: check.user.freeImageCredits -= 1,
     });
 
   } catch (err) {
