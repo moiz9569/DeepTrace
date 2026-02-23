@@ -79,7 +79,7 @@ export async function POST(req) {
 
   try {
     const formData = await req.formData();
-    const image = formData.get("image");
+    const image = formData.get("file");
 
     if (!image) {
       return NextResponse.json(
@@ -110,11 +110,12 @@ export async function POST(req) {
     // if (!response.ok) {
     //   throw new Error("HF request failed");
     // }
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("HF ERROR RESPONSE:", errorText);
-      throw new Error("HF request failed");
-    }
+   if (!response.ok) {
+  const errorText = await response.text();
+  console.log("HF STATUS:", response.status);
+  console.log("HF ERROR BODY:", errorText);
+  throw new Error("HF request failed");
+}
 
     const result = await response.json();
 
