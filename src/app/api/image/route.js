@@ -64,6 +64,7 @@
 
 import { consumeCredit, verifyApiKey } from "@/lib/verifyApiKey";
 import { NextResponse } from "next/server";
+import FormData from "form-data";
 
 export async function POST(req) {
 
@@ -77,8 +78,6 @@ export async function POST(req) {
   }
 
   try {
-
-    // 2️⃣ Get form-data
     const formData = await req.formData();
     const image = formData.get("image");
 
@@ -89,29 +88,34 @@ export async function POST(req) {
       );
     }
 
-    // Convert file to buffer
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // 3️⃣ Call HuggingFace
+    // 👇 Yahan NEW FormData banao
+    const hfFormData = new FormData();
+    hfFormData.append("file", buffer, {
+      filename: image.name,
+      contentType: image.type,
+    });
+
     const response = await fetch(
       "https://mohitai24-image-detector-model.hf.space/predict",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/octet-stream"
-        },
-        body: buffer
+        body: hfFormData,
+        headers: hfFormData.getHeaders(),
       }
     );
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error("HF ERROR RESPONSE:", errorText);
       throw new Error("HF request failed");
     }
 
     const result = await response.json();
 
-    // 4️⃣ Deduct credit ONLY after success
+    // 4️⃣ Deduct credit AFTER success
     await consumeCredit(check.user, "image");
 
     return NextResponse.json({
@@ -121,10 +125,10 @@ export async function POST(req) {
     });
 
   } catch (err) {
-    console.error("HF ERROR:", err);
+    console.error("FULL ERROR:", err);
 
     return NextResponse.json(
-      { success: false, error: "AI processing failed" },
+      { success: false, error: err.message },
       { status: 500 }
     );
   }
