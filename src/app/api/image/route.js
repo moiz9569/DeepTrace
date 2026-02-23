@@ -107,6 +107,9 @@ export async function POST(req) {
       }
     );
 
+    // if (!response.ok) {
+    //   throw new Error("HF request failed");
+    // }
     if (!response.ok) {
       const errorText = await response.text();
       console.error("HF ERROR RESPONSE:", errorText);
@@ -121,7 +124,7 @@ export async function POST(req) {
     return NextResponse.json({
       success: true,
       data: result,
-      creditsLeft: check.user.freeImageCredits,
+      creditsLeft: check.user.freeImageCredits -= 1,
     });
 
   } catch (err) {
