@@ -124,7 +124,7 @@ export async function POST(req) {
     return NextResponse.json({
       success: true,
       data: result,
-      creditsLeft: check.user.freeImageCredits -= 1,
+      creditsLeft: check.user.freeImageCredits,
     });
 
   } catch (err) {
