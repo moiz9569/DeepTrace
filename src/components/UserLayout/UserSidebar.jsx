@@ -15,6 +15,7 @@ import {
   User,
   Menu,
   X,
+  Package2
 } from "lucide-react";
 
 export default function UserSidebar({ children }) {
@@ -71,6 +72,7 @@ export default function UserSidebar({ children }) {
         { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard/user" },
         { label: "Profile", icon: User, path: "/dashboard/user/profile" },
         { label: "Details", icon: BarChart3, path: "/dashboard/user/details" },
+        { label: "Packages", icon: Package2, path: "/dashboard/user/packages" },
       ],
     },
     {
